@@ -1,0 +1,29 @@
+
+.icon-sm-box,
+.icon-lg-box,
+.icon-md-box {
+  height: 32px;
+  border-radius: 5px;
+  margin: 0 2px;
+  background-color: #5f96c0;
+  color: #fff;
+}
+
+.icon-sm-box {
+  width: 32px;
+}
+
+.icon-md-box {
+  width: 90px;
+}
+.icon-lg-box {
+  width: 180px;
+}
+.icon-sm-circle{
+  width: 32px;
+  height: 32px;
+  margin: 0 2px;
+  border-radius: 100%;
+  background-color: #DFE0E6;
+
+}
