@@ -1,0 +1,42 @@
+
+
+app-board-layout{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 400px;
+  height: auto;
+}
+
+ app-sidebar-board {
+  // float: left;
+  width: 270px;
+  height: auto;
+  margin-top: 40px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  background-color: #fcd;
+ }
+
+ .board-layout {
+  // float: left;
+  max-width: 1250px;
+  min-width: 500px;
+  width: calc(100% - 500px);
+  background-color: #efd;
+ }
+ .board {
+   display: flex;
+  //  justify-content: space-around;
+   width: 100%;
+
+ }
+ app-board {
+   float: left;
+   overflow: hidden;
+   width: 200px;
+   height: 100px;
+   margin: 10px;
+   border-radius: 5px;
+   background-color: #fff;
+ }
