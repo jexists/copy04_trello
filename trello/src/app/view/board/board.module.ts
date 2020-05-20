@@ -13,6 +13,10 @@ import { NewBoardModalComponent } from './new-board-modal/new-board-modal.compon
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    BoardComponent
   ]
+
 })
 export class BoardModule { }
