@@ -31,7 +31,8 @@ app-board-layout{
    width: 100%;
 
  }
- app-board {
+ app-board,
+ .new-board {
    float: left;
    overflow: hidden;
    width: 200px;
@@ -39,4 +40,12 @@ app-board-layout{
    margin: 10px;
    border-radius: 5px;
    background-color: #fff;
+ }
+
+ .new-board a {
+   background-color: rgba(9,30,66,.04);
+   color: #172b4d;
+   text-align: center;
+   line-height: 100px;
+   text-transform: capitalize;
  }
