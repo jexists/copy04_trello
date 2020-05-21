@@ -1,1 +1,56 @@
-<p>new-board works!</p>
+<div>
+  <form action="post">
+    <div>
+      <div>
+        <div>
+          <input type="text" placeholder="add board title">
+        </div>
+        <div class="btn-group" dropdown>
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+            aria-controls="dropdown-animated">
+            private <span class="caret"></span>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li role="menuitem">
+              <a class="dropdown-item" href="#">
+                <div>
+                  <span></span>
+                  private
+                  <span></span>
+                </div>
+                <p>only board members can see and edit this board.</p>
+              </a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="#">
+                <div>
+                  <span></span>
+                  public
+                  <span></span>
+                </div>
+                <p>anyone on the internet (including Google) can see this board.</p>
+                <p>only board members can edt.</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button">...</button></li>
+      </ul>
+    </div>
+    
+    <div>
+      <button type="submit">create board</button>
+      <a href="#">start with a Template</a>
+    </div>
+  </form>
+</div>

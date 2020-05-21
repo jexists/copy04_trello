@@ -8,40 +8,95 @@ app-board-layout{
   height: auto;
 }
 
- app-sidebar-board {
-  // float: left;
-  width: 270px;
-  height: auto;
-  margin-top: 40px;
-  padding: 0 16px;
-  box-sizing: border-box;
-  background-color: #fcd;
- }
-
  .board-layout {
-  // float: left;
   max-width: 1250px;
   min-width: 500px;
   width: calc(100% - 500px);
-  background-color: #efd;
+  padding-top: 40px;
+  box-sizing: border-box;
+  .board-box {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  h3 {
+    width: 100%;
+    height: 40px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: capitalize;
+    line-height: 40px;
+    span {
+      display: block;
+      float: left;
+      width: 50px;
+      text-align: center;
+      font-size: 1.25rem;
+    }
+    p {
+      float: left;
+      padding-top: 2px;
+      box-sizing: border-box;
+      width: calc(100% - 50px);
+      font-size: inherit;
+      
+    }
+  }
  }
- .board {
-   display: flex;
-  //  justify-content: space-around;
-   width: 100%;
 
+ .board {
+  display: flex;
+  width: 100%;
  }
  app-board,
  .new-board {
-   float: left;
    overflow: hidden;
    width: 200px;
    height: 100px;
    margin: 10px;
    border-radius: 5px;
-   background-color: #fff;
+
+   a:hover {
+     text-decoration: none;
+     background-color: rgba(0, 0, 0, 0.2);
+     .star {
+       transform: translateX(0);
+     }
+   }
  }
 
+ app-board {
+  background-color: #e7f;
+ }
+ .board-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+
+ .text-overflow {
+   overflow: hidden;
+   width: 100%;
+   height: 46px;
+   .board-title {
+     text-shadow: 0 0 1px #aaa;
+     font-weight: bold;
+     line-height: 1.5;
+     font-size: 16px;
+     color: #fff;
+    }
+  }
+  .star {
+   color: #fff;
+   width: 100%;
+   height: 10px;
+   margin-top: 12px;
+   font-size: 10px;
+   text-align: right;
+   transform: translateX(20%);
+   transition: all 300ms ease;
+ }
+}
  .new-board a {
    background-color: rgba(9,30,66,.04);
    color: #172b4d;

@@ -1,17 +1,26 @@
 
 <app-sidebar-board></app-sidebar-board>
 <div class="board-layout">
-  <h3><span><i class="far fa-star"></i></span>  starred board</h3>
-  <h3><span><i class="far fa-clock"></i></span>  recently viewed</h3>
-  <h3><span><i class="far fa-user"></i></span>  personal board</h3>
-  <div class="board personal-board">
-    <app-board></app-board>
-    <app-board></app-board>
-    <app-board></app-board>
-    <div class="new-board">
-      <a href="#" class="block" (click)="onModalOpen()">
-        create new board
-      </a>
+  <!-- <div class="board-box">
+    <h3><span><i class="far fa-star"></i></span> <p>starred boards</p></h3>
+  </div>
+
+  <div class="board-box">
+    <h3><span><i class="far fa-clock"></i></span>  <p>recently viewed</p></h3>
+  </div> -->
+
+  <div class="board-box">
+    <h3><span><i class="far fa-user"></i></span> <p>personal boards</p></h3>
+    <div class="board personal-board">
+      <!-- <div *ngFor=""></div> -->
+      <app-board></app-board>
+      <app-board></app-board>
+      <app-board></app-board>
+      <div class="new-board">
+        <a href="#" class="block" (click)="onModalOpen()">
+          create new board
+        </a>
+      </div>
     </div>
   </div>
 </div>

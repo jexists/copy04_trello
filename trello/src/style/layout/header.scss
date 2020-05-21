@@ -36,8 +36,18 @@
     float: left;
    li {
      float: left;
-     
+    .search-icon {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+    }
+    button {
+      display: block;
+      width: 100%;
+      height: 100%;
+      
+    }
    }
   }
-
 }

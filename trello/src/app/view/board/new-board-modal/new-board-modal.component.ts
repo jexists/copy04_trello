@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+// import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+
 @Component({
   selector: 'app-new-board-modal',
   templateUrl: './new-board-modal.component.html',
