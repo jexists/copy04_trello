@@ -13,5 +13,8 @@ export class NewBoardModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onClose(): void {
+    
+  }
 
 }

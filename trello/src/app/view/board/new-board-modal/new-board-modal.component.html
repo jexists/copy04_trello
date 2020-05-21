@@ -1,11 +1,16 @@
-<div>
+<div class="newboard-modal">
   <form action="post">
-    <div>
-      <div>
-        <div>
-          <input type="text" placeholder="add board title">
+    <div class="board-info cf">
+      <div class="board-select">
+        <div class="board-header">
+          <div class="new-title">
+            <input type="text" placeholder="Add board title">
+          </div>
+          <div class="close-btn">
+            <button type="button" (click)="onClose()"><i class="fas fa-times"></i></button>
+          </div>
         </div>
-        <div class="btn-group" dropdown>
+        <div class="btn-group access-btn" dropdown>
           <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
             aria-controls="dropdown-animated">
             private <span class="caret"></span>
@@ -14,9 +19,9 @@
             <li role="menuitem">
               <a class="dropdown-item" href="#">
                 <div>
-                  <span></span>
+                  <span><i class="fas fa-lock"></i></span>
                   private
-                  <span></span>
+                  <span><i class="fas fa-check"></i></span>
                 </div>
                 <p>only board members can see and edit this board.</p>
               </a>
@@ -24,9 +29,9 @@
             <li role="menuitem">
               <a class="dropdown-item" href="#">
                 <div>
-                  <span></span>
+                  <span><i class="fas fa-globe-americas"></i></span>
                   public
-                  <span></span>
+                  <span><i class="fas fa-check"></i></span>
                 </div>
                 <p>anyone on the internet (including Google) can see this board.</p>
                 <p>only board members can edt.</p>
@@ -35,7 +40,7 @@
           </ul>
         </div>
       </div>
-      <ul>
+      <ul class="board-color">
         <li><button type="button"></button></li>
         <li><button type="button"></button></li>
         <li><button type="button"></button></li>
@@ -48,9 +53,9 @@
       </ul>
     </div>
     
-    <div>
+    <div class="action-item">
       <button type="submit">create board</button>
-      <a href="#">start with a Template</a>
+      <a href="#"><i class="fab fa-trello"></i> start with a Template</a>
     </div>
   </form>
 </div>
