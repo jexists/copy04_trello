@@ -31,9 +31,18 @@ export class BoardService {
 
   //http 코드
   getBoards(): Observable<Board[]> {
-    return this.http.get<Board[]>(this.boardUrl);
+    return this.http.get<Board[]>(this.boardUrl).pipe(
+      catchError(this.handleError<Board[]>('getBoards',[]))
+    );
   }
 
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    }
+  }
+  
   getBoard(uuid: number): Observable<Board> {
     return of(BOARDS.find(board => board.boardUUID === uuid))
   }
