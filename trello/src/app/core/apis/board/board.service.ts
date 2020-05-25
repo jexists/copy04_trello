@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Board } from '../model/board';
-import { BOARDS } from '../mockup/mock-board';
+import { Board } from '../../model/board';
+import { BOARDS } from '../../mockup/mock-board';
 
 @Injectable({
   providedIn: 'root'
