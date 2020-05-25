@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Board } from '../../core/models/index';
-import { BoardService } from '../../core/apis/board/index';
+import { BoardService } from '../../core/apis/index';
 
 import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-board-modal.component'; 
 

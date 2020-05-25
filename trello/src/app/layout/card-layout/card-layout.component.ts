@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 
 import { Board } from '../../core/models/index';
-import { BoardService } from '../../core/apis/board/index';
+import { BoardService } from '../../core/apis/index';
 
 @Component({
   selector: 'app-card-layout',

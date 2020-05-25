@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './core/service/in-memory-data.service';
 
 import { ModalModule } from 'ngx-bootstrap/modal'
 
@@ -27,6 +31,13 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     ModalModule.forRoot(),
+    HttpClientModule,
+
+    // HttpClientInMemoryWebApiModule 모듈은 HTTP 요청을 가로채고 서버의 응답을 흉내냅니다.
+    // 실제 서버가 준비 => 제거
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]
