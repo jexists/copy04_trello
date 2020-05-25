@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Board } from '../../core/model/index';
+import { Board } from '../../core/models/index';
 import { BOARDS } from '../../core/mockup/mock-board';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',

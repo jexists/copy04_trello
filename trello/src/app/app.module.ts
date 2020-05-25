@@ -11,6 +11,7 @@ import { CardLayoutComponent } from './layout/card-layout/card-layout.component'
 import { SidebarBoardComponent } from './layout/board-layout/sidebar-board/sidebar-board.component';
 
 import { BoardModule } from './view/board/board.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BoardModule } from './view/board/board.module';
   ],
   imports: [
     BoardModule,
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
     ModalModule.forRoot(),

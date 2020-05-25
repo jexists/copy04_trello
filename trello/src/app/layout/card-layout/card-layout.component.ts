@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+
+import { Board } from '../../core/models/index';
+import { BoardService } from '../../core/apis/board/index';
 
 @Component({
   selector: 'app-card-layout',
@@ -7,9 +13,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardLayoutComponent implements OnInit {
 
-  constructor() { }
+  selBoard: Board;
+
+  constructor(
+    private boardService: BoardService,
+    private route: ActivatedRoute,
+    private location: Location,
+  ) { }
 
   ngOnInit(): void {
+    this.getBoard();
   }
 
+  getBoard(): void {
+    const UUID = +this.route.snapshot.paramMap.get('boardUUID');
+
+
+    this.boardService.getBoard(UUID)
+    .subscribe(selBoard => this.selBoard = selBoard);
+  }
+  
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Board } from '../../model/board';
+import { Observable, of } from 'rxjs';
+
+import { Board } from '../../models/board';
 import { BOARDS } from '../../mockup/mock-board';
 
 @Injectable({
@@ -10,9 +12,16 @@ export class BoardService {
 
   constructor() { }
 
-  getBoards(): Board[] {
-      return BOARDS;
-      console.log('get');
-      
+  // 기존코드
+  // getBoards(): Board[] {
+  //   return BOARDS;
+  // }
+
+  getBoards(): Observable<Board[]> {
+    return of(BOARDS);
+  }
+
+  getBoard(uuid: number): Observable<Board> {
+    return of(BOARDS.find(board => board.boardUUID === uuid))
   }
 }

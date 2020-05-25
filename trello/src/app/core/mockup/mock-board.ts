@@ -1,4 +1,4 @@
-import { Board } from '../model/board';
+import { Board } from '../models/board';
 
 export const BOARDS: Board[] = [
   { boardUUID: 11, boardTitle: 'text123', boardBg: '#fff', starYN: false, accessYN: false },
