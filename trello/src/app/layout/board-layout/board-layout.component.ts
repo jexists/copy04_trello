@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
-import { BoardService } from '../../core/service/board.service';
+import { Board } from '../../core/model/index';
+import { BoardService } from '../../core/service/index';
+
 import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-board-modal.component'; 
 
 @Component({
@@ -13,10 +15,14 @@ import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-boa
 })
 export class BoardLayoutComponent implements OnInit {
 
+  boards: Board[] = [];
   modalRef: BsModalRef;
 
+  isStar: boolean;
+  isViewed: boolean;
+  
   constructor(
-    boardService: BoardService,
+    private boardService: BoardService,
     private modalService: BsModalService
   ) { }
 
@@ -25,8 +31,7 @@ export class BoardLayoutComponent implements OnInit {
   }
 
   getBoard(): void {
-    // this.boardService.getBoard()
-      // .subscribe(hero => this.hero = hero);
+    this.boards = this.boardService.getBoards()
   }
 
   onModalOpen():void {

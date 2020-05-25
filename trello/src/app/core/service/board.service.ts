@@ -12,5 +12,7 @@ export class BoardService {
 
   getBoards(): Board[] {
       return BOARDS;
+      console.log('get');
+      
   }
 }
