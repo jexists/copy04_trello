@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Board } from '../../core/models/index';
-import { BOARDS } from '../../core/mockup/mock-board';
+// import { BOARDS } from '../../core/mockup/mock-board';
 
 @Component({
   selector: 'app-board',
@@ -10,15 +10,14 @@ import { BOARDS } from '../../core/mockup/mock-board';
 })
 export class BoardComponent implements OnInit {
 
-  // board: Board;
-
-  board: Board = {
-    boardUUID: 11, 
-    boardTitle: 'Test board', 
-    boardBg: '#fff',
-    starYN: false,
-    accessYN: true,
-  };
+  
+  // board: Board = {
+  //   boardUUID: 11, 
+  //   boardTitle: 'Test board', 
+  //   boardBg: '#fff',
+  //   starYN: false,
+  //   accessYN: true,
+  // };
 
   // boardn[] = BOARDS;
   constructor(
