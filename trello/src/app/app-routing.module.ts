@@ -5,8 +5,8 @@ import { CardLayoutComponent } from './layout/card-layout/card-layout.component'
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/board', pathMatch: 'full' },
-  { path: 'board', component: BoardLayoutComponent },
+  { path: '', redirectTo: '/boards', pathMatch: 'full' },
+  { path: 'boards', component: BoardLayoutComponent },
   { path: 'card/:boardUUID', component: CardLayoutComponent }
 ];
 

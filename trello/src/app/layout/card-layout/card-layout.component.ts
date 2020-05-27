@@ -28,7 +28,6 @@ export class CardLayoutComponent implements OnInit {
   getBoard(): void {
     const UUID = +this.route.snapshot.paramMap.get('boardUUID');
 
-
     this.boardService.getBoard(UUID)
     .subscribe(selBoard => this.selBoard = selBoard);
   }

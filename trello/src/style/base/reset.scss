@@ -89,7 +89,12 @@ select, text-area {
 input {
   box-sizing: border-box; 
   text-indent: 0.5rem; 
-  cursor: pointer;}
+  color: inherit;
+  cursor: pointer;
+  &::placeholder {
+    color: inherit;
+  }
+}
 
 input[type="text"]:hover,
 input[type="password"]:hover,
