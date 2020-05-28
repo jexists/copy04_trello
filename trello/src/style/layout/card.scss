@@ -17,6 +17,7 @@
 
         input {
           width: auto;
+          height: 32px;
           padding: 0 12px;
           background-color: transparent;
           border: none;
@@ -66,4 +67,10 @@
       margin-left: 5px;
     }
   }
+}
+.card-contents {
+  background-color: #3a9bd3;
+  overflow-x: auto;
+  width: 100%;
+  height: calc(100% - 88px);  
 }
