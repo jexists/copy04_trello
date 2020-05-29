@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Board } from '../models/board';
+import { Board } from '../models/index';
 import { BOARDS } from '../mockup/mock-board';
 
 @Injectable({

@@ -26,38 +26,8 @@
     <li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
   </ul>
 </div>
-<div class="card-contents">
-  <div class="list-area">
+<ul dragula="card-collection" class="card-contents">
+  <li *ngFor="let list of lists" class="list-area">
     <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-  <div class="list-area">
-    <app-list></app-list>
-  </div>
-</div>
+  </li>
+</ul>
