@@ -1,0 +1,79 @@
+
+app-sidebar-board {
+  width: 240px;
+  height: auto;
+  margin-top: 40px;
+  margin-right: 30px;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  li {
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    padding: 6px 16px 6px 16px;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    color: #172b4d;
+    &.act {
+      background-color: #e4f0f6;
+      color: #0079bf;
+    }
+    
+    span {
+      float: left;
+      display: block;
+      width: 20px;
+    }
+  }
+  
+  .nav-side {
+    display: block;
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: inherit;
+    text-transform: capitalize;
+  }
+}
+
+.team {
+  width: 100%;
+  height: auto;
+  color: #5e6c84;
+  .team-text {
+    padding: 0 16px;
+    font-size: 12px;
+    width: 100%;
+    height: 20px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  button {
+    overflow: hidden;
+    padding: 0 16px;
+    display: block;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 5px;
+    span {
+      float: left;
+      display: block;
+      width: 20px;
+    }
+    p {
+      float: left;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+}

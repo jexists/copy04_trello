@@ -1,0 +1,32 @@
+
+<app-sidebar-board></app-sidebar-board>
+<div class="board-layout">
+  <div *ngIf="isStar" class="board-box">
+    <h3><span><i class="far fa-star"></i></span> <p>starred boards</p></h3>
+  </div>
+
+  <div *ngIf="isViewed" class="board-box">
+    <h3><span><i class="far fa-clock"></i></span>  <p>recently viewed</p></h3>
+  </div>
+
+  <div class="board-box">
+    <h3><span><i class="far fa-user"></i></span> <p>personal boards</p></h3>
+    <div class="board personal-board">
+      <div *ngFor="let board of boards" class="board-area">
+        <a href="#" class="board-link" routerLink="/card/{{board.boardUUID}}">
+          <div class="text-overflow">
+            <p class="board-title">{{board.boardTitle}}</p>
+          </div>
+          <div class="star">
+            <i class="far fa-star"></i>
+          </div>
+        </a>
+      </div>
+      <div class="new-board">
+        <a href="#" class="block" (click)="onModalOpen($event)">
+          create new board
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

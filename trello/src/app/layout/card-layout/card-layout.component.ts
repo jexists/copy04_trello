@@ -14,37 +14,73 @@ import { BoardService, ListService } from '../../core/apis/index';
 })
 export class CardLayoutComponent implements OnInit {
 
-  @Input() selBoard: Board;
-  lists: List[];
+	@Input() selBoard: Board;
+	lists: List[];
 
-  constructor(
-    private boardService: BoardService,
-    private listService: ListService,
-    private route: ActivatedRoute,
-    private location: Location,
-    private dragula : DragulaService
-  ) { }
+	constructor(
+    	private boardService: BoardService,
+    	private listService: ListService,
+    	private route: ActivatedRoute,
+    	private location: Location,
+    	private dragula : DragulaService
+	) { }
 
-  ngOnInit(): void {
-    this.getBoard();
-    this.getList();
-  }
 
-  getBoard(): void {
-    const UUID = +this.route.snapshot.paramMap.get('boardUUID');
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Lifecycle Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 
-    this.boardService.getBoard(UUID)
-    .subscribe(selBoard => this.selBoard = selBoard);
-  }
-  
-  getList(): void {
-    // const UUID = +this.route.snap
-    // this.listService.getLists()
-    // .subscribe(lists => this.lists = lists)
-  }
+    ngOnInit(): void {
+    	this.getBoard();
+    	this.getList();
+	}
+	
+	ngOnDestroy(): void {
 
-  save(): void {
-    this.boardService.updateBoard(this.selBoard)
-    .subscribe();
-  }
+	}
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Data Manipulation Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+	getBoard(): void {
+		const UUID = +this.route.snapshot.paramMap.get('boardUUID');
+	
+		this.boardService.loadBoard(UUID)
+		.subscribe(selBoard => this.selBoard = selBoard);
+	}
+	  
+	getList(): void {
+		// const UUID = +this.route.snap
+		// this.listService.getLists()
+		// .subscribe(lists => this.lists = lists)
+	}
+	
+	save(): void {
+		this.boardService.updateBoard(this.selBoard)
+		.subscribe();
+	}
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component CRUD Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Subscription Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Private Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 }

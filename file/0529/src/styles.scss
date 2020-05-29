@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./vendor/fontawesome/css/all.min.css";
+
+@import "./style/vendor/ngx-modal";
+
+@import "./style/base/reset";
+@import "./style/base/common";
+
+@import "./style/components/icon";
+
+@import "./style/layout/header";
+@import "./style/layout/sidebar";
+@import "./style/layout/board";
+@import "./style/layout/card";
+

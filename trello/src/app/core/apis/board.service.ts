@@ -18,7 +18,6 @@ export class BoardService {
   ) { }
 
   private boardUrl = 'api/boards';
-
   private log(message: string) {
     
   }
@@ -27,25 +26,7 @@ export class BoardService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  ////////////////////////////////
-  //
-  // LOADED BOARDS 
-  //
-  ////////////////////////////////
-
-  // 기존코드
-  // getBoards(): Board[] {
-  //   return BOARDS;
-  // }
-
-  // observable 사용한 코드
-  // getBoards(): Observable<Board[]> {
-  //   return of(BOARDS);
-  // }
-
-
-  //http 코드
-  getBoards(): Observable<Board[]> {
+  loadBoards(): Observable<Board[]> {
     return this.http.get<Board[]>(this.boardUrl).pipe(
       catchError(this.handleError<Board[]>('getBoards',[]))
     );
@@ -58,16 +39,10 @@ export class BoardService {
     }
   }
   
-  getBoard(uuid: number): Observable<Board> {
+  loadBoard(uuid: number): Observable<Board> {
     return of(BOARDS.find(board => board.boardUUID === uuid))
   }
 
-  
-  ////////////////////////////////
-  //
-  // UPDATE BOARD
-  //
-  ////////////////////////////////
 
   updateBoard (board: Board): Observable<any> {
     return this.http.put(this.boardUrl, board, this.httpOptions).pipe(
@@ -76,20 +51,7 @@ export class BoardService {
     );
   }
 
-  ////////////////////////////////
-  //
-  // ADD BOARD
-  //
-  ////////////////////////////////
-
-  // addBoards (board: Board): Observable<Board> {
-  //   return this.http.post<Board>(this.boardUrl, board).pipe(
-  //     tap((newBoard: Board) => this.log(`added board id ${newBoard.boardUUID}`)),
-  //     catchError(this.handleError<Board>('addBoard'))
-  //   );
-  // }
-
-  addBoard (board: Board): Observable<Board> {
+  createBoard (board: Board): Observable<Board> {
     return this.http.post<Board>(this.boardUrl, board).pipe(
       // tap((newBoard: Board) => this.log(`added hero w/ id=${newBoard.boardUUID}`)),
       catchError(this.handleError<Board>('addHero'))

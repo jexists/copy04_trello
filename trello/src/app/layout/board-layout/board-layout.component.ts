@@ -15,46 +15,70 @@ import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-boa
 })
 export class BoardLayoutComponent implements OnInit {
 
-  // boards: Board[] = [];
-  boards: Board[];
-  modalRef: BsModalRef;
+	boards: Board[];
 
-  isStar: boolean;
-  isViewed: boolean;
+	modalRef: BsModalRef;
+
+	isStar: boolean;
+	isViewed: boolean;
   
-  constructor(
-    private boardService: BoardService,
-    private modalService: BsModalService
-  ) { }
+	constructor(
+    	private boardService: BoardService,
+    	private modalService: BsModalService
+	) { }
+	
+  	//////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Lifecycle Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 
-  ngOnInit(): void {
-    this.getBoard();
-  }
+	ngOnInit(): void {
+		this.loadBoard();
+	}
+	
+	ngOnDestroy(): void {
 
-  // getBoard(): void {
-  //   this.boards = this.boardService.getBoards();
-  // }
+	}
 
-  getBoard(): void {
-    this.boardService.getBoards()
-    .subscribe(boards => this.boards = boards);
-  }
+	loadBoard(): void {
+		this.boardService.loadBoards()
+		.subscribe(boards => this.boards = boards);
+	}
 
-  onModalOpen($event):void {
-    $event.preventDefault();
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Data Manipulation Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 
-    console.log('haha');
-    this.modalRef = this.modalService.show( NewBoardModalComponent
-    )
-  }
 
-  // addBoard(boardTitle: string): void {
-  //   boardTitle = boardTitle.trim();
-  //   if(!boardTitle) {return;}
-  //   this.boardService.addBoard({ boardTitle } as Board)
-  //   .subscribe(board => {
-  //     this.boards.push(board)
-  //   })
-  // }
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component CRUD Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Subscription Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Private Methods
+    //
+	//////////////////////////////////////////////////////////////////////////////////
+	
+    onModalOpen($event):void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		this.modalRef = this.modalService.show( NewBoardModalComponent,
+		);
+	  }
+
 
 }

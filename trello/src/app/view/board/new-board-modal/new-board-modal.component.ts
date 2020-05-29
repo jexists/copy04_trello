@@ -15,34 +15,79 @@ import { BoardService } from '../../../core/apis/index';
 })
 export class NewBoardModalComponent implements OnInit {
 
-  boards: Board[];
-  newBoardForm = new FormGroup({
-    newTitle: new FormControl(''),
-    // lastName: new FormControl(''),
-  });
+	
+	boards: Board[];
+	newBoardForm = new FormGroup({
+    	newTitle: new FormControl(''),
+    	// lastName: new FormControl(''),
+	});
 
-  constructor(
-    private boardService: BoardService,
-    private modalService: BsModalService
+	constructor(
+		public modalRef: BsModalRef,
+    	private boardService: BoardService,
+    	private modalService: BsModalService
+	) { }
 
-  ) { }
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Lifecycle Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 
-  ngOnInit(): void {
-  }
-  onClose(): void {
+	ngOnInit(): void {
+	}
 
-  }
+	ngOnDestroy(): void {
 
-  addBoard(boardTitle: string): void {
-    boardTitle = boardTitle.trim();
-    if(!boardTitle) {return;}
-    this.boardService.addBoard({ boardTitle } as Board)
-    .subscribe(board => {
-      this.boards.push(board)
-    })
-  }
+	}
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Data Manipulation Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 
-  onSubmit(): void {
-    console.log(this.newBoardForm.value);
-  }
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component CRUD Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+
+	
+  
+	addBoard(boardTitle: string): void {
+	  // boardTitle = boardTitle.trim();
+	  // if(!boardTitle) {return;}
+	  // this.boardService.loadBoard({ boardTitle } as Board)
+	  // .subscribe(board => {
+	  //   this.boards.push(board)
+	  // })
+	}
+  
+	onSubmit(): void {
+	  console.log(this.newBoardForm.value);
+	}
+	
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component View Event Methods
+    //
+	//////////////////////////////////////////////////////////////////////////////////
+	
+	onClose(): void {
+		this.modalRef.hide();
+	}
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Subscription Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //   Component Private Methods
+    //
+    //////////////////////////////////////////////////////////////////////////////////
 }

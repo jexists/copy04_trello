@@ -1,0 +1,62 @@
+<div class="newboard-modal">
+  <form action="post">
+  <!-- <form action="post" [formGroup]="newBoardForm" (ngSubmit)="onSubmit()"> -->
+    <div class="board-info cf">
+      <div class="board-select">
+        <div class="board-header">
+          <div class="new-title">
+            <input type="text" #newTitle formConrolName="newTitle" placeholder="Add board title">
+          </div>
+          <div class="close-btn">
+            <button type="button" (click)="onClose()"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="btn-group access-btn" dropdown>
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+            aria-controls="dropdown-animated">
+            private <span class="caret"></span>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li role="menuitem">
+              <a class="dropdown-item" href="#">
+                <div>
+                  <span><i class="fas fa-lock"></i></span>
+                  private
+                  <span><i class="fas fa-check"></i></span>
+                </div>
+                <p>only board members can see and edit this board.</p>
+              </a>
+            </li>
+            <li role="menuitem">
+              <a class="dropdown-item" href="#">
+                <div>
+                  <span><i class="fas fa-globe-americas"></i></span>
+                  public
+                  <span><i class="fas fa-check"></i></span>
+                </div>
+                <p>anyone on the internet (including Google) can see this board.</p>
+                <p>only board members can edt.</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul class="board-color">
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button"></button></li>
+        <li><button type="button">...</button></li>
+      </ul>
+    </div>
+    
+    <div class="action-item">
+      <button type="submit" (click)="addBoard(newTitle.value)">create board</button>
+      <a href="#"><i class="fab fa-trello"></i> start with a Template</a>
+    </div>
+  </form>
+</div>
