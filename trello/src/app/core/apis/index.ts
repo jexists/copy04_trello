@@ -1,1 +1,3 @@
-export * from './board/board.service';
+export * from './board.service';
+export * from './list.service';
+export * from './card.service';

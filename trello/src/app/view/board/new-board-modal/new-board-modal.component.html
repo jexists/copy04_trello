@@ -1,10 +1,11 @@
 <div class="newboard-modal">
   <form action="post">
+  <!-- <form action="post" [formGroup]="newBoardForm" (ngSubmit)="onSubmit()"> -->
     <div class="board-info cf">
       <div class="board-select">
         <div class="board-header">
           <div class="new-title">
-            <input type="text" placeholder="Add board title">
+            <input type="text" #newTitle formConrolName="newTitle" placeholder="Add board title">
           </div>
           <div class="close-btn">
             <button type="button" (click)="onClose()"><i class="fas fa-times"></i></button>
@@ -54,7 +55,7 @@
     </div>
     
     <div class="action-item">
-      <button type="submit">create board</button>
+      <button type="submit" (click)="addBoard(newTitle.value)">create board</button>
       <a href="#"><i class="fab fa-trello"></i> start with a Template</a>
     </div>
   </form>

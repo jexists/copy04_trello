@@ -3,7 +3,8 @@ import { Board } from './board';
 import { List } from './list';
 
 export interface Card {
-  // UUID
+  cardUUID: number;
+  cardTitle: string;
 
   board: Board[];
   list: List[];

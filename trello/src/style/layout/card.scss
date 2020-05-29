@@ -69,8 +69,17 @@
   }
 }
 .card-contents {
+  display: flex;
   background-color: #3a9bd3;
   overflow-x: auto;
-  width: 100%;
-  height: calc(100% - 88px);  
+  width: auto;
+  height: calc(100% - 88px);
+  .list-area {
+    flex: none;
+    float: left;
+    width: 272px;
+    height: 95%;
+    margin: 0 4px;
+    background-color: #fff;
+  }  
 }

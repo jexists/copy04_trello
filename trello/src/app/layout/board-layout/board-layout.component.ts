@@ -43,11 +43,18 @@ export class BoardLayoutComponent implements OnInit {
   onModalOpen($event):void {
     $event.preventDefault();
 
-    
     console.log('haha');
     this.modalRef = this.modalService.show( NewBoardModalComponent
-
     )
   }
+
+  // addBoard(boardTitle: string): void {
+  //   boardTitle = boardTitle.trim();
+  //   if(!boardTitle) {return;}
+  //   this.boardService.addBoard({ boardTitle } as Board)
+  //   .subscribe(board => {
+  //     this.boards.push(board)
+  //   })
+  // }
 
 }

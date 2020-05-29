@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -13,7 +13,7 @@ import { BoardService } from '../../core/apis/index';
 })
 export class CardLayoutComponent implements OnInit {
 
-  selBoard: Board;
+  @Input() selBoard: Board;
 
   constructor(
     private boardService: BoardService,
@@ -32,4 +32,8 @@ export class CardLayoutComponent implements OnInit {
     .subscribe(selBoard => this.selBoard = selBoard);
   }
   
+  save(): void {
+    this.boardService.updateBoard(this.selBoard)
+    .subscribe();
+  }
 }

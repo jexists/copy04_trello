@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+import { Board } from '../../../core/models/index';
+import { BoardService } from '../../../core/apis/index';
+
 
 // import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
@@ -9,12 +15,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewBoardModalComponent implements OnInit {
 
-  constructor() { }
+  boards: Board[];
+  newBoardForm = new FormGroup({
+    newTitle: new FormControl(''),
+    // lastName: new FormControl(''),
+  });
+
+  constructor(
+    private boardService: BoardService,
+    private modalService: BsModalService
+
+  ) { }
 
   ngOnInit(): void {
   }
   onClose(): void {
-    
+
   }
 
+  addBoard(boardTitle: string): void {
+    boardTitle = boardTitle.trim();
+    if(!boardTitle) {return;}
+    this.boardService.addBoard({ boardTitle } as Board)
+    .subscribe(board => {
+      this.boards.push(board)
+    })
+  }
+
+  onSubmit(): void {
+    console.log(this.newBoardForm.value);
+  }
 }
