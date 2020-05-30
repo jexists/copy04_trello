@@ -34,16 +34,15 @@ export class BoardLayoutComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		this.loadBoard();
+		this.loadBoards();
 	}
 	
 	ngOnDestroy(): void {
 
 	}
 
-	loadBoard(): void {
-		this.boardService.loadBoards()
-		.subscribe(boards => this.boards = boards);
+	loadBoards(): void {
+		this.boardService.loadBoards().subscribe(boards => this.boards = boards);
 	}
 
     //////////////////////////////////////////////////////////////////////////////////

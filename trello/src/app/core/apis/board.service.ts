@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Board } from '../models/index';
-import { BOARDS } from '../mockup/mock-board';
+// import { BOARDS } from '../mockup/mock-board';
 
 @Injectable({
   providedIn: 'root'
@@ -17,19 +17,14 @@ export class BoardService {
 
   ) { }
 
-  private boardUrl = 'api/boards';
   private log(message: string) {
     
   }
 
+  private boardUrl = 'api/boards';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
-
-  loadBoards(): Observable<Board[]> {
-    return this.http.get<Board[]>(this.boardUrl).pipe(
-      catchError(this.handleError<Board[]>('getBoards',[]))
-    );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -39,8 +34,20 @@ export class BoardService {
     }
   }
   
-  loadBoard(uuid: number): Observable<Board> {
-    return of(BOARDS.find(board => board.boardUUID === uuid))
+  loadBoards(): Observable<Board[]> {
+    return this.http.get<Board[]>(this.boardUrl).pipe(
+      catchError(this.handleError<Board[]>('getBoards',[]))
+    );
+  }
+
+  
+  loadBoard(id: number): Observable<Board> {
+    const url = `${this.boardUrl}/${id}`;
+
+    return this.http.get<Board>(url).pipe(
+      tap(_ => this.log(`fetch id = {id}`)),
+      catchError(this.handleError<Board>(`loadBoard id ${id}`))
+    );
   }
 
 
@@ -57,4 +64,6 @@ export class BoardService {
       catchError(this.handleError<Board>('addHero'))
     );
   }
+
+
 }

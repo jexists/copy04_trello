@@ -15,6 +15,7 @@ import { BoardService, ListService } from '../../core/apis/index';
 export class CardLayoutComponent implements OnInit {
 
 	@Input() selBoard: Board;
+	// @Input() selBoard: Board;
 	lists: List[];
 
 	constructor(
@@ -33,27 +34,30 @@ export class CardLayoutComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////
 
     ngOnInit(): void {
-    	this.getBoard();
-    	this.getList();
+    	this.loadBoard();
+		this.loadList();
+		console.log(JSON.stringify(this.selBoard));
+		
 	}
 	
 	ngOnDestroy(): void {
-
+		
 	}
     //////////////////////////////////////////////////////////////////////////////////
     //
     //   Component Data Manipulation Methods
     //
     //////////////////////////////////////////////////////////////////////////////////
-
-	getBoard(): void {
-		const UUID = +this.route.snapshot.paramMap.get('boardUUID');
 	
-		this.boardService.loadBoard(UUID)
-		.subscribe(selBoard => this.selBoard = selBoard);
+	loadBoard(): void {
+		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
+		
+		this.boardService.loadBoard(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
+		
+		console.log(JSON.stringify(this.selBoard));
 	}
-	  
-	getList(): void {
+	
+	loadList(): void {
 		// const UUID = +this.route.snap
 		// this.listService.getLists()
 		// .subscribe(lists => this.lists = lists)
