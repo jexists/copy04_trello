@@ -6,6 +6,6 @@ export interface Card {
   cardUUID: number;
   cardTitle: string;
 
-  board: Board[];
-  list: List[];
+  // board: Board[];
+  // list: List[];
 }
