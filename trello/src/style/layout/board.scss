@@ -158,17 +158,25 @@ app-new-board-modal {
         height: 30px;
         margin-right: 5px;
         margin-bottom: 5px;
-        background-color: #0f0;
         border-radius: 5px;
         &:nth-child(3n){
           margin-right: 0;
         }
+        &:nth-child(1) button {background: url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover;}
+        &:nth-child(2) button {background: url("https://images.unsplash.com/photo-1590978553854-f1c0fe76ca70?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9") no-repeat 50% 50% / cover;}
+        &:nth-child(3) button {background: url("https://images.unsplash.com/photo-1590599652693-63e25ae1cc79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9") no-repeat 50% 50% / cover;}
+        &:nth-child(4) button {background: url("https://images.unsplash.com/photo-1590982963729-d5f71ccb7d03?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9")no-repeat 50% 50% / cover;}
+        &:nth-child(5) button {background: #0079BF;}
+        &:nth-child(6) button {background: #A9742A;}
+        &:nth-child(7) button {background: #519838;}
+        &:nth-child(8) button {background: #B04631;}
+        &:nth-child(9) button {background: #D1D2D1;}
         button{
           display: block;
           width: 100%;
           height: 100%;
           &:hover {
-            background-color: rgba(9,30,66,.04);
+            // background-color: rgba(9,30,66,.04);
           }
         }
       }

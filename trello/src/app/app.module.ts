@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ModalModule } from 'ngx-bootstrap/modal'
 
-import { DragulaModule } from 'ng2-dragula';
+// import { DragulaModule } from 'ng2-dragula';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './core/service/in-memory-data.service';
@@ -37,7 +37,7 @@ import { CardModule } from './view/card/card.module';
     AppRoutingModule,
     ModalModule.forRoot(),
     HttpClientModule,
-    DragulaModule.forRoot(),
+    // DragulaModule.forRoot(),
 
     // HttpClientInMemoryWebApiModule 모듈은 HTTP 요청을 가로채고 서버의 응답을 흉내냅니다.
     // 실제 서버가 준비 => 제거

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { DragulaService } from 'ng2-dragula';
+// import { DragulaService } from 'ng2-dragula';
 
 import { Board, List } from '../../core/models/index';
 import { BoardService, ListService } from '../../core/apis/index';
@@ -23,7 +23,7 @@ export class CardLayoutComponent implements OnInit {
 		private listService: ListService,
 		private route: ActivatedRoute,
 		private location: Location,
-		private dragula: DragulaService
+		// private dragula: DragulaService
 	) { }
 
 
@@ -52,7 +52,7 @@ export class CardLayoutComponent implements OnInit {
 	loadBoard(): void {
 		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
 
-		this.boardService.loadBoard(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
+		this.boardService.loadBoardByUUID(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
 
 		console.log(JSON.stringify(this.selBoard));
 	}
@@ -67,6 +67,13 @@ export class CardLayoutComponent implements OnInit {
 		this.boardService.updateBoard(this.selBoard)
 			.subscribe();
 	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+  //
+  //	 Component View Events Methods
+  //
+	//////////////////////////////////////////////////////////////////////////////////
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods

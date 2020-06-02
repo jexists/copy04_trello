@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
+// import * as _ from 'lodash';
+
 import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
 
@@ -46,7 +48,18 @@ export class NewBoardModalComponent implements OnInit {
     //
     //////////////////////////////////////////////////////////////////////////////////
 
+    //////////////////////////////////////////////////////////////////////////////////
+    //
+    //	 Component View Events Methods
+    //
+	  //////////////////////////////////////////////////////////////////////////////////
 
+    
+    onSelectBg($event): void {
+      const boardColor = <HTMLElement>document.querySelector('.board-select');
+      const selColor = getComputedStyle($event).background;
+      boardColor.style.background = selColor;
+    }
     //////////////////////////////////////////////////////////////////////////////////
     //
     //   Component CRUD Methods

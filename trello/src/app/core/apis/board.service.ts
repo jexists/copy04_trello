@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Board } from '../models/index';
+import { HdRepo } from '../repos/hd.repo';
 // import { BOARDS } from '../mockup/mock-board';
 
 @Injectable({
@@ -12,16 +13,17 @@ import { Board } from '../models/index';
 })
 export class BoardService {
 
+  private boardUrl = 'api/boards';
+
   constructor(
     private http: HttpClient,
-
+    // private hdRepo: HdRepo
   ) { }
 
   private log(message: string) {
     
   }
 
-  private boardUrl = 'api/boards';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -41,7 +43,7 @@ export class BoardService {
   }
 
   
-  loadBoard(id: number): Observable<Board> {
+  loadBoardByUUID(id: number): Observable<Board> {
     const url = `${this.boardUrl}/${id}`;
 
     return this.http.get<Board>(url).pipe(
