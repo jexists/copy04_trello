@@ -6,6 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
+import { Button } from 'protractor';
 
 
 // import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
@@ -56,55 +57,37 @@ export class NewBoardModalComponent implements OnInit {
 
     
     onSelectBg(target): void {
-      let currentColor;
       const boardColor = <HTMLElement>document.querySelector('.board-select');
-      const selColor = getComputedStyle(target).background;
+      const selColor = getComputedStyle(target.parentNode).background;
       let activeMenu = <HTMLElement>document.querySelector('.click');
-	    if (activeMenu) {
+    
+      if (target.parentNode.nodeName !== 'BUTTON') {
+        console.log(target.parentNode.nodeName);
+        
+        return; 
+      } else if(activeMenu){
         activeMenu.classList.remove('click');
       }
-      console.log(boardColor);
-      console.log(selColor);
-      
+
       boardColor.style.background = selColor;
-      target.childNodes[0].classList.add('click');
+      target.classList.add('click');
+      console.log('h');
+      
     }
-    // onSelectBg(target): void {
-    //   let currentColor;
-    //   const boardColor = <HTMLElement>document.querySelector('.board-select');
-    //   const selColor = getComputedStyle(target.parentNode).background;
-    //   boardColor.style.background = selColor;
-    //   // target.
-    //   // console.log(target.childNodes[0]);
-    //   // console.log(target.children[0]);
-    //   // console.log(target);
-    //   if (currentColor) {
-    //     // currentCo lor.classList.remove('click');
-    //   }
-    //   target.classList.add('click');
-    //   currentColor = target; 
-    //   console.log(currentColor);
-      
-    // }
-// var currentMenu;
-// function clickMenuHandler(e) {
-// 	if (currentMenu) {
-// 		currentMenu.classList.remove('active');
-// 	}
-// 	e.target.classList.add('active');
-// 	currentMenu = e.target;
-// }
-// var menu = document.querySeletorAll('.menu');
-// menu.addEventListener('click',clickMenuHandler);
+
     onHover($event): void {
-      // if ($event.childNodes[0].classList.contains('color') === true) {
-      //   $event = null;
-      //   return;
-      // }
-      // console.log($event.childNodes[0]);
-      // console.log($event.childNodes[0].classList.contains('color'));
-      
-      // $event.childNodes[0].classList.add('hover');
+      let hoverMenu = <HTMLElement>document.querySelector('.hover');
+      if (!$event.childNodes[0] || $event.childNodes[0].nodeName !== 'SPAN') {
+        return; 
+      }else if(hoverMenu){
+        hoverMenu.classList.remove('hover');
+      }
+      $event.childNodes[0].classList.add('hover');
+    }
+
+    onLeave($event): void {
+      let hoverMenu = <HTMLElement>document.querySelector('.hover');
+      hoverMenu.classList.remove('hover');
     }
     //////////////////////////////////////////////////////////////////////////////////
     //

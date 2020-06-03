@@ -187,16 +187,16 @@ app-new-board-modal {
             line-height: 30px;
           }
           span.hover {
-            // display: block;
-            // background-color: rgba(9,30,66,.2);
-            // i {display: none}
-            // &.click i {display: inline-block;}
+            display: block;
+            background-color: rgba(9,30,66,.2);
+            i {display: none}
+            &.click i {display: inline-block;}
           }
           span.click {
             display: block;
             background-color: transparent;
             i {display: inline-block}
-            // &.hover {background-color: rgba(9,30,66,.2);}
+            &.hover {background-color: rgba(9,30,66,.2);}
           }
         }
       }
