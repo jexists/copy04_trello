@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 
 import { Board } from '../../core/models/index';
 import { BoardService } from '../../core/apis/index';
@@ -24,7 +25,8 @@ export class BoardLayoutComponent implements OnInit {
   
 	constructor(
     	private boardService: BoardService,
-    	private modalService: BsModalService
+      private modalService: BsModalService,
+      private toastr: ToastrService
 	) { }
 	
   	//////////////////////////////////////////////////////////////////////////////////

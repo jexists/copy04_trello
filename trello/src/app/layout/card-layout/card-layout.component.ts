@@ -52,6 +52,9 @@ export class CardLayoutComponent implements OnInit {
 	loadBoard(): void {
 		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
 
+		// setTimeout(() => {
+			
+		// }, 500);
 		this.boardService.loadBoardByUUID(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
 
 		console.log(JSON.stringify(this.selBoard));

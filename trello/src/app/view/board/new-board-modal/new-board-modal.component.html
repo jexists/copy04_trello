@@ -1,5 +1,6 @@
 <div class="newboard-modal">
-  <form action="post">
+  <!-- <form [formGroup]="newBoardForm" (ngSubmit)="onSubmit(newBoardForm.value, $event)" id="newBoard"> -->
+  <form id="newBoard">
   <!-- <form action="post" [formGroup]="newBoardForm" (ngSubmit)="onSubmit()"> -->
     <div class="board-info cf">
       <div class="board-select">
@@ -55,7 +56,7 @@
     </div>
     
     <div class="action-item">
-      <button type="submit" (click)="addBoard(newTitle.value)">create board</button>
+      <button type="submit" (click)="addBoard(newTitle.value)" [disabled]>create board</button>
       <a href="#"><i class="fab fa-trello"></i> start with a Template</a>
     </div>
   </form>

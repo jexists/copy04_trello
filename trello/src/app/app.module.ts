@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal'
 
 // import { DragulaModule } from 'ng2-dragula';
@@ -20,6 +22,7 @@ import { SidebarBoardComponent } from './layout/board-layout/sidebar-board/sideb
 import { BoardModule } from './view/board/board.module';
 import { CoreModule } from './core/core.module';
 import { CardModule } from './view/card/card.module';
+import { RepoModule } from './core/repos/repo.module';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { CardModule } from './view/card/card.module';
     ModalModule.forRoot(),
     HttpClientModule,
     // DragulaModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule,
 
     // HttpClientInMemoryWebApiModule 모듈은 HTTP 요청을 가로채고 서버의 응답을 흉내냅니다.
     // 실제 서버가 준비 => 제거
