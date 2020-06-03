@@ -127,7 +127,8 @@ app-new-board-modal {
       padding: 16px;
       box-sizing: border-box;
       border-radius: 5px;
-      background-color: #fee;
+      background: url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover;
+      color: #fff;
       .board-header {
         width: 100%;
         .new-title {
@@ -175,8 +176,27 @@ app-new-board-modal {
           display: block;
           width: 100%;
           height: 100%;
-          &:hover {
-            // background-color: rgba(9,30,66,.04);
+          padding: 0;
+          font-size: 0.5rem;
+          line-height: 30px;
+          span {
+            display: none;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            line-height: 30px;
+          }
+          span.hover {
+            // display: block;
+            // background-color: rgba(9,30,66,.2);
+            // i {display: none}
+            // &.click i {display: inline-block;}
+          }
+          span.click {
+            display: block;
+            background-color: transparent;
+            i {display: inline-block}
+            // &.hover {background-color: rgba(9,30,66,.2);}
           }
         }
       }

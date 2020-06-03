@@ -55,10 +55,56 @@ export class NewBoardModalComponent implements OnInit {
 	  //////////////////////////////////////////////////////////////////////////////////
 
     
-    onSelectBg($event): void {
+    onSelectBg(target): void {
+      let currentColor;
       const boardColor = <HTMLElement>document.querySelector('.board-select');
-      const selColor = getComputedStyle($event).background;
+      const selColor = getComputedStyle(target).background;
+      let activeMenu = <HTMLElement>document.querySelector('.click');
+	    if (activeMenu) {
+        activeMenu.classList.remove('click');
+      }
+      console.log(boardColor);
+      console.log(selColor);
+      
       boardColor.style.background = selColor;
+      target.childNodes[0].classList.add('click');
+    }
+    // onSelectBg(target): void {
+    //   let currentColor;
+    //   const boardColor = <HTMLElement>document.querySelector('.board-select');
+    //   const selColor = getComputedStyle(target.parentNode).background;
+    //   boardColor.style.background = selColor;
+    //   // target.
+    //   // console.log(target.childNodes[0]);
+    //   // console.log(target.children[0]);
+    //   // console.log(target);
+    //   if (currentColor) {
+    //     // currentCo lor.classList.remove('click');
+    //   }
+    //   target.classList.add('click');
+    //   currentColor = target; 
+    //   console.log(currentColor);
+      
+    // }
+// var currentMenu;
+// function clickMenuHandler(e) {
+// 	if (currentMenu) {
+// 		currentMenu.classList.remove('active');
+// 	}
+// 	e.target.classList.add('active');
+// 	currentMenu = e.target;
+// }
+// var menu = document.querySeletorAll('.menu');
+// menu.addEventListener('click',clickMenuHandler);
+    onHover($event): void {
+      // if ($event.childNodes[0].classList.contains('color') === true) {
+      //   $event = null;
+      //   return;
+      // }
+      // console.log($event.childNodes[0]);
+      // console.log($event.childNodes[0].classList.contains('color'));
+      
+      // $event.childNodes[0].classList.add('hover');
     }
     //////////////////////////////////////////////////////////////////////////////////
     //

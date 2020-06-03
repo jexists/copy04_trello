@@ -41,16 +41,16 @@
           </ul>
         </div>
       </div>
-      <ul class="board-color" (click)="onSelectBg($event.target)">
-        <li><button type="button">1</button></li>
-        <li><button type="button">2</button></li>
-        <li><button type="button">3</button></li>
-        <li><button type="button">4</button></li>
-        <li><button type="button">5</button></li>
-        <li><button type="button">6</button></li>
-        <li><button type="button">7</button></li>
-        <li><button type="button">8</button></li>
-        <li><button type="button">...</button></li>
+      <ul class="board-color" (click)="onSelectBg($event.target)" (mouseover)="onHover($event.target)">
+        <li><button type="button"><span class="color click"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span class="color"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><i class="fas fa-ellipsis-h"></i></button></li>
       </ul>
     </div>
     
