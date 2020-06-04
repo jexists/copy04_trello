@@ -19,10 +19,9 @@ import { BoardLayoutComponent } from './layout/board-layout/board-layout.compone
 import { CardLayoutComponent } from './layout/card-layout/card-layout.component';
 import { SidebarBoardComponent } from './layout/board-layout/sidebar-board/sidebar-board.component';
 
-import { BoardModule } from './view/board/board.module';
 import { CoreModule } from './core/core.module';
+import { BoardModule } from './view/board/board.module';
 import { CardModule } from './view/card/card.module';
-import { RepoModule } from './core/repos/repo.module';
 
 @NgModule({
   declarations: [
@@ -47,7 +46,7 @@ import { RepoModule } from './core/repos/repo.module';
     // HttpClientInMemoryWebApiModule 모듈은 HTTP 요청을 가로채고 서버의 응답을 흉내냅니다.
     // 실제 서버가 준비 => 제거
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
+      InMemoryDataService, { dataEncapsulation: false, delay: 0 }
     ),
   ],
   providers: [],

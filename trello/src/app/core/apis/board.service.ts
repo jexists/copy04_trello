@@ -20,10 +20,6 @@ export class BoardService {
     private hdRepo: HdRepo
   ) { }
 
-  // private log(message: string) {
-    
-  // }
-
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

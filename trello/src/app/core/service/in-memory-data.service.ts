@@ -15,17 +15,20 @@ export class InMemoryDataService {
       { id:12, boardUUID: 12, boardTitle: '테스트용입니다', boardBg: '#fff', starYN: false, accessYN: false },
       { id:13, boardUUID: 13, boardTitle: '테스티 보드이름입니다. 나중에 지울예정', boardBg: '#fff', starYN: false, accessYN: false }
     ];
-    return {boards};
-    
-  }
-  createList() {
-    const lists = [
+    const lists= [
       {listUUID:111, listTitle: '중요' },
       {listUUID:112, listTitle: '중요1111' },
       {listUUID:113, listTitle: '중요2222' }
-    ];
-    return {lists};
+    ]
+    if (boards) {
+      return {boards};
+    }
+    if (lists) {
+      return {lists};
+    }
+    
   }
+  
 
   genUUID(boards: Board[]): number {
     return boards.length > 0 ? Math.max(...boards.map(board => board.boardUUID)) + 1 : 11;

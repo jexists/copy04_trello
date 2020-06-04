@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { RepoModule } from './repos/repo.module';
+import { ApiModule } from './apis/api.module';
+import { ServiceModule } from './service/service.module';
 
 
 
@@ -8,10 +11,14 @@ import { RepoModule } from './repos/repo.module';
   declarations: [],
   imports: [
     CommonModule,
-    RepoModule
+    RepoModule,
+    ApiModule,
+    ServiceModule
   ],
   exports: [
-    RepoModule
+    RepoModule,
+    ApiModule,
+    ServiceModule
   ]
 })
 export class CoreModule { }

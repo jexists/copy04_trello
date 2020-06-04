@@ -26,7 +26,7 @@ export class BoardLayoutComponent implements OnInit {
 	constructor(
     	private boardService: BoardService,
       private modalService: BsModalService,
-      private toastr: ToastrService
+      // private toastr: ToastrService
 	) { }
 	
   	//////////////////////////////////////////////////////////////////////////////////

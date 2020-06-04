@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HdRepo } from './index';
-
+import {
+  InMemoryDataService
+} from './index';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     CommonModule
   ],
+  exports: [],
   providers: [
-    HdRepo
+    InMemoryDataService
   ]
 })
-export class RepoModule { }
+export class ServiceModule { }

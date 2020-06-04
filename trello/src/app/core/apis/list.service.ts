@@ -5,7 +5,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { List } from '../models/index';
-// import { LISTS } from '../mockup/mock-list';
 
 @Injectable({
   providedIn: 'root'
