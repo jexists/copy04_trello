@@ -6,10 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
-import { Button } from 'protractor';
 
-
-// import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 @Component({
   selector: 'app-new-board-modal',
@@ -35,7 +32,8 @@ export class NewBoardModalComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-    this.onFormGroupInit();
+	this.onFormGroupInit();
+	this.onPropertyInit();
 	}
 
 	ngOnDestroy(): void {
@@ -55,10 +53,15 @@ export class NewBoardModalComponent implements OnInit {
 			])),
 			
 		});
+		this.newBoardForm.get('newTitle').valueChanges.subscribe(val => {
+            this.selBoard.boardTitle = val;
+        });
 	}	
 	
 	onPropertyInit(): void {
 		this.selBoard = null;
+		
+		
 	}
     //////////////////////////////////////////////////////////////////////////////////
     //
@@ -107,19 +110,27 @@ export class NewBoardModalComponent implements OnInit {
 
 	
   
-	addBoard(boardTitle: string): void {
+	addBoard(): void {
 	  // boardTitle = boardTitle.trim();
 	  // if(!boardTitle) {return;}
 	  // this.boardService.loadBoard({ boardTitle } as Board)
 	  // .subscribe(board => {
 	  //   this.boards.push(board)
 	  // })
+	  console.log('추가');
+	  console.log(this.onValid());
+	  console.log(this.newBoardForm.get('newTitle'));
+	  
 	}
   
 	onSubmit(target, $event): void {
     // console.log(this.newBoardForm.value);
     $event.preventDefault();
-    $event.stopPropagation();
+	$event.stopPropagation();
+	
+
+	console.log(this.onValid());
+	console.log(this.newBoardForm.get('newTitle'));
 	}
 	
     //////////////////////////////////////////////////////////////////////////////////
@@ -132,6 +143,13 @@ export class NewBoardModalComponent implements OnInit {
 		this.modalRef.hide();
 	}
 
+	onValid(): boolean {
+        if (this.newBoardForm.get('newTitle').valid) {
+			return true;	
+        }
+		return false;
+	}
+	
     //////////////////////////////////////////////////////////////////////////////////
     //
     //   Component Subscription Methods
