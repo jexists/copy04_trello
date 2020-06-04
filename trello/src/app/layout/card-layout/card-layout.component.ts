@@ -36,7 +36,6 @@ export class CardLayoutComponent implements OnInit {
 	ngOnInit(): void {
 		this.loadBoard();
 		this.loadList();
-		console.log(JSON.stringify(this.selBoard));
 
 	}
 
@@ -57,7 +56,6 @@ export class CardLayoutComponent implements OnInit {
 		// }, 500);
 		this.boardService.loadBoardByUUID(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
 
-		console.log(JSON.stringify(this.selBoard));
 	}
 
 	loadList(): void {

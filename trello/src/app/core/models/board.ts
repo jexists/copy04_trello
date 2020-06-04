@@ -1,3 +1,5 @@
+import { List } from './list';
+
 export interface Board {
   id: number;
   boardUUID: number;
@@ -6,4 +8,5 @@ export interface Board {
   starYN: boolean;
   accessYN: boolean;
 
+  // list: List[];
 }

@@ -19,8 +19,8 @@ import { Button } from 'protractor';
 export class NewBoardModalComponent implements OnInit {
 
 	
-	boards: Board[];
-  newBoardForm = FormGroup;
+	selBoard: Board;
+	newBoardForm: FormGroup;
 
 	constructor(
 		public modalRef: BsModalRef,
@@ -48,7 +48,17 @@ export class NewBoardModalComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////
 
     onFormGroupInit(): void {
-      
+		this.newBoardForm = new FormGroup({
+			newTitle: new FormControl(null, Validators.compose([
+				Validators.required,
+				Validators.maxLength(100)
+			])),
+			
+		});
+	}	
+	
+	onPropertyInit(): void {
+		this.selBoard = null;
 	}
     //////////////////////////////////////////////////////////////////////////////////
     //

@@ -6,6 +6,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { BoardComponent } from './board.component';
 import { NewBoardModalComponent } from './new-board-modal/new-board-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,6 +18,8 @@ import { NewBoardModalComponent } from './new-board-modal/new-board-modal.compon
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot()
   ],
   exports: [
