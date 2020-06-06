@@ -60,8 +60,7 @@ export class NewBoardModalComponent implements OnInit {
 	
 	onPropertyInit(): void {
 		this.selBoard = null;
-		
-		
+
 	}
     //////////////////////////////////////////////////////////////////////////////////
     //
