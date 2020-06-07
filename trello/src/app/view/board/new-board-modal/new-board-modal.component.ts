@@ -49,13 +49,14 @@ export class NewBoardModalComponent implements OnInit {
 		this.newBoardForm = new FormGroup({
 			newTitle: new FormControl(null, Validators.compose([
 				Validators.required,
+				Validators.minLength(1),
 				Validators.maxLength(100)
 			])),
 			
 		});
-		this.newBoardForm.get('newTitle').valueChanges.subscribe(val => {
-            this.selBoard.boardTitle = val;
-        });
+		// this.newBoardForm.get('newTitle').valueChanges.subscribe(val => {
+        //     this.selBoard.boardTitle = val;
+        // });
 	}	
 	
 	onPropertyInit(): void {
@@ -116,9 +117,9 @@ export class NewBoardModalComponent implements OnInit {
 	  // .subscribe(board => {
 	  //   this.boards.push(board)
 	  // })
-	  console.log('추가');
-	  console.log(this.onValid());
-	  console.log(this.newBoardForm.get('newTitle'));
+	//   console.log('추가');
+	//   console.log(this.onValid());
+	//   console.log(this.newBoardForm.get('newTitle'));
 	  
 	}
   
@@ -130,6 +131,7 @@ export class NewBoardModalComponent implements OnInit {
 
 	console.log(this.onValid());
 	console.log(this.newBoardForm.get('newTitle'));
+	alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
 	}
 	
     //////////////////////////////////////////////////////////////////////////////////
