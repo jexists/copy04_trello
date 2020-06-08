@@ -9,157 +9,161 @@ import { BoardService } from '../../../core/apis/index';
 
 
 @Component({
-  selector: 'app-new-board-modal',
-  templateUrl: './new-board-modal.component.html',
-  styleUrls: ['./new-board-modal.component.scss']
+	selector: 'app-new-board-modal',
+	templateUrl: './new-board-modal.component.html',
+	styleUrls: ['./new-board-modal.component.scss']
 })
 export class NewBoardModalComponent implements OnInit {
 
-	
+
 	selBoard: Board;
+	selBg: string;
 	newBoardForm: FormGroup;
 
 	constructor(
 		public modalRef: BsModalRef,
-    	private boardService: BoardService,
-    	private modalService: BsModalService
+		private boardService: BoardService,
+		private modalService: BsModalService
 	) { }
 
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Lifecycle Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component Lifecycle Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-	this.onFormGroupInit();
-	this.onPropertyInit();
+		this.onFormGroupInit();
+		this.onPropertyInit();
 	}
 
 	ngOnDestroy(): void {
 
 	}
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Data Manipulation Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component Data Manipulation Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
 
-    onFormGroupInit(): void {
+	onFormGroupInit(): void {
 		this.newBoardForm = new FormGroup({
 			newTitle: new FormControl(null, Validators.compose([
 				Validators.required,
 				Validators.minLength(1),
 				Validators.maxLength(100)
 			])),
-			
+
 		});
 		// this.newBoardForm.get('newTitle').valueChanges.subscribe(val => {
-        //     this.selBoard.boardTitle = val;
-        // });
-	}	
-	
+		//     this.selBoard.boardTitle = val;
+		// });
+	}
+
 	onPropertyInit(): void {
 		this.selBoard = null;
 
 	}
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //	 Component View Events Methods
-    //
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//	 Component View Events Methods
+	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-    
-    onSelectBg(target): void {
-      const boardColor = <HTMLElement>document.querySelector('.board-select');
-      const selColor = getComputedStyle(target.parentNode).background;
-      let activeMenu = <HTMLElement>document.querySelector('.click');
-    
-      if (target.parentNode.nodeName !== 'BUTTON') {
-        return; 
-      } else if(activeMenu){
-        activeMenu.classList.remove('click');
-      }
 
-      boardColor.style.background = selColor;
-      target.classList.add('click');
-    }
+	onSelectBg(target): void {
+		const boardColor = <HTMLElement>document.querySelector('.board-select');
+		const selColor = getComputedStyle(target.parentNode).background;
+		let activeMenu = <HTMLElement>document.querySelector('.click');
 
-    onHover($event): void {
-      let hoverMenu = <HTMLElement>document.querySelector('.hover');
-      
-      if (!$event.childNodes[0] || $event.childNodes[0].nodeName !== 'SPAN') {
-        return; 
-      }else if(hoverMenu){
-        hoverMenu.classList.remove('hover');
-      }
+		if (target.parentNode.nodeName !== 'BUTTON') {
+			return;
+		} else if (activeMenu) {
+			activeMenu.classList.remove('click');
+		}
 
-      $event.childNodes[0].classList.add('hover');
-    }
+		boardColor.style.background = selColor;
+		target.classList.add('click');
 
-    onLeave($event): void {
-      let hoverMenu = <HTMLElement>document.querySelector('.hover');
-      hoverMenu.classList.remove('hover');
-    }
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component CRUD Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
-
-
+		// this.selBg = selColor;
+		// this.selBoard.boardBg = selColor;
+		// console.log(this.selBg);
 	
-  
+	}
+
+	onHover($event): void {
+		let hoverMenu = <HTMLElement>document.querySelector('.hover');
+
+		if (!$event.childNodes[0] || $event.childNodes[0].nodeName !== 'SPAN') {
+			return;
+		} else if (hoverMenu) {
+			hoverMenu.classList.remove('hover');
+		}
+
+		$event.childNodes[0].classList.add('hover');
+	}
+
+	onLeave($event): void {
+		let hoverMenu = <HTMLElement>document.querySelector('.hover');
+		hoverMenu.classList.remove('hover');
+	}
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component CRUD Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 	addBoard(): void {
-	  // boardTitle = boardTitle.trim();
-	  // if(!boardTitle) {return;}
-	  // this.boardService.loadBoard({ boardTitle } as Board)
-	  // .subscribe(board => {
-	  //   this.boards.push(board)
-	  // })
-	//   console.log('추가');
-	//   console.log(this.onValid());
-	//   console.log(this.newBoardForm.get('newTitle'));
-	  
-	}
-  
-	onSubmit(target, $event): void {
-    // console.log(this.newBoardForm.value);
-    $event.preventDefault();
-	$event.stopPropagation();
-	
+		// boardTitle = boardTitle.trim();
+		// if(!boardTitle) {return;}
+		// this.boardService.loadBoard({ boardTitle } as Board)
+		// .subscribe(board => {
+		//   this.boards.push(board)
+		// })
+		//   console.log('추가');
+		//   console.log(this.onValid());
+		//   console.log(this.newBoardForm.get('newTitle'));
 
-	console.log(this.onValid());
-	console.log(this.newBoardForm.get('newTitle'));
-	alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
 	}
-	
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component View Event Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
-	
+
+	onSubmit(target, $event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+
+		console.log(this.onValid());
+		alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
+	}
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component View Event Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
 	onClose(): void {
 		this.modalRef.hide();
 	}
 
 	onValid(): boolean {
-        if (this.newBoardForm.get('newTitle').valid) {
-			return true;	
-        }
+		if (this.newBoardForm.get('newTitle').valid) {
+			return true;
+		}
 		return false;
 	}
-	
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Subscription Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
 
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Private Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component Subscription Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component Private Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
 }
