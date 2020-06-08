@@ -218,6 +218,10 @@ app-new-board-modal {
       text-transform: capitalize;
       color: #a5adba;
       font-size: 14px;
+      &.active {
+        background-color: #0aac44;
+        color: #fff;
+      }
     }
     a{
       display: block;
