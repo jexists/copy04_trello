@@ -1,6 +1,6 @@
 import { List } from './list';
 
-export interface Board {
+export class Board {
   id: number;
   boardUUID: number;
   boardTitle: string;
@@ -9,4 +9,11 @@ export interface Board {
   accessYN: boolean;
 
   // list: List[];
+  constructor(json?: any) {
+    if(!json) { return; }
+
+    for(let key in json) {
+      this[key] = json[key];
+    }
+  }
 }

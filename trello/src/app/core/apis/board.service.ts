@@ -24,27 +24,26 @@ export class BoardService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
-
-  // private handleError<T> (operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     return of(result as T);
-  //   }
-  // }
   
-  loadBoards(): Observable<Board[]> {
-    return this.http.get<Board[]>(this.boardUrl).pipe(
-      // catchError(this.handleError<Board[]>('getBoards',[]))
-    );
-  }
-  
-  createBoard(target: Board): Observable<void> {
-    this.hdRepo.addBoard(target);
-    return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
-
+  loadBoards(): Observable<void> {
+    return this.http.get<any>(this.boardUrl).pipe(map(res => {
+      const targets = [];
+      // res.forEach(json => {
+      //   const target = new Board(json);
+      //   targets.push(target);
+      // });
+      this.hdRepo.loadBoards(targets, true);
     }));
   }
   
+  createBoard(target: Board): Observable<void> {
+    
+    return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
+
+      this.hdRepo.addBoard(target);
+    }));
+  }
+
   loadBoardByUUID(id: number): Observable<Board> {
     const url = `${this.boardUrl}/${id}`;
 
@@ -61,13 +60,6 @@ export class BoardService {
       // catchError(this.handleError<any>('updateBoard'))
     );
   }
-
-  // createBoard (board: Board): Observable<Board> {
-  //   return this.http.post<Board>(this.boardUrl, board).pipe(
-  //     // tap((newBoard: Board) => this.log(`added hero w/ id=${newBoard.boardUUID}`)),
-  //     catchError(this.handleError<Board>('addHero'))
-  //   );
-  // }
 
 
 }

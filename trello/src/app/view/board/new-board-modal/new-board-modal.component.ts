@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -6,6 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
+import { HdRepo } from 'src/app/core/repos/index';
 
 
 @Component({
@@ -16,14 +17,16 @@ import { BoardService } from '../../../core/apis/index';
 export class NewBoardModalComponent implements OnInit {
 
 
-	selBoard: Board;
+	@Input() selBoard: Board;
+
 	selBg: string;
 	newBoardForm: FormGroup;
 
 	constructor(
 		public modalRef: BsModalRef,
 		private boardService: BoardService,
-		private modalService: BsModalService
+		private modalService: BsModalService,
+		private hdRepo: HdRepo
 	) { }
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -84,11 +87,6 @@ export class NewBoardModalComponent implements OnInit {
 
 		boardColor.style.background = selColor;
 		target.classList.add('click');
-
-		// this.selBg = selColor;
-		// this.selBoard.boardBg = selColor;
-		// console.log(this.selBg);
-	
 	}
 
 	onHover($event): void {
@@ -105,8 +103,11 @@ export class NewBoardModalComponent implements OnInit {
 
 	onLeave($event): void {
 		let hoverMenu = <HTMLElement>document.querySelector('.hover');
-		hoverMenu.classList.remove('hover');
+		if (hoverMenu){
+			hoverMenu.classList.remove('hover');
+		}
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods
@@ -116,16 +117,8 @@ export class NewBoardModalComponent implements OnInit {
 
 
 
-	addBoard(): void {
-		// boardTitle = boardTitle.trim();
-		// if(!boardTitle) {return;}
-		// this.boardService.loadBoard({ boardTitle } as Board)
-		// .subscribe(board => {
-		//   this.boards.push(board)
-		// })
-		//   console.log('추가');
-		//   console.log(this.onValid());
-		//   console.log(this.newBoardForm.get('newTitle'));
+	onCreateBoard(board: Board): void {
+		this.hdRepo.addBoard(board);
 
 	}
 
@@ -133,9 +126,15 @@ export class NewBoardModalComponent implements OnInit {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-
 		console.log(this.onValid());
 		alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
+
+		let newBoard = null;
+
+		// newBoard = newBoard();
+		// newBoard.
+
+		this.onCreateBoard(this.selBoard);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

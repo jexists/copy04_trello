@@ -44,7 +44,8 @@ export class BoardLayoutComponent implements OnInit {
 	}
 
 	loadBoards(): void {
-		this.boardService.loadBoards().subscribe(boards => this.boards = boards);
+    // this.boardService.loadBoards().subscribe(boards => this.boards = boards);
+    this.boardService.loadBoards()
 	}
 
     //////////////////////////////////////////////////////////////////////////////////

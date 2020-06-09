@@ -13,6 +13,10 @@ import {
   private lists: List[] = [];
 
   private cards: Card[] = [];
+  
+  clearAll(): void {
+    this.clearBoards();
+  }
 
   //////////////////////////////////////////////
   //
