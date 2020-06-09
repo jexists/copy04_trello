@@ -19,7 +19,7 @@ export class NewBoardModalComponent implements OnInit {
 
 	@Input() selBoard: Board;
 
-	selBg: string;
+	// selBg: string;
 	newBoardForm: FormGroup;
 
 	constructor(
@@ -73,6 +73,26 @@ export class NewBoardModalComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	//모달창이 나왔음 -> 타이틀 적음 (버튼 활성화 생성가능)
+	// -> 공개/비공개 드롭박스 설정 -> 배경색 지정 -> 버튼(create)클릭
+	//valid 체크(타이틀 적었는지 유무) -false -> 버튼 비활성 
+	//valid 체크(타이틀 적었는지 유무) -true -> 버튼 활성
+	//onSubmit -> onCreateBoard -> hdRepo.addBoard
+	//?... 데이터 모음..? 배경색이랑.. 공개비공개.. 제목 
+	/////////////////////////
+
+	private = true;
+	public = false;
+	onSelAccess($event, target: boolean): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		console.log($event);
+		console.log(target);
+		
+		// this.selBoard.accessYN = target;
+		
+	}
 
 	onSelectBg(target): void {
 		const boardColor = <HTMLElement>document.querySelector('.board-select');
@@ -86,6 +106,8 @@ export class NewBoardModalComponent implements OnInit {
 		}
 
 		boardColor.style.background = selColor;
+		// this.selBoard.boardBg = selColor;
+
 		target.classList.add('click');
 	}
 
@@ -118,7 +140,15 @@ export class NewBoardModalComponent implements OnInit {
 
 
 	onCreateBoard(board: Board): void {
+		this.selBoard.accessYN = false
+		this.selBoard.boardBg = ''
+		this.selBoard.boardTitle = ''
+		this.selBoard.boardUUID = 11;
+		this.selBoard.id = 1;
+		this.selBoard.starYN = false;
+		
 		this.hdRepo.addBoard(board);
+
 
 	}
 

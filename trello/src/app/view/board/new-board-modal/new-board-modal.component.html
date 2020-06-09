@@ -17,7 +17,7 @@
           </button>
           <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
             <li role="menuitem">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="#" (click)="onSelAccess($event, private)">
                 <div>
                   <span><i class="fas fa-lock"></i></span>
                   private
@@ -27,7 +27,7 @@
               </a>
             </li>
             <li role="menuitem">
-              <a class="dropdown-item" href="#">
+              <a class="dropdown-item" href="#" (click)="onSelAccess($event, public)">
                 <div>
                   <span><i class="fas fa-globe-americas"></i></span>
                   public
