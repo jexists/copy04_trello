@@ -25,8 +25,8 @@ export class BoardLayoutComponent implements OnInit {
   
 	constructor(
     	private boardService: BoardService,
-      private modalService: BsModalService,
-      // private toastr: ToastrService
+      	private modalService: BsModalService,
+      	// private toastr: ToastrService
 	) { }
 	
   	//////////////////////////////////////////////////////////////////////////////////
@@ -44,8 +44,8 @@ export class BoardLayoutComponent implements OnInit {
 	}
 
 	loadBoards(): void {
-    // this.boardService.loadBoards().subscribe(boards => this.boards = boards);
-    this.boardService.loadBoards()
+    	// this.boardService.loadBoards().subscribe(boards => this.boards = boards);
+    	this.boardService.loadBoards()
 	}
 
     //////////////////////////////////////////////////////////////////////////////////

@@ -131,9 +131,15 @@ app-new-board-modal {
       color: #fff;
       .board-header {
         width: 100%;
+        .btn-group {
+          // .btn {
+          //   padding: 6px;
+          // }
+        }
         .new-title {
           float: left;
           width: 85%;
+          margin-bottom: 10px;
           input {
             background-color: transparent;
             border: none;
