@@ -135,7 +135,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	onCreateBoard(board: Board): void {
 		// Math.random()
 		let num = Math.floor(Math.random() * 10);
-		this.selBoard.boardTitle = this.newBoardForm.value;
+		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
 		this.selBoard.boardUUID = num;
 		this.selBoard.id = num;
 		this.selBoard.starYN = false;
@@ -145,9 +145,10 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
-				alert('생성');
+				// alert(this.selBoard.boardTitle);
 				this.modalRef.content.data = this.selBoard;
-				this.onClose();
+				// this.onClose();
+				
 			},
 			error => {
 				alert('에러')
