@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HdRepo } from './index';
+import { HdRepo, AdminRepo } from './index';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { HdRepo } from './index';
     CommonModule
   ],
   providers: [
-    HdRepo
+    HdRepo,
+    AdminRepo
   ]
 })
 export class RepoModule { }

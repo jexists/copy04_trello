@@ -13,28 +13,18 @@
         <div class="btn-group access-btn" dropdown>
           <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
             aria-controls="dropdown-animated">
-            private <span class="caret"></span>
+            {{!selAccess?'Private':selAccess.value}} <span class="caret"></span>
           </button>
           <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
-            <li role="menuitem">
-              <a class="dropdown-item" href="#" (click)="onSelAccess($event, private)">
+            <li *ngFor="let access of adminRepo.getAccessCode()" role="menuitem">
+              <a class="dropdown-item" href="#" (click)="onSelAccess($event, access)">
                 <div>
-                  <span><i class="fas fa-lock"></i></span>
-                  private
+                  <span><i class="{{access.class}}"></i></span>
+                  {{access.value}}
                   <span><i class="fas fa-check"></i></span>
                 </div>
-                <p>only board members can see and edit this board.</p>
-              </a>
-            </li>
-            <li role="menuitem">
-              <a class="dropdown-item" href="#" (click)="onSelAccess($event, public)">
-                <div>
-                  <span><i class="fas fa-globe-americas"></i></span>
-                  public
-                  <span><i class="fas fa-check"></i></span>
-                </div>
-                <p>anyone on the internet (including Google) can see this board.</p>
-                <p>only board members can edt.</p>
+                <p>{{access.description1}}</p>
+                <p>{{access.description2}}</p>
               </a>
             </li>
           </ul>

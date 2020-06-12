@@ -25,15 +25,23 @@ export class BoardService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
   
-  loadBoards(): Observable<void> {
-    return this.http.get<any>(this.boardUrl).pipe(map(res => {
-      const targets = [];
-      // res.forEach(json => {
-      //   const target = new Board(json);
-      //   targets.push(target);
-      // });
-      this.hdRepo.loadBoards(targets, true);
-    }));
+  // loadBoards(): Observable<void> {
+  //   return this.http.get<any>(this.boardUrl).pipe(map(res => {
+  //     const targets = [];
+  //     // res.forEach(json => {
+  //     //   const target = new Board(json);
+  //     //   targets.push(target);
+  //     // });
+  //     this.hdRepo.loadBoards(targets, true);
+  //   }));
+  // }
+
+  loadBoards (): Observable<Board[]> {
+    return this.http.get<Board[]>(this.boardUrl)
+      .pipe(
+        // tap(_ => this.log('버킷리스트 확인')),
+        // catchError(this.handleError<Hero[]> ('getHeroes', []))
+      );
   }
   
   createBoard(target: Board): Observable<void> {
@@ -43,6 +51,11 @@ export class BoardService {
       this.hdRepo.addBoard(target);
     }));
   }
+
+  // createBoard(target: Board): Observable<Board> {
+  //   return this.http.post<Board>(this.boardUrl, target, this.httpOptions).pipe(
+  //   );
+  // }
 
   loadBoardByUUID(id: number): Observable<Board> {
     const url = `${this.boardUrl}/${id}`;

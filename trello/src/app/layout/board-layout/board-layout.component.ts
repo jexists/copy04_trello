@@ -17,7 +17,7 @@ import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-boa
 export class BoardLayoutComponent implements OnInit {
 
 	boards: Board[];
-
+  selBoard: Board;
 	modalRef: BsModalRef;
 
 	isStar: boolean;
@@ -44,8 +44,8 @@ export class BoardLayoutComponent implements OnInit {
 	}
 
 	loadBoards(): void {
-    	// this.boardService.loadBoards().subscribe(boards => this.boards = boards);
-    	this.boardService.loadBoards()
+    	this.boardService.loadBoards().subscribe(boards => this.boards = boards);
+    	// this.boardService.loadBoards()
 	}
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -80,11 +80,12 @@ export class BoardLayoutComponent implements OnInit {
     //
 	//////////////////////////////////////////////////////////////////////////////////
 	
-    onModalOpen($event):void {
+    onModalOpen($event): void {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-		this.modalRef = this.modalService.show( NewBoardModalComponent,
+    this.modalRef = this.modalService.show( NewBoardModalComponent,
+      {'initialState':{'selBoard':null}}
 		);
 	  }
 

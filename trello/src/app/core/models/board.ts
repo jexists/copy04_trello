@@ -6,7 +6,7 @@ export class Board {
   boardTitle: string;
   boardBg: string;
   starYN: boolean;
-  accessYN: boolean;
+  accessYN: string;
 
   // list: List[];
   constructor(json?: any) {

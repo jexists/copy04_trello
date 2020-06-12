@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -6,7 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
-import { HdRepo } from 'src/app/core/repos/index';
+import { HdRepo, AdminRepo } from 'src/app/core/repos/index';
 
 
 @Component({
@@ -14,19 +14,21 @@ import { HdRepo } from 'src/app/core/repos/index';
 	templateUrl: './new-board-modal.component.html',
 	styleUrls: ['./new-board-modal.component.scss']
 })
-export class NewBoardModalComponent implements OnInit {
-
+export class NewBoardModalComponent implements OnInit, OnDestroy {
 
 	@Input() selBoard: Board;
 
-	// selBg: string;
+	selBg: any;
+	selAccess: any;
+
 	newBoardForm: FormGroup;
 
 	constructor(
 		public modalRef: BsModalRef,
 		private boardService: BoardService,
 		private modalService: BsModalService,
-		private hdRepo: HdRepo
+		private hdRepo: HdRepo,
+		public adminRepo: AdminRepo
 	) { }
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -58,14 +60,10 @@ export class NewBoardModalComponent implements OnInit {
 			])),
 
 		});
-		// this.newBoardForm.get('newTitle').valueChanges.subscribe(val => {
-		//     this.selBoard.boardTitle = val;
-		// });
 	}
 
 	onPropertyInit(): void {
-		this.selBoard = null;
-
+		this.selBoard = new Board();
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -73,7 +71,7 @@ export class NewBoardModalComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	
+	/////////////////////////
 	//모달창이 나왔음 -> 타이틀 적음 (버튼 활성화 생성가능)
 	// -> 공개/비공개 드롭박스 설정 -> 배경색 지정 -> 버튼(create)클릭
 	//valid 체크(타이틀 적었는지 유무) -false -> 버튼 비활성 
@@ -82,17 +80,11 @@ export class NewBoardModalComponent implements OnInit {
 	//?... 데이터 모음..? 배경색이랑.. 공개비공개.. 제목 
 	/////////////////////////
 
-	private = true;
-	public = false;
-	onSelAccess($event, target: boolean): void {
+	onSelAccess($event, access: any): void {
 		$event.preventDefault();
-		$event.stopPropagation();
 
-		console.log($event);
-		console.log(target);
-		
-		// this.selBoard.accessYN = target;
-		
+		this.selAccess = access;
+		this.selBoard.accessYN = this.selAccess.code;
 	}
 
 	onSelectBg(target): void {
@@ -107,8 +99,8 @@ export class NewBoardModalComponent implements OnInit {
 		}
 
 		boardColor.style.background = selColor;
-		// this.selBoard.boardBg = selColor;
-
+		this.selBoard.boardBg = selColor;
+		
 		target.classList.add('click');
 	}
 
@@ -141,16 +133,26 @@ export class NewBoardModalComponent implements OnInit {
 
 
 	onCreateBoard(board: Board): void {
-		this.selBoard.accessYN = false
-		this.selBoard.boardBg = ''
-		this.selBoard.boardTitle = ''
-		this.selBoard.boardUUID = 11;
-		this.selBoard.id = 1;
+		// Math.random()
+		let num = Math.floor(Math.random() * 10);
+		this.selBoard.boardTitle = this.newBoardForm.value;
+		this.selBoard.boardUUID = num;
+		this.selBoard.id = num;
 		this.selBoard.starYN = false;
 		
-		this.hdRepo.addBoard(board);
-
-
+		this.hdRepo.addBoard(this.selBoard);
+		console.log(this.selBoard);
+		
+		this.boardService.createBoard(this.selBoard).subscribe(
+			res => {
+				alert('생성');
+				this.modalRef.content.data = this.selBoard;
+				this.onClose();
+			},
+			error => {
+				alert('에러')
+			}
+		)
 	}
 
 	onSubmit(target, $event): void {
@@ -158,12 +160,7 @@ export class NewBoardModalComponent implements OnInit {
 		$event.stopPropagation();
 
 		console.log(this.onValid());
-		alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
-
-		let newBoard = null;
-
-		// newBoard = newBoard();
-		// newBoard.
+		// alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
 
 		this.onCreateBoard(this.selBoard);
 	}
