@@ -1,4 +1,4 @@
-<div class="card-head" [ngStyle]="{'background': selBoard.boardBg}" >
+<div class="card-head">
   <ul class="card-info">
     <li>
       <h2>
@@ -28,7 +28,7 @@
     <li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
   </ul>
 </div>
-<ul [ngStyle]="{'background': selBoard.boardBg}" dragula="card-collection" class="card-contents">
+<ul dragula="card-collection" class="card-contents">
   <!-- <li *ngFor="let list of lists" class="list-area"> -->
   <li class="list-area">
     <app-list></app-list>
