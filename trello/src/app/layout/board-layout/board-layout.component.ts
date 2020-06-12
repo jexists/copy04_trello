@@ -17,7 +17,7 @@ import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-boa
 export class BoardLayoutComponent implements OnInit {
 
 	boards: Board[];
-  selBoard: Board;
+	selBoard: Board;
 	modalRef: BsModalRef;
 
 	isStar: boolean;
@@ -25,8 +25,8 @@ export class BoardLayoutComponent implements OnInit {
   
 	constructor(
     	private boardService: BoardService,
-      	private modalService: BsModalService,
-      	// private toastr: ToastrService
+     	private modalService: BsModalService,
+      // private toastr: ToastrService
 	) { }
 	
   	//////////////////////////////////////////////////////////////////////////////////
@@ -37,6 +37,7 @@ export class BoardLayoutComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadBoards();
+
 	}
 	
 	ngOnDestroy(): void {
@@ -45,8 +46,9 @@ export class BoardLayoutComponent implements OnInit {
 
 	loadBoards(): void {
     	this.boardService.loadBoards().subscribe(boards => this.boards = boards);
-    	// this.boardService.loadBoards()
+      	// this.boardService.loadBoards()
 	}
+
 
     //////////////////////////////////////////////////////////////////////////////////
     //
@@ -86,8 +88,18 @@ export class BoardLayoutComponent implements OnInit {
 
     this.modalRef = this.modalService.show( NewBoardModalComponent,
       {'initialState':{'selBoard':null}}
-		);
-	  }
+    );
+    
+    const subscriber = this.modalService.onHide.subscribe(
+      	res => {
+          subscriber.unsubscribe();
+          this.loadBoards();
+          // if (this.modalRef.content.data !== 'OK') { return; }
+
+      	}
+    );
+
+	}
 
 
 }

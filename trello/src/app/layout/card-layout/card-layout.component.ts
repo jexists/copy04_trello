@@ -36,7 +36,8 @@ export class CardLayoutComponent implements OnInit {
 	ngOnInit(): void {
 		this.loadBoard();
 		this.loadList();
-
+		console.log(this.selBoard);
+		
 	}
 
 	ngOnDestroy(): void {

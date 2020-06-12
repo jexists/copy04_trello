@@ -141,14 +141,17 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.selBoard.starYN = false;
 		
 		this.hdRepo.addBoard(this.selBoard);
-		console.log(this.selBoard);
+		// console.log(this.selBoard.boardBg);
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
-				// alert(this.selBoard.boardTitle);
-				this.modalRef.content.data = this.selBoard;
-				// this.onClose();
+				// alert(this.selBoard.boardBg);
+				// this.modalRef.content.data = this.selBoard;
 				
+				this.onClose();
+				//링크이동..?
+				// location.replace(`/card/${num}`);
+				// this.routerLink="/card/{{board.boardUUID}}"
 			},
 			error => {
 				alert('에러')
