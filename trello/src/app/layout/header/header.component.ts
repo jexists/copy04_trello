@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+
+import { BoardService, ListService } from '../../core/apis/index';
+import { Board } from '../../core/models/index';
 
 @Component({
   selector: 'app-header',
@@ -6,13 +11,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  
+  selBoard: Board;
+  // @Input() selBoard: Board;
 
-  constructor() { }
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
+    
   }
 
   onTextFocus(): void {
     
   }
+
 }

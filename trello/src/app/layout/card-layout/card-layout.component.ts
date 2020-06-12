@@ -15,7 +15,7 @@ import { BoardService, ListService } from '../../core/apis/index';
 export class CardLayoutComponent implements OnInit {
 
 	@Input() selBoard: Board;
-	// @Input() selBoard: Board;
+
 	lists: List[];
 
 	constructor(
@@ -35,8 +35,9 @@ export class CardLayoutComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadBoard();
+		this.loadBgColor();
 		this.loadList();
-		console.log(this.selBoard);
+		// console.log(this.selBoard);
 		
 	}
 
@@ -52,11 +53,15 @@ export class CardLayoutComponent implements OnInit {
 	loadBoard(): void {
 		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
 
-		// setTimeout(() => {
-			
-		// }, 500);
 		this.boardService.loadBoardByUUID(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
-
+	}
+	
+	loadBgColor(): void {
+		const wrapColor = <HTMLElement>document.querySelector('#wrap');
+		wrapColor.style.background = this.selBoard.boardBg;
+		
+		const headColor = <HTMLElement>document.querySelector('#headBox');
+		headColor.style.background = 'rgba(0, 0, 0, 0.3)';
 	}
 
 	loadList(): void {
