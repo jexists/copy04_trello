@@ -54,6 +54,12 @@ export class CardLayoutComponent implements OnInit {
 		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
 
 		this.boardService.loadBoardByUUID(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
+		
+		if (this.selBoard.accessYN === "10") {
+			this.selBoard.accessYN = "private";
+		} else if (this.selBoard.accessYN === "20") {
+			this.selBoard.accessYN = "public";
+		}
 	}
 	
 	loadBgColor(): void {
