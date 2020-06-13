@@ -8,7 +8,8 @@ $icon-sm: 32px;
   height: $icon-sm;
   border-radius: 5px;
   margin: 0 2px;
-  background-color: #5f96c0;
+  // background-color: #5f96c0;
+  background-color: rgba(265, 265, 265, 0.3);
   color: #fff;
   font-size: 1rem;
   text-align: center;
@@ -28,7 +29,7 @@ $icon-sm: 32px;
     width: 100%;
     height: 100%;
     border: none;
-    background-color: inherit;
+    background-color: transparent;
    &:focus {
       background-color: #fff;
    }

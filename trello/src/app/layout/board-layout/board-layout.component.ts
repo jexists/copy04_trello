@@ -49,10 +49,7 @@ export class BoardLayoutComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadBoards();
-		const wrapColor = <HTMLElement>document.querySelector('#wrap');
-		const headColor = <HTMLElement>document.querySelector('#headBox');
-		wrapColor.style.background = '#fff';
-		headColor.style.background = '#006aa6';
+		this.loadBgColor();
 		
 	}
 	
@@ -65,7 +62,13 @@ export class BoardLayoutComponent implements OnInit {
       	// this.boardService.loadBoards()
 	}
 
-
+	loadBgColor(): void {
+		const wrapColor = <HTMLElement>document.querySelector('#wrap');
+		const headColor = <HTMLElement>document.querySelector('#headBox');
+		
+		wrapColor.style.background = '#fff';
+		headColor.style.background = '#006aa6';
+	}
     //////////////////////////////////////////////////////////////////////////////////
     //
     //   Component Data Manipulation Methods
