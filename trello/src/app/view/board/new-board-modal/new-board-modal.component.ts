@@ -133,7 +133,13 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 
 
 	onCreateBoard(board: Board): void {
-		// Math.random()
+		if (!this.selBoard.boardBg) {
+			this.selBoard.boardBg = "url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover";
+		}
+
+		if (!this.selBoard.accessYN) {
+			this.selBoard.accessYN = "10";
+		}
 		let num = Math.floor(Math.random() * 10);
 		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
 		this.selBoard.boardUUID = num;
@@ -141,13 +147,9 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.selBoard.starYN = false;
 		
 		this.hdRepo.addBoard(this.selBoard);
-		// console.log(this.selBoard.boardBg);
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
-				// alert(this.selBoard.boardBg);
-				// this.modalRef.content.data = this.selBoard;
-				
 				this.onClose();
 				//링크이동..?
 				// location.replace(`/card/${num}`);
@@ -163,7 +165,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-		console.log(this.onValid());
+		// console.log(this.onValid());
 		// alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
 
 		this.onCreateBoard(this.selBoard);
