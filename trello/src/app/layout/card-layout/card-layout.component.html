@@ -1,32 +1,34 @@
 <div class="card-head">
-  <ul class="card-info">
-    <li>
-      <h2>
-        <input type="text" value="{{selBoard.boardTitle}}" (keyup)="save()" />
-      </h2>
-    </li>
-    <li>
-      <button type="button" class="star"><i class="far fa-star"></i></button>
-    </li>
-    <li>
-      <button type="button"><span>personal</span></button>
-    </li>
-    <li>
-      <button type="button"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
-    </li>
-    <li>
-      <ul>
-        <li>JU</li>
-      </ul>
-    </li>
-    <li>
-      <button type="button"><span>invite</span></button>
-    </li>
-  </ul>
-  <ul class="card-info card-menu">
-    <li><button type="button"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
-    <li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
-  </ul>
+  <form [formGroup]="editBoardForm">
+    <ul class="card-info">
+      <li>
+        <h2>
+          <input type="text" formControlName="editTitle" appEmptyInputValidator (keyup.enter)="onBlurBoardTitle()" (blur)="onBlurBoardTitle()" value="{{selBoard.boardTitle}}" (keyup)="save()" />
+        </h2>
+      </li>
+      <li>
+        <button type="button" class="star"><i class="far fa-star"></i></button>
+      </li>
+      <li>
+        <button type="button"><span>personal</span></button>
+      </li>
+      <li>
+        <button type="button"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
+      </li>
+      <li>
+        <ul>
+          <li>JU</li>
+        </ul>
+      </li>
+      <li>
+        <button type="button"><span>invite</span></button>
+      </li>
+    </ul>
+  </form>
+    <ul class="card-info card-menu">
+      <li><button type="button"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
+      <li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
+    </ul>
 </div>
 <ul dragula="card-collection" class="card-contents">
   <!-- <li *ngFor="let list of lists" class="list-area"> -->

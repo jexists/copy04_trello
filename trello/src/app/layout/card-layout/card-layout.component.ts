@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -7,18 +7,21 @@ import { Location } from '@angular/common';
 import { Board, List } from '../../core/models/index';
 import { BoardService, ListService } from '../../core/apis/index';
 import { AdminRepo } from 'src/app/core/repos';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-card-layout',
 	templateUrl: './card-layout.component.html',
 	styleUrls: ['./card-layout.component.scss']
 })
-export class CardLayoutComponent implements OnInit {
+export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
 	@Input() selBoard: Board;
 
 	lists: List[];
+	editBoardForm: FormGroup;
 
+	// selAccess: 
 	constructor(
 		private boardService: BoardService,
 		private listService: ListService,
@@ -37,10 +40,11 @@ export class CardLayoutComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loadBoard();
+		this.onFormGroupInit();
 		this.loadBgColor();
 		this.loadIcon();
 		this.loadList();
-		// console.log(this.selBoard);
+		this.onPropertyInit();
 		
 	}
 
@@ -53,6 +57,29 @@ export class CardLayoutComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+
+	onFormGroupInit(): void {
+		this.editBoardForm = new FormGroup({
+			editTitle: new FormControl(this.selBoard.boardTitle, Validators.compose([
+				Validators.required,
+				Validators.minLength(1),
+				Validators.maxLength(100)
+			])),
+		});
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		setTimeout(() => {
+				if (!changes['selBoard'].isFirstChange()) {
+						this.ngOnInit();
+				}
+		}, 10);
+	}
+
+	onPropertyInit(): void {
+		this.selBoard = new Board();
+		// this.selBoard = this.adminRepo.getAccessCode({'value':this.selBoard.accessYN})
+	}
 	loadBoard(): void {
 		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
 
@@ -103,6 +130,9 @@ export class CardLayoutComponent implements OnInit {
   //
 	//////////////////////////////////////////////////////////////////////////////////
 	
+	onBlurBoardTitle(): void {
+
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods
