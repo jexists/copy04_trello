@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Board } from '../models/index';
 import { HdRepo } from '../repos/hd.repo';
+import { R3TargetBinder } from '@angular/compiler';
 // import { BOARDS } from '../mockup/mock-board';
 
 @Injectable({
@@ -57,6 +58,7 @@ export class BoardService {
   //   );
   // }
 
+  /** GET: 서버에 저장된 데이터를 불러오기 */
   loadBoardByUUID(id: number): Observable<Board> {
     const url = `${this.boardUrl}/${id}`;
 
@@ -67,12 +69,34 @@ export class BoardService {
   }
 
 
+  /** PUT: 서버에 저장된 데이터를 변경 */
   updateBoard (board: Board): Observable<any> {
-    return this.http.put(this.boardUrl, board, this.httpOptions).pipe(
-      // tap(_ => this.log(`업데이트 보드 ${board.boardUUID}`)),
-      // catchError(this.handleError<any>('updateBoard'))
-    );
+		const url = `${this.boardUrl}/${board.boardUUID}/nm`;
+
+    return this.http.put<Board>(url, board).pipe(map(res => {
+			this.hdRepo.editBoard(board);
+    }));
   }
 
+  // updateBoard (board: Board): Observable<any> {
+  //   return this.http.put(this.boardUrl, board, this.httpOptions).pipe(
+  //     // tap(_ => this.log(`업데이트 보드 ${board.boardUUID}`)),
+  //     // catchError(this.handleError<any>('updateBoard'))
+  //   );
+  // }
 
+// updateHero (hero: Hero): Observable<any> {
+//   return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+//     tap(_ => this.log(`${hero.id}번째 버킷리스트 수정`)),
+//     catchError(this.handleError<any>('updateHero'))
+//   );
+// }
+
+// private handleError<T> (operation = 'operation', result?: T) {
+//   return (error: any): Observable<T> => {
+//     console.error(error);
+//     this.log(`${operation} failed: ${error.message}`);
+//     return of(result as T);
+//   }
+// }
 }

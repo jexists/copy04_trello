@@ -131,7 +131,17 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	onBlurBoardTitle(): void {
+		if (this.editBoardForm.get('editTitle').hasError('isEmpty')) {
+			this.ngOnInit();
+			return;
+		}
 
+	if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
+
+	this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
+	console.log(this.selBoard.boardTitle);
+	
+	this.onUpdateTitle();
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -139,6 +149,16 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	onUpdateTitle(): void {
+		this.boardService.updateBoard(this.selBoard).subscribe(
+            res => {
+				alert('성공');
+            },
+            error => {
+				alert('error');
+            }
+        );
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//

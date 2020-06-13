@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import * as _ from 'lodash';
+
 import {
   Board,
   List,
@@ -37,6 +39,12 @@ import {
   addBoard(board: Board): void {
     this.boards.push(board);
     //push = add item to the end
+  }
+
+  editBoard(board: Board): void {
+    const index = _.findIndex(this.boards, { boardUUID: board.boardUUID });
+    
+    this.boards[index] = board;
   }
 
 
