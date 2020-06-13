@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 
 import { Board, List } from '../../core/models/index';
 import { BoardService, ListService } from '../../core/apis/index';
+import { AdminRepo } from 'src/app/core/repos';
 
 @Component({
 	selector: 'app-card-layout',
@@ -23,6 +24,7 @@ export class CardLayoutComponent implements OnInit {
 		private listService: ListService,
 		private route: ActivatedRoute,
 		private location: Location,
+		private adminRepo: AdminRepo,
 		// private dragula: DragulaService
 	) { }
 
@@ -36,6 +38,7 @@ export class CardLayoutComponent implements OnInit {
 	ngOnInit(): void {
 		this.loadBoard();
 		this.loadBgColor();
+		this.loadIcon();
 		this.loadList();
 		// console.log(this.selBoard);
 		
@@ -68,6 +71,19 @@ export class CardLayoutComponent implements OnInit {
 		
 		const headColor = <HTMLElement>document.querySelector('#headBox');
 		headColor.style.background = 'rgba(0, 0, 0, 0.3)';
+	}
+	loadIcon(): void {
+		setTimeout(function (){
+			let accessPublic = <HTMLElement>document.querySelector('i.public');
+			let accessPrivate = <HTMLElement>document.querySelector('i.private');
+
+			if(accessPublic){
+				accessPublic.classList.add('fas', 'fa-globe-americas');
+			}
+			if(accessPrivate){
+				accessPrivate.classList.add('fas', 'fa-lock');
+			}
+		},300)
 	}
 
 	loadList(): void {
