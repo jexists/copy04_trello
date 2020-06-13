@@ -70,10 +70,14 @@ export class BoardService {
 
 
   /** PUT: 서버에 저장된 데이터를 변경 */
-  updateBoard (board: Board): Observable<any> {
-		const url = `${this.boardUrl}/${board.boardUUID}/nm`;
+  updateBoardTitle (board: Board): Observable<any> {
+		const url = `${this.boardUrl}/${board.boardUUID}/title`;
 
+		
+		// board.modUserUid = this.rolePolicyManager.getCurrentUser().userUid;
+		
     return this.http.put<Board>(url, board).pipe(map(res => {
+			console.log('updateBoardTitle');
 			this.hdRepo.editBoard(board);
     }));
   }

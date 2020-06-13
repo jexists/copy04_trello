@@ -119,10 +119,10 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 		// .subscribe(lists => this.lists = lists)
 	}
 
-	save(): void {
-		this.boardService.updateBoard(this.selBoard)
-			.subscribe();
-	}
+	// save(): void {
+	// 	this.boardService.updateBoardTitle(this.selBoard)
+	// 		.subscribe();
+	// }
 
 	//////////////////////////////////////////////////////////////////////////////////
   //
@@ -150,7 +150,7 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onUpdateTitle(): void {
-		this.boardService.updateBoard(this.selBoard).subscribe(
+		this.boardService.updateBoardTitle(this.selBoard).subscribe(
             res => {
 				alert('성공');
             },

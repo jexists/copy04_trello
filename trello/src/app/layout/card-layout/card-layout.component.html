@@ -3,7 +3,7 @@
     <ul class="card-info">
       <li>
         <h2>
-          <input type="text" formControlName="editTitle" appEmptyInputValidator (keyup.enter)="onBlurBoardTitle()" (blur)="onBlurBoardTitle()" value="{{selBoard.boardTitle}}" (keyup)="save()" />
+          <input type="text" formControlName="editTitle" appEmptyInputValidator (keyup.enter)="onBlurBoardTitle()" (blur)="onBlurBoardTitle()" value="{{selBoard.boardTitle}}"  maxlength="100"/>
         </h2>
       </li>
       <li>
