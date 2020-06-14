@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos/index';
-
+import { UUIDService } from '../../../core/service/index';
 
 @Component({
 	selector: 'app-new-board-modal',
@@ -28,7 +28,8 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		private boardService: BoardService,
 		private modalService: BsModalService,
 		private hdRepo: HdRepo,
-		public adminRepo: AdminRepo
+		public adminRepo: AdminRepo,
+
 	) { }
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -64,6 +65,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 
 	onPropertyInit(): void {
 		this.selBoard = new Board();
+		// this.selBoard.boardUUID = UUIDService.generateUUID();
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -142,7 +144,8 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		}
 		let num = Math.floor(Math.random() * 10);
 		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
-		this.selBoard.boardUUID = num;
+		this.selBoard.boardUUID = num.toString();
+		// this.selBoard.boardUUID = UUIDService.generateUUID();;
 		this.selBoard.id = num;
 		this.selBoard.starYN = false;
 		

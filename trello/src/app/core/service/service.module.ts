@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {
-  InMemoryDataService
+  InMemoryDataService,
+  UUIDService
 } from './index';
+// import { CommonUtil } from './uuid.service';
 
 @NgModule({
   declarations: [],
@@ -12,7 +14,8 @@ import {
   ],
   exports: [],
   providers: [
-    InMemoryDataService
+    InMemoryDataService,
+    UUIDService
   ]
 })
 export class ServiceModule { }

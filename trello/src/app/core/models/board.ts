@@ -2,7 +2,7 @@ import { List } from './list';
 
 export class Board {
   id: number;
-  boardUUID: number;
+  boardUUID: string;
   boardTitle: string;
   boardBg: string;
   starYN: boolean;

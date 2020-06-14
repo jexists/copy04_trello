@@ -71,7 +71,7 @@ export class BoardService {
 
   /** PUT: 서버에 저장된 데이터를 변경 */
   updateBoardTitle (board: Board): Observable<any> {
-		const url = `${this.boardUrl}/${board.boardUUID}/title`;
+		const url = `${this.boardUrl}/${board.id}/title`;
 
 		
 		// board.modUserUid = this.rolePolicyManager.getCurrentUser().userUid;
@@ -82,7 +82,7 @@ export class BoardService {
     }));
   }
 
-  // updateBoard (board: Board): Observable<any> {
+  // updateBoardTitle (board: Board): Observable<any> {
   //   return this.http.put(this.boardUrl, board, this.httpOptions).pipe(
   //     // tap(_ => this.log(`업데이트 보드 ${board.boardUUID}`)),
   //     // catchError(this.handleError<any>('updateBoard'))
