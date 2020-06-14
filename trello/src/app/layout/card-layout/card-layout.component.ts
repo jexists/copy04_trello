@@ -78,7 +78,7 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
 	onPropertyInit(): void {
 		this.selBoard = new Board();
-		// this.selBoard = this.adminRepo.getAccessCode({'value':this.selBoard.accessYN})
+
 	}
 	loadBoard(): void {
 		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
@@ -119,10 +119,6 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 		// .subscribe(lists => this.lists = lists)
 	}
 
-	// save(): void {
-	// 	this.boardService.updateBoardTitle(this.selBoard)
-	// 		.subscribe();
-	// }
 
 	//////////////////////////////////////////////////////////////////////////////////
   //
@@ -159,6 +155,7 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
             }
         );
 	}
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
