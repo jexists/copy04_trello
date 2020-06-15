@@ -27,7 +27,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	constructor(
 		public modalRef: BsModalRef,
 		private boardService: BoardService,
-		private modalService: BsModalService,
+		// private modalService: BsModalService,
 		private hdRepo: HdRepo,
 		public adminRepo: AdminRepo,
 

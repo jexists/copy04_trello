@@ -23,6 +23,7 @@ import { SidebarBoardComponent } from './layout/board-layout/sidebar-board/sideb
 import { CoreModule } from './core/core.module';
 import { BoardModule } from './view/board/board.module';
 import { CardModule } from './view/card/card.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CardModule } from './view/card/card.module';
     BoardModule,
     CardModule,
     CoreModule,
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

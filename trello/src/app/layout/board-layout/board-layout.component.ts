@@ -39,13 +39,13 @@ export class BoardLayoutComponent implements OnInit {
 	//해야할것
 	//[주일]생성&삭제 로그 클라이언트 뷰로 보여지기
 	//[o]모달배경 클릭안햇을경우 기본값지정해주기 
-	//[월화]board 삭제 & 수정/업데이트
-	//[수목]list 생성 & 수정 & 삭제
-	//card 생성 & 수정 & 삭제
-	//list & card dragula (이동)
-	//만든후 에 보드 자동으로 넘어가기 (location)
-	//UUID 만들기
-	//보드 클릭햇을때 id로 불러오는것말고 UUID로 불러오기
+	//[에러]board 삭제 & 수정/업데이트
+	//[]list 생성 & 수정 & 삭제
+	//[]card 생성 & 수정 & 삭제
+	//[]list & card dragula (이동)
+	//[]만든후 에 보드 자동으로 넘어가기 (location)
+	//[o]UUID 만들기
+	//[???]보드 클릭햇을때 id로 불러오는것말고 UUID로 불러오기
 
 	ngOnInit(): void {
 		this.loadBoards();
