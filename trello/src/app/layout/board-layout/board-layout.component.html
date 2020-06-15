@@ -13,7 +13,8 @@
     <h3><span><i class="far fa-user"></i></span> <p>personal boards</p></h3>
     <div class="board personal-board">
       <div *ngFor="let board of boards" class="board-area">
-        <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.boardUUID}}">
+        <!-- <app-board></app-board> -->
+        <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.id}}" (click)="goToDetail()">
           <div class="text-overflow">
             <p class="board-title">{{board.boardTitle}}</p>
           </div>

@@ -8,6 +8,7 @@ import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos/index';
 import { UUIDService } from '../../../core/service/index';
+import { InMemoryDataService } from '../../../core/service/index';
 
 @Component({
 	selector: 'app-new-board-modal',
@@ -142,10 +143,12 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		if (!this.selBoard.accessYN) {
 			this.selBoard.accessYN = "10";
 		}
-		let num = Math.floor(Math.random() * 10);
+		let num = Math.floor(Math.random() * 10000);
+		// let num = InMemoryDataService.genID();
+		
 		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
-		this.selBoard.boardUUID = num.toString();
-		// this.selBoard.boardUUID = UUIDService.generateUUID();;
+
+		this.selBoard.boardUUID = UUIDService.generateUUID();
 		this.selBoard.id = num;
 		this.selBoard.starYN = false;
 		

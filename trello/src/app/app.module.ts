@@ -41,6 +41,7 @@ import { CardModule } from './view/card/card.module';
     FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
+    //서버연결 모듈
     HttpClientModule,
     // DragulaModule.forRoot(),
     BrowserAnimationsModule,

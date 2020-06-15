@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+// import { Board } from "../models"
 
 import { Board, List } from '../models/index';
+
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryDataService {
+	static genID() {
+		throw new Error("Method not implemented.");
+	}
 
   constructor() { }
 
@@ -21,9 +26,9 @@ export class InMemoryDataService {
   }
   
 
-  // genUUID(boards: Board[]): number {
-    // return boards.length > 0 ? Math.max(...boards.map(board => board.boardUUID)) + 1 : 0;
-  // }
+  genID(boards: Board[]): number {
+    return boards.length > 0 ? Math.max(...boards.map(board => board.id)) + 1 : 0;
+  }
 
 
 }

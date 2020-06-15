@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+// import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
 import { Board } from '../../core/models/index';
@@ -25,7 +25,7 @@ export class BoardLayoutComponent implements OnInit {
   
 	constructor(
     	private boardService: BoardService,
-     	private modalService: BsModalService,
+     	// private modalService: BsModalService,
       	// private toastr: ToastrService
 	) { }
 	
@@ -117,11 +117,7 @@ export class BoardLayoutComponent implements OnInit {
 
       	}
     );
-	}
 
-	goToDetail(): void {
-		console.log('goto');
-		
 	}
 
 

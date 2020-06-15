@@ -81,9 +81,9 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
 	}
 	loadBoard(): void {
-		const boardUUID = +this.route.snapshot.paramMap.get('boardUUID');
+		const boardId = +this.route.snapshot.paramMap.get('id');
 
-		this.boardService.loadBoardByUUID(boardUUID).subscribe(selBoard => this.selBoard = selBoard);
+		this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
 		
 		if (this.selBoard.accessYN === "10") {
 			this.selBoard.accessYN = "private";

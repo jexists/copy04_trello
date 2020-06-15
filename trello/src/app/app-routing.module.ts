@@ -7,7 +7,7 @@ import { CardLayoutComponent } from './layout/card-layout/card-layout.component'
 const routes: Routes = [
   { path: '', redirectTo: '/boards', pathMatch: 'full' },
   { path: 'boards', component: BoardLayoutComponent },
-  { path: 'card/:boardUUID', component: CardLayoutComponent }
+  { path: 'card/:id', component: CardLayoutComponent }
 ];
 
 @NgModule({
