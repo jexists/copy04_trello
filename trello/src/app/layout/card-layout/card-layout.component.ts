@@ -121,9 +121,9 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 
 
 	//////////////////////////////////////////////////////////////////////////////////
-  //
-  //	 Component View Events Methods
-  //
+	//
+	//	 Component View Events Methods
+	//
 	//////////////////////////////////////////////////////////////////////////////////
 	
 	onBlurBoardTitle(): void {
@@ -132,12 +132,11 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 			return;
 		}
 
-	if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
+		if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
 
-	this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
-	console.log(this.selBoard.boardTitle);
+		this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
 	
-	this.onUpdateTitle();
+		this.onUpdateTitle();
 	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -146,11 +145,19 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onUpdateTitle(): void {
-		this.boardService.updateBoardTitle(this.selBoard).subscribe(
+		const boardId = +this.route.snapshot.paramMap.get('id');
+		
+		// this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
+		
+		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
             res => {
 				alert('성공');
             },
             error => {
+				if (error.status === 403 || error.status === 504) {
+                    alert('404 error')
+                    return;
+                }
 				alert('error');
             }
         );
