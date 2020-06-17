@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Board, List } from '../../core/models/index';
 import { BoardService, ListService } from '../../core/apis/index';
-import { AdminRepo } from 'src/app/core/repos';
+import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/core/components/index';
 
@@ -21,6 +21,9 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	@Input() selBoard: Board;
 
+
+	selAccess: any;
+
 	lists: List[];
 	editBoardForm: FormGroup;
 
@@ -31,7 +34,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		private listService: ListService,
 		private route: ActivatedRoute,
 		private location: Location,
-		private adminRepo: AdminRepo,
+		public adminRepo: AdminRepo,
 		// private dragula: DragulaService
 	) {
 		super(toastService);
@@ -146,6 +149,14 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	
 		this.onUpdateTitle();
 	}
+
+	onSelAccess($event, access: any): void {
+		$event.preventDefault();
+
+		this.selAccess = access;
+		this.selBoard.accessYN = this.selAccess.code;
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods
@@ -159,7 +170,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
             res => {
-				this.showSuccess('제목이 수정되었습니다.')
+				this.showSuccess(null, '제목이 수정되었습니다.')
             },
             error => {
 				if (error.status === 403 || error.status === 504) {

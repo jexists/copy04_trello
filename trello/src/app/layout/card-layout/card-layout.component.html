@@ -15,6 +15,28 @@
       <li>
         <button type="button"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
       </li>
+      <!-- <li>
+        <div class="btn-group access-btn" dropdown>
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+            aria-controls="dropdown-animated">
+            <i [ngClass]="selBoard.accessYN"></i>
+            {{!selAccess?selBoard.accessYN:selAccess.value}} <span class="caret"></span>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li *ngFor="let access of adminRepo.getAccessCode()" role="menuitem">
+              <a class="dropdown-item" href="#" (click)="onSelAccess($event, access)">
+                <div>
+                  <span><i class="{{access.class}}"></i></span>
+                  {{access.value}}
+                  <span><i class="fas fa-check"></i></span>
+                </div>
+                <p>{{access.description1}}</p>
+                <p>{{access.description2}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li> -->
       <li>
         <ul>
           <li>JU</li>
