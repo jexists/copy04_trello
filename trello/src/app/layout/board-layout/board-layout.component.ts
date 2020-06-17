@@ -119,10 +119,6 @@ export class BoardLayoutComponent implements OnInit {
     );
 	}
 
-	goToDetail(): void {
-		console.log('a 링크 클릭해서 디테일로 들어왓습니다.');
-		
-	}
-
+	
 
 }

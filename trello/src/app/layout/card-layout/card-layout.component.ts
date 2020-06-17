@@ -159,7 +159,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
             res => {
-				alert('성공');
+				this.showSuccess('제목이 수정되었습니다.')
             },
             error => {
 				if (error.status === 403 || error.status === 504) {
