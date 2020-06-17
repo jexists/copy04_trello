@@ -4,17 +4,20 @@ import { Location } from '@angular/common';
 
 // import { DragulaService } from 'ng2-dragula';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { Board, List } from '../../core/models/index';
 import { BoardService, ListService } from '../../core/apis/index';
 import { AdminRepo } from 'src/app/core/repos';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BaseComponent } from 'src/app/core/components/index';
 
 @Component({
 	selector: 'app-card-layout',
 	templateUrl: './card-layout.component.html',
 	styleUrls: ['./card-layout.component.scss']
 })
-export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
+export class CardLayoutComponent extends BaseComponent implements OnInit, OnChanges, OnDestroy {
 
 	@Input() selBoard: Board;
 
@@ -24,12 +27,15 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 	// selAccess: 
 	constructor(
 		private boardService: BoardService,
+		protected toastService: ToastrService,
 		private listService: ListService,
 		private route: ActivatedRoute,
 		private location: Location,
 		private adminRepo: AdminRepo,
 		// private dragula: DragulaService
-	) { }
+	) {
+		super(toastService);
+	 }
 
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +51,8 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 		this.loadIcon();
 		this.loadList();
 		this.onPropertyInit();
+		console.log(this.selBoard);
+		
 		
 	}
 
@@ -77,7 +85,7 @@ export class CardLayoutComponent implements OnInit, OnChanges, OnDestroy {
 	}
 
 	onPropertyInit(): void {
-		this.selBoard = new Board();
+		// this.selBoard = this.selBoard();
 
 	}
 	loadBoard(): void {

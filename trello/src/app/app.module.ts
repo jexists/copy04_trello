@@ -25,6 +25,7 @@ import { CoreModule } from './core/core.module';
 import { BoardModule } from './view/board/board.module';
 import { CardModule } from './view/card/card.module';
 import { SharedModule } from './shared/shared.module';
+import { ComponentModule } from './core/components/components.module';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     // DragulaModule.forRoot(),
     BrowserAnimationsModule,
-    ToastrModule,
+    ToastrModule.forRoot(),
+    ComponentModule,
 
     // HttpClientInMemoryWebApiModule 모듈은 HTTP 요청을 가로채고 서버의 응답을 흉내냅니다.
     // 실제 서버가 준비 => 제거
