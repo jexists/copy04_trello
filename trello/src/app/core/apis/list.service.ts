@@ -33,6 +33,9 @@ export class ListService {
   //   }
   // }
 
+  loadLists(): Observable<List[]> {
+    return this.http.get<List[]>(this.listUrl).pipe();
+  }
 
 }
 

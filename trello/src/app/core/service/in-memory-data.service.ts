@@ -16,12 +16,17 @@ export class InMemoryDataService {
 
   createDb() {
     const boards = [
-      { id:1, boardUUID: "1", boardTitle: 'text123', boardBg: '#86373a', starYN: false, accessYN: '10' },
-      { id:2, boardUUID: "2", boardTitle: '테스트용입니다', boardBg: '#cc8813', starYN: false, accessYN: '10' },
-      { id:3, boardUUID: "3", boardTitle: '테스티 보드이름입니다. 나중에 지울예정', boardBg: '#98f', starYN: false, accessYN: '20' }
+      { id:1, boardUUID: "1", boardTitle: 'test1234', boardBg: '#86373a', starYN: false, accessYN: '10' },
+      { id:2, boardUUID: "2", boardTitle: '테스트용', boardBg: '#cc8813', starYN: false, accessYN: '10' },
+      { id:3, boardUUID: "3", boardTitle: '보드 삭제가능', boardBg: '#98f', starYN: false, accessYN: '20' }
     ];
     
-    return {boards};
+    const lists = [
+      { id:1, boardUUID: "1", listUUID:'1', listName: '리스트1'},
+      { id:2, boardUUID: "1", listUUID:'1', listName: '리스트2'},
+      { id:3, boardUUID: "2", listUUID:'1', listName: '리스트3'},
+    ]
+    return { boards, lists };
     
   }
   

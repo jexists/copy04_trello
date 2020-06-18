@@ -26,6 +26,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	selAccess: any;
 
 	lists: List[];
+	selList: List;
+
 	editBoardForm: FormGroup;
 
 	// selAccess: 
@@ -50,13 +52,14 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	ngOnInit(): void {
 		this.loadBoard();
+		this.loadLists();
+
 		this.onFormGroupInit();
+		this.onPropertyInit();
+		
 		this.loadBgColor();
 		this.loadIcon();
-		this.loadList();
-		this.onPropertyInit();
-		console.log(this.selBoard);
-		
+		// console.log(this.selBoard);		
 		
 	}
 
@@ -125,10 +128,10 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		},300)
 	}
 
-	loadList(): void {
+	loadLists(): void {
 		// const UUID = +this.route.snap
-		// this.listService.getLists()
-		// .subscribe(lists => this.lists = lists)
+		this.listService.loadLists()
+		.subscribe(lists => this.lists = lists)
 	}
 
 
