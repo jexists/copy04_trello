@@ -22,6 +22,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	@Input() selBoard: Board;
 
 
+	boards: Board[];
 	selAccess: any;
 
 	lists: List[];
@@ -182,6 +183,22 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
         );
 	}
 
+	onArchive($event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		const boardId = +this.route.snapshot.paramMap.get('id');
+
+		this.boardService.deleteBoard(this.selBoard, boardId).subscribe(
+			res => {
+				this.showSuccess('', '삭제되었습니다.');
+				this.location.back();
+			},
+			error => {
+				this.showError(null, 'Board 삭제 시 오류가 발생하였습니다.')
+			}
+		);
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//

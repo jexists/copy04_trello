@@ -64,10 +64,18 @@ export class BoardService {
 		console.log("서비스 제목" + JSON.stringify(board) + "id" + id);
 		
 		return this.http.put<Board>(url, board).pipe(
-			catchError(this.handleError<any>('updateHero'))
+			// catchError(this.handleError<any>('updateHero'))
 		);
 	}
 
+	deleteBoard(board: Board, id: number): Observable<Board> {
+		const url = `${this.boardUrl}/${id}`;
+
+		return this.http.delete<Board>(url, this.httpOptions).pipe(
+			// tap(_=> console.log(`삭제`)),
+			// catchError(this.handleError<Board>('delete'))
+		);
+	}
 	private handleError<T>(operation = 'operation', result?: T) {
 		return (error: any): Observable<T> => {
 			console.error(error);
