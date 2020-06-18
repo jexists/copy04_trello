@@ -113,8 +113,6 @@ export class BoardLayoutComponent implements OnInit {
       	res => {
           subscriber.unsubscribe();
           this.loadBoards();
-          // if (this.modalRef.content.data !== 'OK') { return; }
-
       	}
     );
 	}

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 // import * as _ from 'lodash';
@@ -8,7 +11,7 @@ import { Board } from '../../../core/models/index';
 import { BoardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos/index';
 import { UUIDService } from '../../../core/service/index';
-import { InMemoryDataService } from '../../../core/service/index';
+import { CardLayoutComponent } from 'src/app/layout/card-layout/card-layout.component';
 
 @Component({
 	selector: 'app-new-board-modal',
@@ -27,11 +30,14 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	constructor(
 		public modalRef: BsModalRef,
 		private boardService: BoardService,
-		// private modalService: BsModalService,
 		private hdRepo: HdRepo,
 		public adminRepo: AdminRepo,
-
-	) { }
+		private router: Router,
+		private location: Location,
+		// private modalService: BsModalService,
+	) { 
+		this.location = location;
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -60,28 +66,18 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 				Validators.minLength(1),
 				Validators.maxLength(100)
 			])),
-
 		});
 	}
 
 	onPropertyInit(): void {
 		this.selBoard = new Board();
-		// this.selBoard.boardUUID = UUIDService.generateUUID();
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//	 Component View Events Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
-
-	/////////////////////////
-	//모달창이 나왔음 -> 타이틀 적음 (버튼 활성화 생성가능)
-	// -> 공개/비공개 드롭박스 설정 -> 배경색 지정 -> 버튼(create)클릭
-	//valid 체크(타이틀 적었는지 유무) -false -> 버튼 비활성 
-	//valid 체크(타이틀 적었는지 유무) -true -> 버튼 활성
-	//onSubmit -> onCreateBoard -> hdRepo.addBoard
-	//?... 데이터 모음..? 배경색이랑.. 공개비공개.. 제목 
-	/////////////////////////
 
 	onSelAccess($event, access: any): void {
 		$event.preventDefault();
@@ -132,9 +128,6 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-
-
-
 	onCreateBoard(board: Board): void {
 		if (!this.selBoard.boardBg) {
 			this.selBoard.boardBg = "url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover";
@@ -156,13 +149,13 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
+				// this.location.go(`/card/${num}`);
 				this.onClose();
-				//링크이동..?
-				// location.replace(`/card/${num}`);
-				// this.routerLink="/card/{{board.boardUUID}}"
+				this.router.navigate([`/card/${num}`]);
 			},
 			error => {
 				alert('에러')
+				
 			}
 		)
 	}
