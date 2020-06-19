@@ -149,7 +149,6 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
-				// this.location.go(`/card/${num}`);
 				this.onClose();
 				this.router.navigate([`/card/${num}`]);
 			},
@@ -163,9 +162,6 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	onSubmit(target, $event): void {
 		$event.preventDefault();
 		$event.stopPropagation();
-
-		// console.log(this.onValid());
-		// alert(`제출 ${JSON.stringify(this.newBoardForm.value)}`)
 
 		this.onCreateBoard(this.selBoard);
 	}

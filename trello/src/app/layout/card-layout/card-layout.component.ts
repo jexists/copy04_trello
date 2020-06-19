@@ -129,7 +129,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	}
 
 	loadLists(): void {
-		// const UUID = +this.route.snap
 		this.listService.loadLists()
 		.subscribe(lists => this.lists = lists)
 	}

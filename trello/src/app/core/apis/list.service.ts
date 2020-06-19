@@ -37,5 +37,9 @@ export class ListService {
     return this.http.get<List[]>(this.listUrl).pipe();
   }
 
+  loadListsByUUID(id: number): Observable<List[]> {
+    const url = `${this.listUrl}/${id}`;
+    return this.http.get<List[]>(url).pipe();
+  }
 }
 
