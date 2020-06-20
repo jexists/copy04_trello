@@ -9,7 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-// import { DragulaModule } from 'ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './core/service/in-memory-data.service';
@@ -49,7 +49,7 @@ import { ComponentModule } from './core/components/components.module';
     ModalModule.forRoot(),
     //서버연결 모듈
     HttpClientModule,
-    // DragulaModule.forRoot(),
+    DragulaModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ComponentModule,

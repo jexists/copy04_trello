@@ -16,22 +16,7 @@ export class ListService {
 
   ) { }
 
-
   private listUrl = 'api/lists';
-
-  //http 코드
-  // getLists(): Observable<List[]> {
-  //   return this.http.get<List[]>(this.listUrl).pipe(
-  //     catchError(this.handleError<List[]>('getList',[]))
-  //   );
-  // }
-
-  // private handleError<T> (operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     return of(result as T);
-  //   }
-  // }
 
   loadLists(): Observable<List[]> {
     return this.http.get<List[]>(this.listUrl).pipe();
@@ -39,7 +24,18 @@ export class ListService {
 
   loadListsByUUID(id: number): Observable<List[]> {
     const url = `${this.listUrl}/${id}`;
-    return this.http.get<List[]>(url).pipe();
+    return this.http.get<List[]>(url).pipe(
+
+      tap(_ => this.handleError(`${id}번째로 가고싶은 여행지 이동`)),
+      catchError(this.handleError<List[]>(`getHero id=${id}`))
+    );
   }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+		return (error: any): Observable<T> => {
+			console.error(error);
+			return of(result as T);
+		}
+	}
 }
 
