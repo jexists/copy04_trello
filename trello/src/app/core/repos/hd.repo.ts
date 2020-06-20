@@ -39,8 +39,17 @@ import {
     //concat = two array combine
   }
 
+  loadBoard(cond: any): void {
+    // this.sel
+    return _.find(this.boards, cond)
+  }
+
   getBoards(): Board[] {
     return this.boards;
+  }
+
+  getBoardById(): Board {
+    return _.sortBy(this.boards,['id']);
   }
 
   addBoard(board: Board): void {

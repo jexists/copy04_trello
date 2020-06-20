@@ -38,6 +38,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		private route: ActivatedRoute,
 		private location: Location,
 		public adminRepo: AdminRepo,
+		public hdRepo: HdRepo
 		// private dragula: DragulaService
 	) {
 		super(toastService);
@@ -54,12 +55,13 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.loadBoard();
 		// this.loadLists();
 
+		console.log(this.selBoard);		
+
 		this.onFormGroupInit();
 		this.onPropertyInit();
 		
 		this.loadBgColor();
 		this.loadIcon();
-		// console.log(this.selBoard);		
 		
 	}
 
@@ -96,9 +98,11 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	}
 	loadBoard(): void {
-		const boardId = +this.route.snapshot.paramMap.get('id');
-
-		// this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
+		const boardId = this.route.snapshot.paramMap.get('id');
+		console.log(boardId);
+		
+		// this.boardService.loadBoardById(boardId).subscribe();
+		this.boardService.loadBoardById(boardId).subscribe(selBoard => this.selBoard = selBoard);
 		
 		// if (this.selBoard.accessYN === "10") {
 		// 	this.selBoard.accessYN = "private";

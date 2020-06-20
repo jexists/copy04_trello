@@ -136,7 +136,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		if (!this.selBoard.accessYN) {
 			this.selBoard.accessYN = "10";
 		}
-		let num = Math.floor(Math.random() * 10000);
+		// let num = Math.floor(Math.random() * 10000);
 		// let num = InMemoryDataService.genID();
 		
 		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
@@ -150,7 +150,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		// this.boardService.createBoard(this.selBoard).subscribe(
 		// 	res => {
 		// 		this.onClose();
-		// 		this.router.navigate([`/card/${num}`]);
+		// 		this.router.navigate([`/card/${}`]);
 		// 	},
 		// 	error => {
 		// 		alert('에러')

@@ -69,16 +69,22 @@ export class BoardService {
 		return this.http.get<Board[]>(url).pipe(map(res => {
 			// const targets = [];
 			this.hdRepo.loadBoards(res, true);
+			console.log('###' +res);
+			
 		}));
 
 	}
 
 
 	/** GET: 서버에 저장된 데이터를 조회 */
-	// loadBoardByUUID(id: number): Observable<Board> {
-		// const url = `${this.boardUrl}/${id}`;
-		// return this.http.get<Board>(url).pipe();
-	// }
+	loadBoardById(id: string): Observable<any> {
+		const url = `${this.boardUrl}?id=${id}`;
+		return this.http.get<Board>(url).pipe(map(res => {
+			this.hdRepo.loadBoard(res);
+			console.log("##" + res);
+			
+		}));
+	}
 
 	// loadBoardByUUID(uuid: string): Observable<void> {
 		// const url = `${this.boardUrl}/${uuid}`;
