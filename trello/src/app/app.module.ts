@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal'
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-
+import { OrderModule } from 'ngx-order-pipe';
 import { DragulaModule } from 'ng2-dragula';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -47,6 +47,7 @@ import { ComponentModule } from './core/components/components.module';
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
+    OrderModule,
     //서버연결 모듈
     HttpClientModule,
     DragulaModule.forRoot(),

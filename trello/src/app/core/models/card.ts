@@ -1,11 +1,14 @@
 
-import { Board } from './board';
-import { List } from './list';
-
 export interface Card {
-  cardUUID: number;
-  cardTitle: string;
 
-  // board: Board[];
-  // list: List[];
+  id: string;
+  cardTitle: string;
+  cardPosNo: number;
+  
+  cardCreateDate: string;
+  cardEditDate: string;
+
+  boardId: string;
+  listId: string;
+
 }

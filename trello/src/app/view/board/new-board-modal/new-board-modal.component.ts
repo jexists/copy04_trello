@@ -141,22 +141,22 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		
 		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
 
-		this.selBoard.boardUUID = UUIDService.generateUUID();
-		this.selBoard.id = num;
+		this.selBoard.id = UUIDService.generateUUID();
+		// this.selBoard.id = num;
 		this.selBoard.starYN = false;
 		
 		this.hdRepo.addBoard(this.selBoard);
 		
-		this.boardService.createBoard(this.selBoard).subscribe(
-			res => {
-				this.onClose();
-				this.router.navigate([`/card/${num}`]);
-			},
-			error => {
-				alert('에러')
+		// this.boardService.createBoard(this.selBoard).subscribe(
+		// 	res => {
+		// 		this.onClose();
+		// 		this.router.navigate([`/card/${num}`]);
+		// 	},
+		// 	error => {
+		// 		alert('에러')
 				
-			}
-		)
+		// 	}
+		// )
 	}
 
 	onSubmit(target, $event): void {

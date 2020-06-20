@@ -10,10 +10,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es5",
+    "target": "es2015",
     "lib": [
-      "esnext",
-      "dom"
+      "es6",
+      "dom",
+      "DOM.Iterable"
     ]
   },
   "angularCompilerOptions": {

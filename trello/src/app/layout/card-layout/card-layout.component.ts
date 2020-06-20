@@ -52,7 +52,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	ngOnInit(): void {
 		this.loadBoard();
-		this.loadLists();
+		// this.loadLists();
 
 		this.onFormGroupInit();
 		this.onPropertyInit();
@@ -98,13 +98,13 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	loadBoard(): void {
 		const boardId = +this.route.snapshot.paramMap.get('id');
 
-		this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
+		// this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
 		
-		if (this.selBoard.accessYN === "10") {
-			this.selBoard.accessYN = "private";
-		} else if (this.selBoard.accessYN === "20") {
-			this.selBoard.accessYN = "public";
-		}
+		// if (this.selBoard.accessYN === "10") {
+		// 	this.selBoard.accessYN = "private";
+		// } else if (this.selBoard.accessYN === "20") {
+		// 	this.selBoard.accessYN = "public";
+		// }
 	}
 	
 	loadBgColor(): void {
@@ -175,18 +175,18 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 		// this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
 		
-		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
-            res => {
-				this.showSuccess(null, '제목이 수정되었습니다.')
-            },
-            error => {
-				if (error.status === 403 || error.status === 504) {
-                    alert('404 error')
-                    return;
-                }
-				alert('error');
-            }
-        );
+		// this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
+    //         res => {
+		// 		this.showSuccess(null, '제목이 수정되었습니다.')
+    //         },
+    //         error => {
+		// 		if (error.status === 403 || error.status === 504) {
+    //                 alert('404 error')
+    //                 return;
+    //             }
+		// 		alert('error');
+    //         }
+    //     );
 	}
 
 	onArchive($event): void {
@@ -195,15 +195,15 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 		const boardId = +this.route.snapshot.paramMap.get('id');
 
-		this.boardService.deleteBoard(this.selBoard, boardId).subscribe(
-			res => {
-				this.showSuccess('', '삭제되었습니다.');
-				this.location.back();
-			},
-			error => {
-				this.showError(null, 'Board 삭제 시 오류가 발생하였습니다.')
-			}
-		);
+		// this.boardService.deleteBoard(this.selBoard, boardId).subscribe(
+		// 	res => {
+		// 		this.showSuccess('', '삭제되었습니다.');
+		// 		this.location.back();
+		// 	},
+		// 	error => {
+		// 		this.showError(null, 'Board 삭제 시 오류가 발생하였습니다.')
+		// 	}
+		// );
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

@@ -9,6 +9,7 @@ import { Board } from '../../core/models/index';
 import { BoardService } from '../../core/apis/index';
 
 import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-board-modal.component'; 
+import { HdRepo } from 'src/app/core/repos';
 
 @Component({
   selector: 'app-board-layout',
@@ -26,7 +27,8 @@ export class BoardLayoutComponent implements OnInit {
   
 	constructor(
     	private boardService: BoardService,
-     	private modalService: BsModalService,
+			 private modalService: BsModalService,
+			 public hdRepo: HdRepo,
       	// private toastr: ToastrService
 	) { }
 	
@@ -50,7 +52,9 @@ export class BoardLayoutComponent implements OnInit {
 	//[???]보드 클릭햇을때 id로 불러오는것말고 UUID로 불러오기
 
 	ngOnInit(): void {
-		this.loadBoards();
+		// this.loadBoards();
+		// this.loadBoardsByTeamId();
+		this.loadBoardByUserId();
 		this.loadBgColor();
 		
 	}
@@ -62,6 +66,14 @@ export class BoardLayoutComponent implements OnInit {
 	loadBoards(): void {
     	this.boardService.loadBoards().subscribe(boards => this.boards = boards);
       	// this.boardService.loadBoards()
+	}
+
+	loadBoardsByTeamId(): void {
+		this.boardService.loadBoardByTeamId('325ee323-5fa7-fffb-c123-3b9b130060c2').subscribe();
+	}
+
+	loadBoardByUserId(): void {
+		this.boardService.loadBoardByUserId('a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a').subscribe();
 	}
 
 	loadBgColor(): void {

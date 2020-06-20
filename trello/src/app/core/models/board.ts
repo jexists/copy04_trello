@@ -1,14 +1,20 @@
-import { List } from './list';
+
 
 export class Board {
-  id: number;
-  boardUUID: string;
+  
+  id: string;
   boardTitle: string;
+  boardPosNo: number;
   boardBg: string;
   starYN: boolean;
   accessYN: string;
 
-  // list: List[];
+  boardCreateDate: string;
+  boardEditDate: string;
+
+  teamId: string;
+  userId: string;
+
   constructor(json?: any) {
     if(!json) { return; }
 

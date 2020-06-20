@@ -12,7 +12,7 @@
   <div class="board-box">
     <h3><span><i class="far fa-user"></i></span> <p>personal boards</p></h3>
     <div class="board personal-board">
-      <div *ngFor="let board of boards" class="board-area">
+      <div *ngFor="let board of (hdRepo.getBoards() | orderBy: 'boardPosNo')" class="board-area">
         <!-- <app-board></app-board> -->
         <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.id}}">
           <div class="text-overflow">
