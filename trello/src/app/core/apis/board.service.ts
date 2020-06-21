@@ -7,7 +7,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Board } from '../models/index';
 import { HdRepo } from '../repos/hd.repo';
 import { InMemoryDataService } from '../service/in-memory-data.service';
-// import { BOARDS } from '../mockup/mock-board';
 
 import { Team } from '../models/index';
 
@@ -25,9 +24,9 @@ export class BoardService {
 	) { }
 
 
-	httpOptions = {
-		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-	}
+	// httpOptions = {
+	// 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+	// }
 
 	//////////////////////////////////////
 	//
@@ -35,54 +34,48 @@ export class BoardService {
 	//
 	//////////////////////////////////////
 
+	//* inMemoryData 불러오기전에 사용했던 보드들 불러오는 코드
 	// loadBoards(): Observable<Board[]> {
 		// return this.http.get<Board[]>(this.boardUrl).pipe();
 	// }
 
+	//* 처음에 보드 불러오는 코드 (주석풀어도 가능하고 안해도 가능)
 	loadBoards(): Observable<any> {
-		const url = `${this.boardUrl}/`;
-
-		return this.http.get<Board[]>(url).pipe(map(res => {
+		return this.http.get<Board[]>(this.boardUrl).pipe(map(res => {
 			const targets = [];
-			res.forEach(json => {
-				const target = new Board(json);
-				targets.push(target);
-				console.log(JSON.stringify(json));
-				
-			});
-			this.hdRepo.loadBoards(targets, true)
+			// res.forEach(json => {
+			// 	const target = new Board(json);
+			// 	targets.push(target);
+			// 	console.log(JSON.stringify(json));
+			// });
+			this.hdRepo.loadBoards(targets, true);
 		}));
 	}
 
+	//* 처음에 TeamId로 보드 불러오는 코드
 	loadBoardByTeamId(teamId): Observable<any> {
 		const url = `${this.boardUrl}?teamId=${teamId}`;
-
 		return this.http.get<Board[]>(url).pipe(map(res => {
-			// const targets = [];
 			this.hdRepo.loadBoards(res, true);
 		}));
 	}
 	
+	//* 처음에 UserId로 보드 불러오는 코드
 	loadBoardByUserId(userId): Observable<any> {
 		const url = `${this.boardUrl}?userId=${userId}`;
-
 		return this.http.get<Board[]>(url).pipe(map(res => {
-			// const targets = [];
 			this.hdRepo.loadBoards(res, true);
-			console.log('###' +res);
-			
 		}));
-
 	}
-
 
 	/** GET: 서버에 저장된 데이터를 조회 */
 	loadBoardById(id: string): Observable<any> {
 		const url = `${this.boardUrl}?id=${id}`;
 		return this.http.get<Board>(url).pipe(map(res => {
-			this.hdRepo.loadBoard(res);
-			console.log("##" + res);
-			
+			// const targets = [];
+			// this.hdRepo.loadBoard({id: res.id});
+
+			// console.log("###" + JSON.stringify(this.hdRepo.loadBoard({id: res.id})));
 		}));
 	}
 
@@ -118,10 +111,10 @@ export class BoardService {
 	// }
 
 
-	private handleError<T>(operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
-			console.error(error);
-			return of(result as T);
-		}
-	}
+	// private handleError<T>(operation = 'operation', result?: T) {
+	// 	return (error: any): Observable<T> => {
+	// 		console.error(error);
+	// 		return of(result as T);
+	// 	}
+	// }
 }

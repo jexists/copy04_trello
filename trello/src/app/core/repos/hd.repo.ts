@@ -10,6 +10,8 @@ import {
 } from '../models/index';
 
 @Injectable() export class HdRepo {
+
+
   private team: Team[] = [];
 
   private boards: Board[] = [];
@@ -18,6 +20,7 @@ import {
 
   private cards: Card[] = [];
   
+  //Repo 삭제
   clearAll(): void {
     this.clearBoards();
   }
@@ -28,22 +31,28 @@ import {
   //
   /////////////////////////////////////////////
 
+  //Board 삭제
   clearBoards(): void {
     this.boards.length = 0;
   }
 
-
+  
   loadBoards(boards: Board[], isClear: boolean): void {
     if (isClear) { this.clearBoards(); }
     this.boards = this.boards.concat(boards);
     //concat = two array combine
   }
 
-  loadBoard(cond: any): void {
-    // this.sel
-    return _.find(this.boards, cond)
+  findBoardByID(cond: any): Board {
+    // if (isClear) { this.clearBoards(); }
+    return _.find(this.boards, cond);
   }
 
+  getBoard():Board{
+    return this.boards[0];
+  }
+
+  
   getBoards(): Board[] {
     return this.boards;
   }

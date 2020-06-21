@@ -23,10 +23,10 @@ export class InMemoryDataService {
     const boards = [
       { id: "e62a0202-f309-15fd-1519-77f0a6c356a6", boardTitle: 'test1234',boardPosNo: 3, boardBg: '#86373a', starYN: false, accessYN: '10', boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2',
       userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'},
-      { id: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", boardTitle: '테스트용', boardPosNo: 1, boardBg: '#cc8813', starYN: false, accessYN: '10',
+      { id: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", boardTitle: '테스트용', boardPosNo: 10, boardBg: '#cc8813', starYN: false, accessYN: '10',
       boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2' ,
       userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'},
-      { id: "f25f531e-6202-361c-eea8-bf1ed81acf50", boardTitle: '보드 삭제가능',boardPosNo: 3, starYN: false, accessYN: '20', boardCreateDate:'2020-03-02 02:02:22', boardEditDate: '2020-07-23 20:44:23', teamId: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3',
+      { id: "f25f531e-6202-361c-eea8-bf1ed81acf50", boardTitle: '보드 삭제가능',boardPosNo: 3, boardBg: '#fe832e', starYN: false, accessYN: '20', boardCreateDate:'2020-03-02 02:02:22', boardEditDate: '2020-07-23 20:44:23', teamId: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3',
       userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a' }
     ];
     

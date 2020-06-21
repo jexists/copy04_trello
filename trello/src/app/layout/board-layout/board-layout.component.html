@@ -14,7 +14,7 @@
     <div class="board personal-board">
       <div *ngFor="let board of (hdRepo.getBoards() | orderBy: 'boardPosNo')" class="board-area">
         <!-- <app-board></app-board> -->
-        <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.id}}">
+        <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.id}}" (click)="onBoardClick(board, $event)">
           <div class="text-overflow">
             <p class="board-title">{{board.boardTitle}}</p>
           </div>

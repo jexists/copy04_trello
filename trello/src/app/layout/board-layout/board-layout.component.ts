@@ -65,7 +65,6 @@ export class BoardLayoutComponent implements OnInit {
 
 	loadBoards(): void {
     	this.boardService.loadBoards().subscribe(boards => this.boards = boards);
-      	// this.boardService.loadBoards()
 	}
 
 	loadBoardsByTeamId(): void {
@@ -129,6 +128,13 @@ export class BoardLayoutComponent implements OnInit {
           this.loadBoards();
       	}
     );
+	}
+
+	onBoardClick(board: Board, $event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+	
+		this.selBoard = board;
 	}
 
 	

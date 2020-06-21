@@ -2,8 +2,7 @@ import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy } from '@
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-// import { DragulaService } from 'ng2-dragula';
-
+import { DragulaService } from 'ng2-dragula';
 import { ToastrService } from 'ngx-toastr';
 
 import { Board, List } from '../../core/models/index';
@@ -21,7 +20,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	@Input() selBoard: Board;
 
-
 	boards: Board[];
 	selAccess: any;
 
@@ -30,7 +28,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	editBoardForm: FormGroup;
 
-	// selAccess: 
 	constructor(
 		private boardService: BoardService,
 		protected toastService: ToastrService,
@@ -38,8 +35,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		private route: ActivatedRoute,
 		private location: Location,
 		public adminRepo: AdminRepo,
-		public hdRepo: HdRepo
-		// private dragula: DragulaService
+		public hdRepo: HdRepo,
+		private dragula: DragulaService
 	) {
 		super(toastService);
 	 }
@@ -52,14 +49,19 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
+		// const boardId = this.route.snapshot.paramMap.get('id');
+		// this.hdRepo.findBoardByID(boardId);
+		// console.log(JSON.stringify(this.hdRepo.findBoardByID(boardId)));
+		
+		// console.log(this.selBoard);		
+
 		this.loadBoard();
 		// this.loadLists();
 
-		console.log(this.selBoard);		
-
+		this.onDataInit();
 		this.onFormGroupInit();
 		this.onPropertyInit();
-		
+
 		this.loadBgColor();
 		this.loadIcon();
 		
@@ -74,7 +76,16 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	onDataInit(): void {
+		// this.boardService.loadBoardById(this.selBoard).subscribe()
+		const boardId = this.route.snapshot.paramMap.get('id');
+		// console.log(boardId);
 
+		// this.selBoard = this.hdRepo.loadBoard(boardId);
+		// console.log('?' + this.selBoard);
+		
+	}
+	
 	onFormGroupInit(): void {
 		this.editBoardForm = new FormGroup({
 			editTitle: new FormControl(this.selBoard.boardTitle, Validators.compose([
@@ -95,14 +106,16 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	onPropertyInit(): void {
 		// this.selBoard = this.selBoard();
-
 	}
 	loadBoard(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
-		console.log(boardId);
+		// console.log(boardId);
 		
 		// this.boardService.loadBoardById(boardId).subscribe();
-		this.boardService.loadBoardById(boardId).subscribe(selBoard => this.selBoard = selBoard);
+		// this.boardService.loadBoardById(boardId).subscribe();
+		
+		// console.log('$$$$$' + this.selBoard);
+		// console.log(this.hdRepo.loadBoard());
 		
 		// if (this.selBoard.accessYN === "10") {
 		// 	this.selBoard.accessYN = "private";
@@ -133,12 +146,12 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	}
 
 	loadLists(): void {
-		const boardId = +this.route.snapshot.paramMap.get('id');
+		// const boardId = +this.route.snapshot.paramMap.get('id');
 		
 		// this.listService.loadListsByUUID(boardId).subscribe(lists => this.lists = lists);
-		console.log(this.lists);
+		// console.log(this.lists);
 
-		this.listService.loadLists().subscribe(lists => this.lists = lists)
+		// this.listService.loadLists().subscribe(lists => this.lists = lists)
 	}
 
 
@@ -197,7 +210,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		$event.preventDefault();
 		$event.stopPropagation();
 
-		const boardId = +this.route.snapshot.paramMap.get('id');
+		// const boardId = +this.route.snapshot.paramMap.get('id');
 
 		// this.boardService.deleteBoard(this.selBoard, boardId).subscribe(
 		// 	res => {
