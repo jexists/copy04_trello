@@ -69,14 +69,9 @@ export class BoardService {
 	}
 
 	/** GET: 서버에 저장된 데이터를 조회 */
-	loadBoardById(id: string): Observable<any> {
+	loadBoardById(id: string): Observable<Board> {
 		const url = `${this.boardUrl}?id=${id}`;
-		return this.http.get<Board>(url).pipe(map(res => {
-			// const targets = [];
-			// this.hdRepo.loadBoard({id: res.id});
-
-			// console.log("###" + JSON.stringify(this.hdRepo.loadBoard({id: res.id})));
-		}));
+		return this.http.get<Board>(url).pipe();
 	}
 
 	// loadBoardByUUID(uuid: string): Observable<void> {

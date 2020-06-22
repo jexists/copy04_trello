@@ -49,12 +49,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		// const boardId = this.route.snapshot.paramMap.get('id');
-		// this.hdRepo.findBoardByID(boardId);
-		// console.log(JSON.stringify(this.hdRepo.findBoardByID(boardId)));
-		
-		// console.log(this.selBoard);		
-
 		this.loadBoard();
 		// this.loadLists();
 
@@ -70,6 +64,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	ngOnDestroy(): void {
 
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Data Manipulation Methods
@@ -77,13 +72,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onDataInit(): void {
-		// this.boardService.loadBoardById(this.selBoard).subscribe()
-		const boardId = this.route.snapshot.paramMap.get('id');
-		// console.log(boardId);
 
-		// this.selBoard = this.hdRepo.loadBoard(boardId);
-		// console.log('?' + this.selBoard);
-		
 	}
 	
 	onFormGroupInit(): void {
@@ -109,19 +98,17 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	}
 	loadBoard(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
-		// console.log(boardId);
 		
-		// this.boardService.loadBoardById(boardId).subscribe();
-		// this.boardService.loadBoardById(boardId).subscribe();
+		this.boardService.loadBoardById(boardId).subscribe(
+			selBoard => this.selBoard = selBoard[0]);
+
+		console.log('$$$$$' + JSON.stringify(this.selBoard));
 		
-		// console.log('$$$$$' + this.selBoard);
-		// console.log(this.hdRepo.loadBoard());
-		
-		// if (this.selBoard.accessYN === "10") {
-		// 	this.selBoard.accessYN = "private";
-		// } else if (this.selBoard.accessYN === "20") {
-		// 	this.selBoard.accessYN = "public";
-		// }
+		if (this.selBoard.accessYN === "10") {
+			this.selBoard.accessYN = "private";
+		} else if (this.selBoard.accessYN === "20") {
+			this.selBoard.accessYN = "public";
+		}
 	}
 	
 	loadBgColor(): void {
