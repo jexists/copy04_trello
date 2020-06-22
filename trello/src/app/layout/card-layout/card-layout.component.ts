@@ -104,7 +104,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.boardService.loadBoardById(boardId).subscribe(
 			selBoard => this.selBoard = selBoard[0]);
 
-		console.log('$$$$$' + JSON.stringify(this.selBoard));
+		// console.log('$$$$$' + JSON.stringify(this.selBoard));
 		
 		if (this.selBoard.accessYN === "10") {
 			this.selBoard.accessYN = "private";

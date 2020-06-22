@@ -74,9 +74,9 @@ import {
 
   removeBoard(board: Board): void {
     // this.boards.pop(board)
-    const index = _.findIndex(this.boards, { boardUUID: board.id });
+    const index = _.findIndex(this.boards, { id: board.id });
         if (index < 0) { return; }
-        this.boards.splice(index, 1);
+    this.boards.splice(index, 1);
   }
 
 

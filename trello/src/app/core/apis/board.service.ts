@@ -87,11 +87,13 @@ export class BoardService {
 	// }
 
 	/** POST: 서버에 데이터 생성  */
-	// createBoard(target: Board): Observable<void> {
-		// return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
-		// 	this.hdRepo.addBoard(target);
-		// }));
-	// }
+	createBoard(target: Board): Observable<void> {
+		return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
+			this.hdRepo.addBoard(target);
+			console.log(JSON.stringify(target));
+			
+		}));
+	}
 
 	/** PUT: 서버에 저장된 데이터를 변경 */
 	updateBoardTitle(board: Board, id: string): Observable<any> {
@@ -100,10 +102,18 @@ export class BoardService {
 	}
 
 	/** DELETE: 서버에 저장된 데이터를 삭제 */
-	deleteBoard(board: Board, id: string): Observable<Board> {
-		const url = `${this.boardUrl}/${id}`;
-		return this.http.delete<Board>(url).pipe();
+	deleteBoard(board: Board, id: string): Observable<void> {
+		const url = `${this.boardUrl}/${id}/delete`;
+		return this.http.delete<void>(url).pipe();
 	}
+
+	/** DELETE: 서버에 저장된 데이터를 삭제 */
+	// deleteBoard(board: Board, id: string): Observable<void> {
+	// 	const url = `${this.boardUrl}/${id}/delete`;
+	// 	return this.http.put<Board>(url, board).pipe(map(res => {
+	// 		this.hdRepo.removeBoard(board);
+	// 	}));
+	// }
 
 
 	// private handleError<T>(operation = 'operation', result?: T) {

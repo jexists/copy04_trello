@@ -125,17 +125,11 @@ export class BoardLayoutComponent implements OnInit {
     const subscriber = this.modalService.onHide.subscribe(
       	res => {
           subscriber.unsubscribe();
-          this.loadBoards();
       	}
     );
 	}
 
-	onBoardClick(board: Board, $event): void {
-		$event.preventDefault();
-		$event.stopPropagation();
-	
-		this.selBoard = board;
-	}
+
 
 	
 
