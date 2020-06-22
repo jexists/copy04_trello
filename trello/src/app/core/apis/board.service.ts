@@ -94,16 +94,16 @@ export class BoardService {
 	// }
 
 	/** PUT: 서버에 저장된 데이터를 변경 */
-	// updateBoardTitle(board: Board, id: number): Observable<any> {
-		// const url = `${this.boardUrl}/${id}`;
-		// return this.http.put<Board>(url, board).pipe();
-	// }
+	updateBoardTitle(board: Board, id: string): Observable<any> {
+		const url = `${this.boardUrl}/${id}`;
+		return this.http.put<Board>(url, board).pipe();
+	}
 
 	/** DELETE: 서버에 저장된 데이터를 삭제 */
-	// deleteBoard(board: Board, id: number): Observable<Board> {
-		// const url = `${this.boardUrl}/${id}`;
-		// return this.http.delete<Board>(url, this.httpOptions).pipe();
-	// }
+	deleteBoard(board: Board, id: string): Observable<Board> {
+		const url = `${this.boardUrl}/${id}`;
+		return this.http.delete<Board>(url).pipe();
+	}
 
 
 	// private handleError<T>(operation = 'operation', result?: T) {

@@ -52,9 +52,9 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.loadBoard();
 		// this.loadLists();
 
-		this.onDataInit();
 		this.onFormGroupInit();
-		this.onPropertyInit();
+		// this.onDataInit();
+		// this.onPropertyInit();
 
 		this.loadBgColor();
 		this.loadIcon();
@@ -71,11 +71,15 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	onDataInit(): void {
+	onDataInit(): void{
 
 	}
+	onPropertyInit(): void{
+
+	}
+
 	
-	onFormGroupInit(): void {
+	onFormGroupInit(): void{
 		this.editBoardForm = new FormGroup({
 			editTitle: new FormControl(this.selBoard.boardTitle, Validators.compose([
 				Validators.required,
@@ -93,9 +97,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		}, 10);
 	}
 
-	onPropertyInit(): void {
-		// this.selBoard = this.selBoard();
-	}
+
 	loadBoard(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
 		
@@ -175,39 +177,37 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onUpdateTitle(): void {
-		const boardId = +this.route.snapshot.paramMap.get('id');
+		const boardId = this.route.snapshot.paramMap.get('id');
 		
-		// this.boardService.loadBoardByUUID(boardId).subscribe(selBoard => this.selBoard = selBoard);
-		
-		// this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
-    //         res => {
-		// 		this.showSuccess(null, '제목이 수정되었습니다.')
-    //         },
-    //         error => {
-		// 		if (error.status === 403 || error.status === 504) {
-    //                 alert('404 error')
-    //                 return;
-    //             }
-		// 		alert('error');
-    //         }
-    //     );
+		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
+            res => {
+				this.showSuccess(null, '제목이 수정되었습니다.')
+            },
+            error => {
+				if (error.status === 403 || error.status === 504) {
+                    alert('404 error')
+                    return;
+                }
+				alert('error');
+            }
+        );
 	}
 
 	onArchive($event): void {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-		// const boardId = +this.route.snapshot.paramMap.get('id');
+		const boardId = this.route.snapshot.paramMap.get('id');
 
-		// this.boardService.deleteBoard(this.selBoard, boardId).subscribe(
-		// 	res => {
-		// 		this.showSuccess('', '삭제되었습니다.');
-		// 		this.location.back();
-		// 	},
-		// 	error => {
-		// 		this.showError(null, 'Board 삭제 시 오류가 발생하였습니다.')
-		// 	}
-		// );
+		this.boardService.deleteBoard(this.selBoard, boardId).subscribe(
+			res => {
+				this.showSuccess('', '삭제되었습니다.');
+				this.location.back();
+			},
+			error => {
+				this.showError(null, 'Board 삭제 시 오류가 발생하였습니다.')
+			}
+		);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
