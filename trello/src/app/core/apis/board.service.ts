@@ -91,7 +91,6 @@ export class BoardService {
 		return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
 			this.hdRepo.addBoard(target);
 			console.log(JSON.stringify(target));
-			
 		}));
 	}
 

@@ -68,7 +68,6 @@ import {
 
   editBoard(board: Board): void {
     const index = _.findIndex(this.boards, { boardUUID: board.id });
-    
     this.boards[index] = board;
   }
 

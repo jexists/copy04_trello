@@ -140,7 +140,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
 		this.selBoard.id = UUIDService.generateUUID();
 		this.selBoard.starYN = false;
-		
+		this.selBoard.userId = 'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a';
 		// this.hdRepo.addBoard(this.selBoard);
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
