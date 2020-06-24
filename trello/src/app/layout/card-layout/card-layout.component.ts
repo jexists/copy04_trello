@@ -118,7 +118,9 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	loadLists(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
 		
-		this.listService.loadListsByBoardId(boardId).subscribe(lists => this.lists = lists);
+		this.listService.loadListsByBoardId(boardId).subscribe();
+		// console.log(this.selList);
+		this.lists = this.hdRepo.getLists();
 		console.log(this.lists);
 
 	}

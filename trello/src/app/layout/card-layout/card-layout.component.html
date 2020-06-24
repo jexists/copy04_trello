@@ -66,8 +66,28 @@
     </div>
 </div>
 <ul dragula="card-collection" class="card-contents">
-  <li *ngFor="let list of (hdRepo.getLists())" class="list-area">
+  <li *ngFor="let list of (hdRepo.getLists() | orderBy:'listPosNo')" class="list-area">
   <!-- <li class="list-area"> -->
-    <app-list [selList]="selList"></app-list>
+    <!-- <app-list [selList]="selList"></app-list> -->
+    <div class="list-wrap">
+      <div class="list-header">
+        <h3>
+          <input type="text" value="{{list.listName}}"/>
+        </h3>
+        <button type="button"><i class="fas fa-ellipsis-h"></i></button>
+      </div>
+      <ul class="list-contents">
+        <li>
+          <!-- <app-card></app-card> -->
+        </li>
+      </ul>
+      <div class="list-footer cf">
+        <button type="button" class="add-card"><i class="fas fa-plus"></i><span>add another card</span></button>
+        <button type="button" class="card-temp"><i class="fab fa-trello"></i></button>
+      </div>
+    </div>
+  </li>
+  <li *ngIf="hdRepo.getLists().length === 0">
+    뉴 보드
   </li>
 </ul>
