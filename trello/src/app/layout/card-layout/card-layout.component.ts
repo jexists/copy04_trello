@@ -19,11 +19,12 @@ import { BaseComponent } from 'src/app/core/components/index';
 export class CardLayoutComponent extends BaseComponent implements OnInit, OnChanges, OnDestroy {
 
 	@Input() selBoard: Board;
+	@Input() lists: List[];
 
 	boards: Board[];
 	selAccess: any;
 
-	lists: List[];
+	// lists: List[];
 	selList: List;
 
 	editBoardForm: FormGroup;
@@ -50,7 +51,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	ngOnInit(): void {
 		this.loadBoard();
-		// this.loadLists();
+		this.loadLists();
+		
 
 		this.onFormGroupInit();
 		// this.onDataInit();
@@ -75,7 +77,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	}
 	onPropertyInit(): void{
-
+		
 	}
 
 	
@@ -112,6 +114,14 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 			this.selBoard.accessYN = "public";
 		}
 	}
+
+	loadLists(): void {
+		const boardId = this.route.snapshot.paramMap.get('id');
+		
+		this.listService.loadListsByBoardId(boardId).subscribe(lists => this.lists = lists);
+		console.log(this.lists);
+
+	}
 	
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');
@@ -134,14 +144,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		},300)
 	}
 
-	loadLists(): void {
-		// const boardId = +this.route.snapshot.paramMap.get('id');
-		
-		// this.listService.loadListsByUUID(boardId).subscribe(lists => this.lists = lists);
-		// console.log(this.lists);
-
-		// this.listService.loadLists().subscribe(lists => this.lists = lists)
-	}
 
 
 	//////////////////////////////////////////////////////////////////////////////////

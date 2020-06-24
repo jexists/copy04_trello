@@ -46,6 +46,7 @@ app-board-layout{
  .board {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
  }
  app-board,
  .board-area,

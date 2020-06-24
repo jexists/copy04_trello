@@ -20,7 +20,7 @@ export class BoardService {
 	constructor(
 		private http: HttpClient,
 		private hdRepo: HdRepo,
-		public inMemoryData: InMemoryDataService
+		// public inMemoryData: InMemoryDataService
 	) { }
 
 
@@ -65,6 +65,8 @@ export class BoardService {
 		const url = `${this.boardUrl}?userId=${userId}`;
 		return this.http.get<Board[]>(url).pipe(map(res => {
 			this.hdRepo.loadBoards(res, true);
+			console.log(JSON.stringify(res));
+			
 		}));
 	}
 

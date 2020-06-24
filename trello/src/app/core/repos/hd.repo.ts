@@ -87,6 +87,19 @@ import {
   //
   /////////////////////////////////////////////
 
+  clearLists(): void {
+    this.lists.length = 0;
+  }
+
+  loadLists(lists: List[], isClear: boolean): void {
+    if (isClear) { this.clearLists(); }
+    this.lists = this.lists.concat(lists);
+    //concat = two array combine
+  }
+
+  getLists(): List[] {
+    return this.lists;
+  }
 
   //////////////////////////////////////////////
   //

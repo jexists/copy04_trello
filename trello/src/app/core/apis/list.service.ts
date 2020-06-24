@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { List } from '../models/index';
+import { HdRepo } from '../repos';
+// import { InMemoryDataService } from '../service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class ListService {
 
   constructor(
     private http: HttpClient,
-
+    private hdRepo: HdRepo,
   ) { }
 
   private listUrl = 'api/lists';
@@ -22,13 +24,12 @@ export class ListService {
     return this.http.get<List[]>(this.listUrl).pipe();
   }
 
-  loadListsByUUID(id: number): Observable<List[]> {
-    const url = `${this.listUrl}/${id}`;
-    return this.http.get<List[]>(url).pipe(
-
-      tap(_ => this.handleError(`${id}번째로 가고싶은 여행지 이동`)),
-      catchError(this.handleError<List[]>(`getHero id=${id}`))
-    );
+  loadListsByBoardId(boardId: string): Observable<any> {
+    const url = `${this.listUrl}?boardUUID=${boardId}`;
+    return this.http.get<List[]>(url).pipe(map(res => {
+      this.hdRepo.loadLists(res, true);
+      // console.log(JSON.stringify(res));
+    }));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
