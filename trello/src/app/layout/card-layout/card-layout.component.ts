@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -21,11 +21,13 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	@Input() selBoard: Board;
 	@Input() lists: List[];
 
+
 	boards: Board[];
 	selAccess: any;
 
-	// lists: List[];
 	selList: List;
+
+	isNewList: boolean = false;
 
 	editBoardForm: FormGroup;
 
@@ -37,9 +39,11 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		private location: Location,
 		public adminRepo: AdminRepo,
 		public hdRepo: HdRepo,
+		private elementRef: ElementRef,
 		private dragula: DragulaService
 	) {
 		super(toastService);
+
 	 }
 
 
@@ -121,7 +125,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.listService.loadListsByBoardId(boardId).subscribe();
 		// console.log(this.selList);
 		this.lists = this.hdRepo.getLists();
-		console.log(this.lists);
+		// console.log(this.lists);
 
 	}
 	
@@ -174,6 +178,12 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.selBoard.accessYN = this.selAccess.code;
 	}
 
+	onToggleNewList(): void {
+		this.isNewList = !this.isNewList;
+	}
+
+	
+  
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods

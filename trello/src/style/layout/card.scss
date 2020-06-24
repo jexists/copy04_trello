@@ -95,7 +95,6 @@
   .list-header {
     width: 100%;
     height: 40px;
-    // background-color: #00f;
     h3 {
       width: 85%;
       font-size: 14px;
@@ -110,7 +109,6 @@
         border: none;
         font-weight: 600;
         background-color: transparent;
-        // background-color: #fff;
       }
     }
     button {
@@ -120,12 +118,10 @@
       width: 10%;
       height: 24px;
       margin-top: 7px;
-      // background-color: #fff;
       line-height: 28px;
     }
   }
   .list-footer{
-    // background-color: #fff;
     color: #5e6c84;
     .add-card {
       float: left;
@@ -145,6 +141,69 @@
       width: 10%;
       height: 24px;
       // margin-top: 7px;
+    }
+  }
+}
+.new-list {
+  width: 100%;
+  height: 38px;
+  .add-card {
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: left;
+    &:hover {
+      background-color: rgba(255,255,255, 0.4);
+    }
+    i {
+      color: #fff;
+      margin-left: 8px;
+      margin-right: 5px;
+    }
+    span {
+      text-transform: capitalize;
+      color: #fff;
+      font-size: 14px;
+    }
+  }
+}
+.list-create{
+  width: 100%;
+  height: 74px;
+  padding: 4px;
+  background-color: #ebecf0;
+  border-radius: 5px;
+  .list-name {
+    width: 100%;
+    height: 36px;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    border: none;
+    border-radius: 5px;
+    &:focus {
+      background-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .newlist-footer{
+    width: 100%;
+    padding-top: 4px;
+    .newlist-add-btn{
+      float: left;
+      width: 76px;
+      border-radius: 5px;
+      color: #fff;
+      text-transform: capitalize;
+      padding: 2px;
+      font-size: 14px;
+      background-color: #0aac44;
+    }
+    .newlist-close-btn{
+      display: block;
+      float: left;
+      margin-left: 5px;
+      padding: 3px 6px;
     }
   }
 }

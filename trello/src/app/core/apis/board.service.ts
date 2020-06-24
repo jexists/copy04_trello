@@ -65,7 +65,7 @@ export class BoardService {
 		const url = `${this.boardUrl}?userId=${userId}`;
 		return this.http.get<Board[]>(url).pipe(map(res => {
 			this.hdRepo.loadBoards(res, true);
-			console.log(JSON.stringify(res));
+			// console.log(JSON.stringify(res));
 			
 		}));
 	}
