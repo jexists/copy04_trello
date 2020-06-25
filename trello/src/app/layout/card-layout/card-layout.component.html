@@ -95,11 +95,11 @@
       <div class="list-create">
         <input type="text" class="list-name" placeholder="Enter list title..." autofocus/>
         <div class="newlist-footer">
-          <button type="button" class="newlist-add-btn">add list</button>
+          <button type="button" class="newlist-add-btn" (click)="onCreateList()">add list</button>
           <button type="button" class="newlist-close-btn" (click)="onToggleNewList()"><i class="fas fa-times"></i></button>
         </div>
       </div>
     </ng-template>
   </li>
-  
+
 </ul>

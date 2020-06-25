@@ -224,6 +224,10 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		);
 	}
 
+	onCreateList(): void {
+		
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Subscription Methods
