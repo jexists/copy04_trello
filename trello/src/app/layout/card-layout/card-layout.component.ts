@@ -132,10 +132,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		const boardId = this.route.snapshot.paramMap.get('id');
 		
 		this.listService.loadListsByBoardId(boardId).subscribe();
-		// console.log(this.selList);
 		this.lists = this.hdRepo.getLists();
-		// console.log(this.lists);
-
 	}
 	
 	loadBgColor(): void {
@@ -249,7 +246,10 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.listService.createList(this.selList).subscribe(
 			res => {
 				alert('성공');
-				this.loadLists();
+				// this.loadLists();
+				this.lists = this.hdRepo.getLists();
+				this.isNewList = false;
+				// this.listForm.value.newListName = "";
 			},
 			error => {
 				alert('에러')
