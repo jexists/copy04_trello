@@ -10,6 +10,7 @@ import { BoardService, ListService } from '../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/core/components/index';
+import { UUIDService } from 'src/app/core/service';
 
 @Component({
 	selector: 'app-card-layout',
@@ -23,13 +24,14 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 
 	boards: Board[];
-	selAccess: any;
-
 	selList: List;
+
+	selAccess: any;
 
 	isNewList: boolean = false;
 
 	editBoardForm: FormGroup;
+	listForm: FormGroup;
 
 	constructor(
 		private boardService: BoardService,
@@ -43,7 +45,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		private dragula: DragulaService
 	) {
 		super(toastService);
-
 	 }
 
 
@@ -59,8 +60,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 
 		this.onFormGroupInit();
+		this.onPropertyInit();
 		// this.onDataInit();
-		// this.onPropertyInit();
 
 		this.loadBgColor();
 		this.loadIcon();
@@ -81,7 +82,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	}
 	onPropertyInit(): void{
-		
+		this.selList = new List();
 	}
 
 	
@@ -92,6 +93,14 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 				Validators.minLength(1),
 				Validators.maxLength(100)
 			])),
+		});
+
+		this.listForm = new FormGroup({
+			newListName: new FormControl(null, Validators.compose([
+					Validators.required,
+					Validators.minLength(1),
+					Validators.maxLength(100)
+				])),
 		});
 	}
 
@@ -136,6 +145,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		const headColor = <HTMLElement>document.querySelector('#headBox');
 		headColor.style.background = 'rgba(0, 0, 0, 0.3)';
 	}
+
 	loadIcon(): void {
 		setTimeout(function (){
 			let accessPublic = <HTMLElement>document.querySelector('i.public');
@@ -195,7 +205,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
             res => {
-				this.showSuccess(null, '제목이 수정되었습니다.')
+				this.showSuccess(null, '제목이 수정되었습니다.');
             },
             error => {
 				if (error.status === 403 || error.status === 504) {
@@ -224,8 +234,27 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		);
 	}
 
-	onCreateList(): void {
+	// onSubmit(target): void {
+	// 	this.onCreateList(this.selList);
+	// }
+
+	onCreateList(list: List): void {
+		console.log(this.selList);
 		
+		this.selList.id = UUIDService.generateUUID();
+		this.selList.boardId = this.selBoard.id;
+		this.selList.listTitle = this.listForm.value.newListName;
+		this.selList.listPosNo = 5;
+
+		this.listService.createList(this.selList).subscribe(
+			res => {
+				alert('성공');
+				this.loadLists();
+			},
+			error => {
+				alert('에러')
+			}
+		)
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

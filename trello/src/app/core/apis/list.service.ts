@@ -24,12 +24,20 @@ export class ListService {
     return this.http.get<List[]>(this.listUrl).pipe();
   }
 
-  loadListsByBoardId(boardId: string): Observable<any> {
+  loadListsByBoardId(boardId): Observable<any> {
     const url = `${this.listUrl}?boardUUID=${boardId}`;
     return this.http.get<List[]>(url).pipe(map(res => {
       this.hdRepo.loadLists(res, true);
-      // console.log(JSON.stringify(res));
+      console.log('##'+JSON.stringify(res));
     }));
+  }
+
+  createList(target:List): Observable<void> {
+    return this.http.post<List>(this.listUrl, target).pipe(map(res => {
+      this.hdRepo.addList(target);
+      // this.hdRepo.loadLists();
+      // console.log(JSON.stringify(target));
+    }))
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

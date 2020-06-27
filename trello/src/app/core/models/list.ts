@@ -3,7 +3,7 @@ export class List {
 
   id: string;
   listTitle: string;
-  listPosNo: string;
+  listPosNo: number;
 
   listCreateDate: string;
   listEditDate: string;

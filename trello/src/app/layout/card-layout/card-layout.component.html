@@ -71,7 +71,7 @@
     <div class="list-wrap">
       <div class="list-header">
         <h3>
-          <input type="text" value="{{list.listName}}"/>
+          <input type="text" value="{{list.listTitle}}"/>
         </h3>
         <button type="button"><i class="fas fa-ellipsis-h"></i></button>
       </div>
@@ -92,10 +92,10 @@
       <button type="button" class="add-card" (click)="onToggleNewList()"><i class="fas fa-plus"></i><span>add a list</span></button>
     </div>
     <ng-template [ngIf]="isNewList">
-      <div class="list-create">
-        <input type="text" class="list-name" placeholder="Enter list title..." autofocus/>
+      <div class="list-create" [formGroup]="listForm">
+        <input id="newListName" formControlName="newListName" type="text" class="list-name" placeholder="Enter list title..." autofocus/>
         <div class="newlist-footer">
-          <button type="button" class="newlist-add-btn" (click)="onCreateList()">add list</button>
+          <button type="button" class="newlist-add-btn" (click)="onCreateList($event)">add list</button>
           <button type="button" class="newlist-close-btn" (click)="onToggleNewList()"><i class="fas fa-times"></i></button>
         </div>
       </div>
