@@ -143,11 +143,14 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.selBoard.starYN = false;
 		this.selBoard.userId = 'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a';
 		// this.hdRepo.addBoard(this.selBoard);
+		console.log('!!!' + this.selBoard.id);
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
 				this.onClose();
 				this.router.navigate([`/card/${this.selBoard.id}`]);
+				console.log('??' + this.selBoard.id);
+				
 			},
 			error => {
 				alert('에러');

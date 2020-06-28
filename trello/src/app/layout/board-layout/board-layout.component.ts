@@ -107,7 +107,7 @@ export class BoardLayoutComponent implements OnInit {
 		$event.stopPropagation();
 
     this.modalRef = this.modalService.show( NewBoardModalComponent,
-      {'initialState':{'selBoard':null}}
+    	{'initialState':{'selBoard':null}}
     );
     
     const subscriber = this.modalService.onHide.subscribe(

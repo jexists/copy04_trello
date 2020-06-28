@@ -28,7 +28,7 @@ export class ListService {
     const url = `${this.listUrl}?boardUUID=${boardId}`;
     return this.http.get<List[]>(url).pipe(map(res => {
       this.hdRepo.loadLists(res, true);
-      console.log('##'+JSON.stringify(res));
+      // console.log('##'+JSON.stringify(res));
     }));
   }
 
