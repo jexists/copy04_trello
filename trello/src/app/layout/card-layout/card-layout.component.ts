@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,6 +11,7 @@ import { BoardService, ListService } from '../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { BaseComponent } from 'src/app/core/components/index';
 import { UUIDService } from 'src/app/core/service';
+import { EventEmitter } from 'protractor';
 
 @Component({
 	selector: 'app-card-layout',
@@ -18,6 +19,8 @@ import { UUIDService } from 'src/app/core/service';
 	styleUrls: ['./card-layout.component.scss']
 })
 export class CardLayoutComponent extends BaseComponent implements OnInit, OnChanges, OnDestroy {
+
+	
 
 	@Input() selBoard: Board;
 	@Input() lists: List[];
@@ -31,6 +34,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	isNewList: boolean = false;
 
 	editBoardForm: FormGroup;
+	editListTitle: FormControl;
+
 	listForm: FormGroup;
 
 	newListName:FormControl;
@@ -60,10 +65,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.loadBoard();
 		this.loadLists();
 		
-
 		this.onFormGroupInit();
-		// this.onPropertyInit();
-		// this.onDataInit();
+		this.onPropertyInit();
 
 		this.loadBgColor();
 		this.loadIcon();
@@ -84,7 +87,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 
 	}
 	onPropertyInit(): void{
-		this.selList = new List();
+
 	}
 
 	
@@ -97,12 +100,12 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 			])),
 		});
 
-		// this.listForm = new FormGroup({
-		// 	newListName: new FormControl(null, Validators.compose([
-		// 			Validators.required,
-		// 			Validators.minLength(1),
-		// 			Validators.maxLength(100)
-		// 		])),
+		// this.editListForm = new FormGroup({
+		// 	editListTitle: new FormControl(this.selList.listTitle, Validators.compose([
+		// 		Validators.required,
+		// 		Validators.minLength(1),
+		// 		Validators.maxLength(100)
+		// 	])),
 		// });
 	}
 
@@ -187,9 +190,19 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.selBoard.accessYN = this.selAccess.code;
 	}
 
-	onToggleNewList(): void {
-		this.isNewList = !this.isNewList;
+	onBlurListTitle(): void {
+		// if (this.editListForm.get('editTitle').hasError('isEmpty')) {
+		// 	this.ngOnInit();
+		// 	return;
+		// }
+
+		// if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
+
+		// this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
+	
+		// this.onUpdateTitle();
 	}
+
 
 	
   
@@ -233,34 +246,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		);
 	}
 
-	// onSubmit(target): void {
-	// 	this.onCreateList(this.selList);
-	// }
-
-	onCreateList(list: List): void {
-		// console.log(this.selList);
-		
-		// this.selList.id = UUIDService.generateUUID();
-		// this.selList.boardId = this.selBoard.id;
-		// this.selList.listTitle = this.listForm.value.newListName;
-		// this.selList.listPosNo = 5;
-		
-		// this.listService.createList(this.selList).subscribe(
-		// 	res => {
-		// 		alert('성공');
-		// 		// this.loadLists();
-		// 		// this.lists = this.hdRepo.getLists();
-		// 		this.isNewList = false;
-
-		// 		// this.newListName.setValue(null);
-		// 		// this.onFormGroupInit()
-		// 	},
-		// 	error => {
-		// 		alert('에러')
-		// 	}
-		// )
-	}
-
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Subscription Methods

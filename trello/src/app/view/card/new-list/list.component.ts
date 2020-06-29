@@ -117,9 +117,10 @@ export class ListComponent implements OnInit, OnDestroy {
 
 		this.listService.createList(this.newList).subscribe(
 			res => {
-				alert('성공');
+				// alert('성공');
 				this.isNewList = false;
 				this.selList.emit();
+				this.newListForm.get('newListName').setValue('');
 			},
 			error => {
 				alert('에러')

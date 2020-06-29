@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CardComponent } from './card/card.component';
-import { ListComponent } from './list/list.component';
+import { ListComponent } from './new-list/list.component';
 
 
 

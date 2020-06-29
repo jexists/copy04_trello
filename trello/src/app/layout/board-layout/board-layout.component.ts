@@ -8,13 +8,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Board } from '../../core/models/index';
 import { BoardService } from '../../core/apis/index';
 
-import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-board-modal.component'; 
+import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-board-modal.component';
 import { HdRepo } from 'src/app/core/repos';
 
 @Component({
-  selector: 'app-board-layout',
-  templateUrl: './board-layout.component.html',
-  styleUrls: ['./board-layout.component.scss']
+	selector: 'app-board-layout',
+	templateUrl: './board-layout.component.html',
+	styleUrls: ['./board-layout.component.scss']
 })
 export class BoardLayoutComponent implements OnInit {
 
@@ -24,35 +24,35 @@ export class BoardLayoutComponent implements OnInit {
 
 	isStar: boolean;
 	isViewed: boolean;
-  
+
 	constructor(
-    	private boardService: BoardService,
+		private boardService: BoardService,
 		private modalService: BsModalService,
 		public hdRepo: HdRepo,
-      	// private toastr: ToastrService
+		// private toastr: ToastrService
 	) { }
-	
-  	//////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Lifecycle Methods
-    //
+
 	//////////////////////////////////////////////////////////////////////////////////
-	
+	//
+	//   Component Lifecycle Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
 
 	ngOnInit(): void {
 		// this.loadBoards();
 		// this.loadBoardsByTeamId();
 		this.loadBoardByUserId();
 		this.loadBgColor();
-		
+
 	}
-	
+
 	ngOnDestroy(): void {
 
 	}
 
 	loadBoards(): void {
-    	this.boardService.loadBoards().subscribe(boards => this.boards = boards);
+		this.boardService.loadBoards().subscribe(boards => this.boards = boards);
 	}
 
 	loadBoardsByTeamId(): void {
@@ -66,59 +66,59 @@ export class BoardLayoutComponent implements OnInit {
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');
 		const headColor = <HTMLElement>document.querySelector('#headBox');
-		
+
 		wrapColor.style.background = '#fff';
 		headColor.style.background = '#006aa6';
 	}
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Data Manipulation Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
-
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //	 Component View Events Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
-    
-
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component CRUD Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
-
-
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Subscription Methods
-    //
-    //////////////////////////////////////////////////////////////////////////////////
-
-    //////////////////////////////////////////////////////////////////////////////////
-    //
-    //   Component Private Methods
-    //
 	//////////////////////////////////////////////////////////////////////////////////
-	
-    onModalOpen($event): void {
+	//
+	//   Component Data Manipulation Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//	 Component View Events Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component CRUD Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component Subscription Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//
+	//   Component Private Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	onModalOpen($event): void {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-    this.modalRef = this.modalService.show( NewBoardModalComponent,
-    	{'initialState':{'selBoard':null}}
-    );
-    
-    const subscriber = this.modalService.onHide.subscribe(
-      	res => {
-          subscriber.unsubscribe();
-      	}
-    );
+		this.modalRef = this.modalService.show(NewBoardModalComponent,
+			{ 'initialState': { 'selBoard': null } }
+		);
+
+		const subscriber = this.modalService.onHide.subscribe(
+			res => {
+				subscriber.unsubscribe();
+			}
+		);
 	}
 
 
 
-	
+
 
 }
