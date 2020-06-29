@@ -21,11 +21,8 @@ export class ListComponent implements OnInit, OnDestroy {
 
   @Input() selBoard: Board;
   @Input() isNewList: boolean;
-	@Input() lists: List[];
 
-	selList: List;
-
-	// isNewList: boolean = false;
+	newList: List;
 
 	newListForm: FormGroup;
 
@@ -64,7 +61,7 @@ export class ListComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onPropertyInit(): void{
-		this.selList = new List();
+		this.newList = new List();
 	}
 
 	onFormGroupInit(): void{
@@ -105,24 +102,21 @@ export class ListComponent implements OnInit, OnDestroy {
 		$event.preventDefault();
 		$event.stopPropagation();
 
-		this.onCreateList(this.selList);
+		this.onCreateList(this.newList);
 	}
 
 	onCreateList(list: List): void {
-		console.log(this.selList);
+		console.log(this.newList);
 
-		this.selList.id = UUIDService.generateUUID();
-		this.selList.listTitle = this.newListForm.value.newListName;
-		this.selList.listPosNo = 5;
-		this.selList.boardId = this.selBoard.id;
+		this.newList.listTitle = this.newListForm.value.newListName;
+		this.newList.id = UUIDService.generateUUID();
+		this.newList.boardId = this.selBoard.id;
+		// this.newList.listPosNo = 5;
 
-		this.listService.createList(this.selList).subscribe(
+		this.listService.createList(this.newList).subscribe(
 			res => {
 				alert('성공');
-				// this.loadLists();
-				// this.lists = this.hdRepo.getLists();
 				this.isNewList = false;
-				// this.listForm.value.newListName = "";
 			},
 			error => {
 				alert('에러')

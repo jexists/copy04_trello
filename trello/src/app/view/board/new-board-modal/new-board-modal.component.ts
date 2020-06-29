@@ -137,7 +137,6 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	}
 
 	onCreateBoard(board: Board): void {
-		console.log(this.selBoard);
 		
 		if (!this.selBoard.boardBg) {
 			this.selBoard.boardBg = "url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover";
@@ -151,15 +150,11 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.selBoard.id = UUIDService.generateUUID();
 		this.selBoard.starYN = false;
 		this.selBoard.userId = 'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a';
-		// this.hdRepo.addBoard(this.selBoard);
-		console.log('!!!' + this.selBoard.id);
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {
 				this.onClose();
 				this.router.navigate([`/card/${this.selBoard.id}`]);
-				console.log('??' + this.selBoard.id);
-				
 			},
 			error => {
 				alert('에러');

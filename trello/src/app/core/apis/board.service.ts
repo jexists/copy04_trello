@@ -92,7 +92,7 @@ export class BoardService {
 	createBoard(target: Board): Observable<void> {
 		return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
 			this.hdRepo.addBoard(target);
-			console.log(JSON.stringify(target));
+			// console.log(JSON.stringify(target));
 		}));
 	}
 
