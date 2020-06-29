@@ -20,19 +20,19 @@ export class ListService {
 
   private listUrl = 'api/lists';
 
-  loadLists(): Observable<List[]> {
-    return this.http.get<List[]>(this.listUrl).pipe();
-  }
+  // loadLists(): Observable<List[]> {
+  //   return this.http.get<List[]>(this.listUrl).pipe();
+  // }
 
   loadListsByBoardId(boardId): Observable<any> {
-    const url = `${this.listUrl}?boardUUID=${boardId}`;
+    const url = `${this.listUrl}?boardId=${boardId}`;
     return this.http.get<List[]>(url).pipe(map(res => {
       this.hdRepo.loadLists(res, true);
       // console.log('##'+JSON.stringify(res));
     }));
   }
 
-  createList(target:List): Observable<void> {
+  createList(target: List): Observable<void> {
     return this.http.post<List>(this.listUrl, target).pipe(map(res => {
       this.hdRepo.addList(target);
       // this.hdRepo.loadLists();

@@ -31,9 +31,9 @@ export class InMemoryDataService {
     ];
     
     const lists = [
-      { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardUUID: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트1', listPosNo: 3},
-      { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardUUID: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 7},
-      { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardUUID: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo:55},
+      { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트1', listPosNo: 3},
+      { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 7},
+      { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo:55},
     ]
     return { boards, lists };
     

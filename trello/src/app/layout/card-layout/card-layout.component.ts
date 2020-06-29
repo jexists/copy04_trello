@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { DragulaService } from 'ng2-dragula';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Board, List } from '../../core/models/index';
 import { BoardService, ListService } from '../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/core/components/index';
 import { UUIDService } from 'src/app/core/service';
 
@@ -62,7 +62,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 
 		this.onFormGroupInit();
-		this.onPropertyInit();
+		// this.onPropertyInit();
 		// this.onDataInit();
 
 		this.loadBgColor();
@@ -97,13 +97,13 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 			])),
 		});
 
-		this.listForm = new FormGroup({
-			newListName: new FormControl(null, Validators.compose([
-					Validators.required,
-					Validators.minLength(1),
-					Validators.maxLength(100)
-				])),
-		});
+		// this.listForm = new FormGroup({
+		// 	newListName: new FormControl(null, Validators.compose([
+		// 			Validators.required,
+		// 			Validators.minLength(1),
+		// 			Validators.maxLength(100)
+		// 		])),
+		// });
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
@@ -238,27 +238,27 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	// }
 
 	onCreateList(list: List): void {
-		console.log(this.selList);
+		// console.log(this.selList);
 		
-		this.selList.id = UUIDService.generateUUID();
-		this.selList.boardId = this.selBoard.id;
-		this.selList.listTitle = this.listForm.value.newListName;
-		this.selList.listPosNo = 5;
+		// this.selList.id = UUIDService.generateUUID();
+		// this.selList.boardId = this.selBoard.id;
+		// this.selList.listTitle = this.listForm.value.newListName;
+		// this.selList.listPosNo = 5;
 		
-		this.listService.createList(this.selList).subscribe(
-			res => {
-				alert('성공');
-				// this.loadLists();
-				this.lists = this.hdRepo.getLists();
-				this.isNewList = false;
+		// this.listService.createList(this.selList).subscribe(
+		// 	res => {
+		// 		alert('성공');
+		// 		// this.loadLists();
+		// 		// this.lists = this.hdRepo.getLists();
+		// 		this.isNewList = false;
 
-				// this.newListName.setValue(null);
-				// this.onFormGroupInit()
-			},
-			error => {
-				alert('에러')
-			}
-		)
+		// 		// this.newListName.setValue(null);
+		// 		// this.onFormGroupInit()
+		// 	},
+		// 	error => {
+		// 		alert('에러')
+		// 	}
+		// )
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,15 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { DragulaService } from 'ng2-dragula';
+import { ToastrService } from 'ngx-toastr';
 
 import { Board, List } from '../../../core/models/index';
-import { AdminRepo, HdRepo } from 'src/app/core/repos';
-import { ListService } from 'src/app/core/apis';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BoardService, ListService } from '../../../core/apis/index';
+import { HdRepo, AdminRepo } from 'src/app/core/repos';
+import { BaseComponent } from 'src/app/core/components/index';
 import { UUIDService } from 'src/app/core/service';
 
 @Component({
@@ -12,16 +17,17 @@ import { UUIDService } from 'src/app/core/service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit,OnDestroy {
+export class ListComponent implements OnInit, OnDestroy {
 
   @Input() selBoard: Board;
+  @Input() isNewList: boolean;
 	@Input() lists: List[];
 
 	selList: List;
 
-	isNewList: boolean = false;
+	// isNewList: boolean = false;
 
-	listForm: FormGroup;
+	newListForm: FormGroup;
 
 	constructor(
 		// protected toastService: ToastrService,
@@ -45,7 +51,6 @@ export class ListComponent implements OnInit,OnDestroy {
 	ngOnInit(): void {
 		this.onFormGroupInit();
 		this.onPropertyInit();
-		// this.onDataInit();
 	}
 
 	ngOnDestroy(): void {
@@ -58,17 +63,12 @@ export class ListComponent implements OnInit,OnDestroy {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	onDataInit(): void{
-
-	}
 	onPropertyInit(): void{
 		this.selList = new List();
 	}
 
-	
 	onFormGroupInit(): void{
-
-		this.listForm = new FormGroup({
+		this.newListForm = new FormGroup({
 			newListName: new FormControl(null, Validators.compose([
 					Validators.required,
 					Validators.minLength(1),
@@ -76,11 +76,6 @@ export class ListComponent implements OnInit,OnDestroy {
 				])),
 		});
 	}
-
-
-
-	
-
 
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -93,28 +88,39 @@ export class ListComponent implements OnInit,OnDestroy {
 		this.isNewList = !this.isNewList;
 	}
 
-	
-  
+	onValid(): boolean {
+		if (this.newListForm.get('newListName').valid) {
+			return true;
+		}
+		return false;
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	onSubmit(target, $event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		this.onCreateList(this.selList);
+	}
 
 	onCreateList(list: List): void {
 		console.log(this.selList);
-		
+
 		this.selList.id = UUIDService.generateUUID();
-		this.selList.boardId = this.selBoard.id;
-		this.selList.listTitle = this.listForm.value.newListName;
+		this.selList.listTitle = this.newListForm.value.newListName;
 		this.selList.listPosNo = 5;
+		this.selList.boardId = this.selBoard.id;
 
 		this.listService.createList(this.selList).subscribe(
 			res => {
 				alert('성공');
 				// this.loadLists();
-				this.lists = this.hdRepo.getLists();
+				// this.lists = this.hdRepo.getLists();
 				this.isNewList = false;
 				// this.listForm.value.newListName = "";
 			},

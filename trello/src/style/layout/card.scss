@@ -147,7 +147,7 @@
 .new-list {
   width: 100%;
   height: 38px;
-  .add-card {
+  .add-list {
     width: 100%;
     height: 100%;
     padding: 9px;
@@ -197,7 +197,10 @@
       text-transform: capitalize;
       padding: 2px;
       font-size: 14px;
-      background-color: #0aac44;
+      background-color: #444444;
+      &.active{
+        background-color: #0aac44;
+      }
     }
     .newlist-close-btn{
       display: block;

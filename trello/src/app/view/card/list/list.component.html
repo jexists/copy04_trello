@@ -1,7 +1,15 @@
-<!-- <div class="list-create" [formGroup]="listForm">
-  <input id="newListName" formControlName="newListName" type="text" class="list-name" placeholder="Enter list title..." autofocus/>
-  <div class="newlist-footer">
-    <button type="button" class="newlist-add-btn" (click)="onCreateList($event)">add list</button>
-    <button type="button" class="newlist-close-btn" (click)="onToggleNewList()"><i class="fas fa-times"></i></button>
-  </div>
-</div> -->
+
+<div *ngIf="!isNewList" class="new-list">
+  <button type="button" class="add-list" (click)="onToggleNewList()"><i class="fas fa-plus"></i><span>add a list</span></button>
+</div>
+
+<ng-template [ngIf]="isNewList">
+  <form class="list-create" [formGroup]="newListForm" (ngSubmit)="onSubmit(newListForm.value, $event)" >
+    <input id="newListName" formControlName="newListName" type="text" class="list-name" placeholder="Enter list title..." autofocus required/>
+    <div class="newlist-footer">
+      <button type="submit" class="newlist-add-btn {{onValid()?'active':''}}" [disabled]="!onValid()">add list</button>
+      <button type="button" class="newlist-close-btn" (click)="onToggleNewList()"><i class="fas fa-times"></i></button>
+    </div>
+  </form>
+</ng-template>
+

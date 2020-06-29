@@ -128,8 +128,17 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	onCreateBoard(board: Board): void {
 
+	onSubmit(target, $event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		this.onCreateBoard(this.selBoard);
+	}
+
+	onCreateBoard(board: Board): void {
+		console.log(this.selBoard);
+		
 		if (!this.selBoard.boardBg) {
 			this.selBoard.boardBg = "url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover";
 		}
@@ -158,12 +167,6 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		)
 	}
 
-	onSubmit(target, $event): void {
-		$event.preventDefault();
-		$event.stopPropagation();
-
-		this.onCreateBoard(this.selBoard);
-	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//

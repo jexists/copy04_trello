@@ -1,21 +1,23 @@
 <div class="card-head">
-  <form [formGroup]="editBoardForm" >
-    <ul class="card-info">
-      <li>
-        <h2>
-          <input type="text" formControlName="editTitle" appEmptyInputValidator (keyup.enter)="onBlurBoardTitle()" (blur)="onBlurBoardTitle()" value="{{selBoard.boardTitle}}"  maxlength="100"/>
-        </h2>
-      </li>
-      <li>
-        <button type="button" class="star"><i class="far fa-star"></i></button>
-      </li>
-      <li>
-        <button type="button"><span>personal</span></button>
-      </li>
-      <li>
-        <button type="button"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
-      </li>
-      <!-- <li>
+	<form [formGroup]="editBoardForm">
+		<ul class="card-info">
+			<li>
+				<h2>
+					<input type="text" formControlName="editTitle" appEmptyInputValidator
+						(keyup.enter)="onBlurBoardTitle()" (blur)="onBlurBoardTitle()" value="{{selBoard.boardTitle}}"
+						maxlength="100" />
+				</h2>
+			</li>
+			<li>
+				<button type="button" class="star"><i class="far fa-star"></i></button>
+			</li>
+			<li>
+				<button type="button"><span>personal</span></button>
+			</li>
+			<li>
+				<button type="button"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
+			</li>
+			<!-- <li>
         <div class="btn-group access-btn" dropdown>
           <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
             aria-controls="dropdown-animated">
@@ -37,69 +39,57 @@
           </ul>
         </div>
       </li> -->
-      <li>
-        <ul>
-          <li>JU</li>
-        </ul>
-      </li>
-      <li>
-        <button type="button"><span>invite</span></button>
-      </li>
-    </ul>
-  </form>
-    <ul class="card-info card-menu">
-      <li><button type="button"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
-      <li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
-      <li><button type="button" (click)="onArchive($event)"><span>delete</span></button></li>
-    </ul>
-    <div class="menu-popup">
-      <div>
-        <p>menu</p>
-        <button type="button"><i class="fas fa-times"></i></button>
-      </div>
-      <div>
-        change background
-      </div>
-      <button type="button">
-        delete
-      </button>
-    </div>
+			<li>
+				<ul>
+					<li>JU</li>
+				</ul>
+			</li>
+			<li>
+				<button type="button"><span>invite</span></button>
+			</li>
+		</ul>
+	</form>
+	<ul class="card-info card-menu">
+		<li><button type="button"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
+		<li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
+		<li><button type="button" (click)="onArchive($event)"><span>delete</span></button></li>
+	</ul>
+	<div class="menu-popup">
+		<div>
+			<p>menu</p>
+			<button type="button"><i class="fas fa-times"></i></button>
+		</div>
+		<div>
+			change background
+		</div>
+		<button type="button">
+			delete
+		</button>
+	</div>
 </div>
 <ul dragula="card-collection" class="card-contents">
-  <li *ngFor="let list of (hdRepo.getLists() | orderBy:'listPosNo')" class="list-area">
-    <!-- <app-list [selList]="selList"></app-list> -->
-    <div class="list-wrap">
-      <div class="list-header">
-        <h3>
-          <input type="text" value="{{list.listTitle}}"/>
-        </h3>
-        <button type="button"><i class="fas fa-ellipsis-h"></i></button>
-      </div>
-      <ul class="list-contents">
-        <li>
-          <!-- <app-card></app-card> -->
-        </li>
-      </ul>
-      <div class="list-footer cf">
-        <button type="button" class="add-card"><i class="fas fa-plus"></i><span>add another card</span></button>
-        <button type="button" class="card-temp"><i class="fab fa-trello"></i></button>
-      </div>
-    </div>
-  </li>
+	<li *ngFor="let list of (hdRepo.getLists() | orderBy:'listPosNo')" class="list-area">
+		<div class="list-wrap">
+			<div class="list-header">
+				<h3>
+					<input type="text" value="{{list.listTitle}}" />
+				</h3>
+				<button type="button"><i class="fas fa-ellipsis-h"></i></button>
+			</div>
+			<ul class="list-contents">
+				<li>
+					<!-- <app-card></app-card> -->
+				</li>
+			</ul>
+			<div class="list-footer cf">
+				<button type="button" class="add-card"><i class="fas fa-plus"></i><span>add another card</span></button>
+				<button type="button" class="card-temp"><i class="fab fa-trello"></i></button>
+			</div>
+		</div>
+	</li>
 
-  <li class="list-area">
-    <div *ngIf="!isNewList" class="new-list">
-      <button type="button" class="add-card" (click)="onToggleNewList()"><i class="fas fa-plus"></i><span>add a list</span></button>
-    </div>
-    <ng-template [ngIf]="isNewList">
-      <div class="list-create" [formGroup]="listForm">
-        <input id="newListName" formControlName="newListName" type="text" class="list-name" placeholder="Enter list title..." autofocus/>
-        <div class="newlist-footer">
-          <button type="button" class="newlist-add-btn" (click)="onCreateList($event)">add list</button>
-          <button type="button" class="newlist-close-btn" (click)="onToggleNewList()"><i class="fas fa-times"></i></button>
-        </div>
-      </div>
-    </ng-template>
-  </li>
+	<li class="list-area">
+		<app-list [selBoard]="selBoard"></app-list>
+	</li>
 
 </ul>
