@@ -33,6 +33,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	editBoardForm: FormGroup;
 	listForm: FormGroup;
 
+	newListName:FormControl;
+
 	constructor(
 		private boardService: BoardService,
 		protected toastService: ToastrService,
@@ -242,14 +244,16 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.selList.boardId = this.selBoard.id;
 		this.selList.listTitle = this.listForm.value.newListName;
 		this.selList.listPosNo = 5;
-
+		
 		this.listService.createList(this.selList).subscribe(
 			res => {
 				alert('성공');
 				// this.loadLists();
 				this.lists = this.hdRepo.getLists();
 				this.isNewList = false;
-				// this.listForm.value.newListName = "";
+
+				// this.newListName.setValue(null);
+				// this.onFormGroupInit()
 			},
 			error => {
 				alert('에러')

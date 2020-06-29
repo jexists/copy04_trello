@@ -63,8 +63,8 @@ import {
 
   addBoard(board: Board): void {
     this.boards.push(board);
-    console.log(board);
-    console.log(this.boards);
+    // console.log(board);
+    // console.log(this.boards);
     
     //push = add item to the end
   }
@@ -93,23 +93,24 @@ import {
   clearLists(): void {
     this.lists.length = 0;
   }
-
-  addList(list: List): void {
-    this.lists.push(list);
-    console.log(list);
-    console.log(this.lists);
-  }
-
+  
   loadLists(lists: List[], isClear: boolean): void {
     if (isClear) { this.clearLists(); }
     this.lists = this.lists.concat(lists);
     //concat = two array combine
   }
   
-
   getLists(): List[] {
     return this.lists;
   }
+  
+  addList(list: List): void {
+    this.lists.push(list);
+    // console.log(list);
+    // console.log(this.lists);
+  }
+  
+
 
   //////////////////////////////////////////////
   //
