@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -18,6 +18,8 @@ import { UUIDService } from 'src/app/core/service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, OnDestroy {
+
+	@Output() selList = new EventEmitter;
 
   @Input() selBoard: Board;
   @Input() isNewList: boolean;
@@ -117,6 +119,7 @@ export class ListComponent implements OnInit, OnDestroy {
 			res => {
 				alert('성공');
 				this.isNewList = false;
+				this.selList.emit();
 			},
 			error => {
 				alert('에러')
