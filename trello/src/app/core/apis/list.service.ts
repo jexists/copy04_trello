@@ -6,7 +6,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { List } from '../models/index';
 import { HdRepo } from '../repos';
-// import { InMemoryDataService } from '../service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +19,13 @@ export class ListService {
 
   private listUrl = 'api/lists';
 
-  // loadLists(): Observable<List[]> {
-  //   return this.http.get<List[]>(this.listUrl).pipe();
-  // }
-
+  //////////////////////////////////////
+	//
+	// LIST SERVICE
+	//
+  //////////////////////////////////////
+  
+  //* Board Id로 List 불러오기
   loadListsByBoardId(boardId): Observable<any> {
     const url = `${this.listUrl}?boardId=${boardId}`;
     return this.http.get<List[]>(url).pipe(map(res => {
@@ -32,19 +34,15 @@ export class ListService {
     }));
   }
 
+  //* List 생성하기
   createList(target: List): Observable<void> {
     return this.http.post<List>(this.listUrl, target).pipe(map(res => {
       this.hdRepo.addList(target);
-      // this.hdRepo.loadLists();
       // console.log(JSON.stringify(target));
     }))
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-		return (error: any): Observable<T> => {
-			console.error(error);
-			return of(result as T);
-		}
-	}
+  
+
 }
 

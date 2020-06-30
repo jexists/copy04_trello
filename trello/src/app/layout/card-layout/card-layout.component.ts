@@ -100,13 +100,9 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 			])),
 		});
 
-		// this.editListForm = new FormGroup({
-		// 	editListTitle: new FormControl(this.selList.listTitle, Validators.compose([
-		// 		Validators.required,
-		// 		Validators.minLength(1),
-		// 		Validators.maxLength(100)
-		// 	])),
-		// });
+		console.log("####" + this.selList);
+		
+		// this.editListTitle = new FormControl(this.selList);
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
@@ -196,11 +192,11 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		// 	return;
 		// }
 
-		// if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
+		// if (this.selList.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
 
 		// this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
 	
-		// this.onUpdateTitle();
+		// this.onUpdateListTitle();
 	}
 
 

@@ -30,11 +30,10 @@ Trello Clone by Angular
 
 
 - [ ] **BOARD 생성 후 & BOARD 클릭 후**
+- [x] 보드 이름 수정하기
+- [x] 보드 삭제하기
 - [x] 리스트 불러오기
-- [ ] 리스트 생성하기
-
-> card-layout -> app-list 클릭 -> ng-template(isNewList) 나오기 ->
-
+- [x] 리스트 생성하기
 - [ ] 리스트 이름 수정하기
 - [ ] 리스트 삭제하기
 - [ ] 리스트에 카드 생성하기

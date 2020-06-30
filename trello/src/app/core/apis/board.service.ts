@@ -20,13 +20,8 @@ export class BoardService {
 	constructor(
 		private http: HttpClient,
 		private hdRepo: HdRepo,
-		// public inMemoryData: InMemoryDataService
 	) { }
 
-
-	// httpOptions = {
-	// 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-	// }
 
 	//////////////////////////////////////
 	//
@@ -34,12 +29,7 @@ export class BoardService {
 	//
 	//////////////////////////////////////
 
-	//* inMemoryData 불러오기전에 사용했던 보드들 불러오는 코드
-	// loadBoards(): Observable<Board[]> {
-		// return this.http.get<Board[]>(this.boardUrl).pipe();
-	// }
-
-	//* 처음에 보드 불러오는 코드 (주석풀어도 가능하고 안해도 가능)
+	//* 처음에 모든 보드 불러오는 코드 (주석풀어도 가능하고 안해도 가능)
 	loadBoards(): Observable<any> {
 		return this.http.get<Board[]>(this.boardUrl).pipe(map(res => {
 			const targets = [];
@@ -65,58 +55,35 @@ export class BoardService {
 		const url = `${this.boardUrl}?userId=${userId}`;
 		return this.http.get<Board[]>(url).pipe(map(res => {
 			this.hdRepo.loadBoards(res, true);
-			// console.log(JSON.stringify(res));
-			
 		}));
 	}
 
-	/** GET: 서버에 저장된 데이터를 조회 */
-	loadBoardById(id: string): Observable<Board> {
-		const url = `${this.boardUrl}?id=${id}`;
-		return this.http.get<Board>(url).pipe();
-	}
-
-	// loadBoardByUUID(uuid: string): Observable<void> {
-		// const url = `${this.boardUrl}/${uuid}`;
-		// return this.http.get<Board>(url).pipe(map(res => {
-		// 	const targets = [];
-		// 	res.forEach(json => {
-		// 		const target = new Board(json);
-		// 		targets.push(target);
-		// 	});
-		// 	this.hdRepo.loadBoards(targets, true)
-		// }));
-	// }
-
-	/** POST: 서버에 데이터 생성  */
+	//* Board 생성하는 코드
 	createBoard(target: Board): Observable<void> {
 		return this.http.post<Board>(this.boardUrl, target).pipe(map(res => {
 			this.hdRepo.addBoard(target);
-			// console.log(JSON.stringify(target));
 		}));
 	}
 
-	/** PUT: 서버에 저장된 데이터를 변경 */
+	//* Board 타이틀 수정하는 코드
 	updateBoardTitle(board: Board, id: string): Observable<any> {
 		const url = `${this.boardUrl}/${id}`;
 		return this.http.put<Board>(url, board).pipe();
 	}
 
-	/** DELETE: 서버에 저장된 데이터를 삭제 */
+	//* Board 지우는 코드
 	deleteBoard(board: Board, id: string): Observable<void> {
 		const url = `${this.boardUrl}/${id}/delete`;
 		return this.http.delete<void>(url).pipe();
 	}
 
-	/** DELETE: 서버에 저장된 데이터를 삭제 */
-	// deleteBoard(board: Board, id: string): Observable<void> {
-	// 	const url = `${this.boardUrl}/${id}/delete`;
-	// 	return this.http.put<Board>(url, board).pipe(map(res => {
-	// 		this.hdRepo.removeBoard(board);
-	// 	}));
-	// }
+	//* Id로 선택된 Board 불러오는 코드
+	loadBoardById(id: string): Observable<Board> {
+		const url = `${this.boardUrl}?id=${id}`;
+		return this.http.get<Board>(url).pipe();
+	}
 
-
+	//* 에러 확인하는 방법
 	// private handleError<T>(operation = 'operation', result?: T) {
 	// 	return (error: any): Observable<T> => {
 	// 		console.error(error);
