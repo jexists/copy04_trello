@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './new-card/card.component';
 import { ListComponent } from './new-list/list.component';
 
 
@@ -18,7 +18,8 @@ import { ListComponent } from './new-list/list.component';
     ReactiveFormsModule,
   ],
   exports: [
-    ListComponent
+    ListComponent,
+    CardComponent
   ]
 })
 export class CardModule { }

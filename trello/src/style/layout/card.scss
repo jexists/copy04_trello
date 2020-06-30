@@ -125,8 +125,10 @@
     color: #5e6c84;
     .add-card {
       float: left;
+      width: 86%;
+      text-align: left;
       i {
-        margin-right: 5px;
+        margin: 0 5px;
       }
       span {
         text-transform: capitalize;
@@ -136,11 +138,10 @@
     }
     .card-temp {
       float: right;
-      margin-right: 8px;
+      margin: 0 2%;
       display: block;
       width: 10%;
       height: 24px;
-      // margin-top: 7px;
     }
   }
 }
@@ -207,6 +208,53 @@
       float: left;
       margin-left: 5px;
       padding: 3px 6px;
+    }
+  }
+}
+
+.card-create{
+  width: 100%;
+  height: 74px;
+  padding: 4px;
+  background-color: #ebecf0;
+  border-radius: 5px;
+  .card-name {
+    width: 100%;
+    height: 60px;
+    padding: 6px 8px;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    border: none;
+    border-radius: 5px;
+    &:focus {
+      background-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .newcard-footer{
+    width: 100%;
+    padding-top: 4px;
+    .newcard-add-btn{
+      float: left;
+      width: 76px;
+      border-radius: 5px;
+      color: #fff;
+      text-transform: capitalize;
+      padding: 2px;
+      font-size: 14px;
+      background-color: #444444;
+      &.active{
+        background-color: #0aac44;
+      }
+    }
+    .newcard-close-btn{
+      display: block;
+      float: left;
+      margin-left: 5px;
+      padding: 3px 6px;
+    }
+    .newcard-option-btn{
+      display: block;
+      float: right;
     }
   }
 }

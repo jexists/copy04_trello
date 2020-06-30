@@ -1,0 +1,16 @@
+<div *ngIf="!isNewCard">
+  <button type="button" class="add-card" (click)="onToggleNewCard()"><i class="fas fa-plus"></i><span>add another card</span></button>
+  <button type="button" class="card-temp"><i class="fab fa-trello"></i></button>
+</div>
+
+<ng-template [ngIf]="isNewCard">
+  <!-- <form class="card-create" [formGroup]="newcardForm" (ngSubmit)="onSubmit(newcardForm.value, $event)" > -->
+  <form class="card-create">
+    <textarea id="newcardName" formControlName="newcardName" type="text" class="card-name" placeholder="Enter a title for this card..." autofocus required></textarea>
+    <div class="newcard-footer">
+      <button type="submit" class="newcard-add-btn {{onValid()?'active':''}}" [disabled]="!onValid()">add card</button>
+      <button type="button" class="newcard-close-btn" (click)="onToggleNewCard()"><i class="fas fa-times"></i></button>
+      <button type="button" class="newcard-option-btn"><i class="fas fa-ellipsis-h"></i></button>
+    </div>
+  </form>
+</ng-template>
