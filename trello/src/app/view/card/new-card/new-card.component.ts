@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Card } from '../../../core/models/index';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss']
+  selector: 'app-new-card',
+  templateUrl: './new-card.component.html',
+  styleUrls: ['./new-card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class NewCardComponent implements OnInit {
   
-  card: Card[];
+	card: Card[];
+	newCard: Card;
+
+	newCardForm: FormGroup;
   isNewCard: boolean = false;
   constructor(
 
@@ -37,17 +41,17 @@ export class CardComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onPropertyInit(): void{
-		// this.newList = new List();
+		this.newCard = new Card();
 	}
 
 	onFormGroupInit(): void{
-		// this.newListForm = new FormGroup({
-		// 	newListName: new FormControl(null, Validators.compose([
-		// 			Validators.required,
-		// 			Validators.minLength(1),
-		// 			Validators.maxLength(100)
-		// 		])),
-		// });
+		this.newCardForm = new FormGroup({
+			newCardName: new FormControl(null, Validators.compose([
+					Validators.required,
+					Validators.minLength(1),
+					Validators.maxLength(100)
+				])),
+		});
 	}
 
 
@@ -74,20 +78,20 @@ export class CardComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	// onSubmit(target, $event): void {
-	// 	$event.preventDefault();
-	// 	$event.stopPropagation();
+	onSubmit(target, $event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
 
-	// 	this.onCreateList(this.newList);
-	// }
+		this.onCreateCard(this.newCard);
+	}
 
-	// onCreateList(list: List): void {
-	// 	console.log(this.newList);
+	onCreateCard(card: Card): void {
+		console.log(this.newCard);
 
-	// 	this.newList.listTitle = this.newListForm.value.newListName;
-	// 	this.newList.id = UUIDService.generateUUID();
-	// 	this.newList.boardId = this.selBoard.id;
-	// 	// this.newList.listPosNo = 5;
+		// this.newCard.cardTitle = this.newCardForm.value.newCardName;
+		// this.newCard.id = UUIDService.generateUUID();
+		// this.newCard.boardId = this.selBoard.id;
+		// this.newCard.listPosNo = 5;
 
 	// 	this.listService.createList(this.newList).subscribe(
 	// 		res => {
@@ -100,7 +104,7 @@ export class CardComponent implements OnInit {
 	// 			alert('에러')
 	// 		}
 	// 	)
-	// }
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//

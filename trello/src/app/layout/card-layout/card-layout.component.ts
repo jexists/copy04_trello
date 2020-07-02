@@ -7,20 +7,18 @@ import { DragulaService } from 'ng2-dragula';
 import { ToastrService } from 'ngx-toastr';
 
 import { Board, List } from '../../core/models/index';
-import { BoardService, ListService } from '../../core/apis/index';
+import { BoardService, ListService, CardService } from '../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { BaseComponent } from 'src/app/core/components/index';
-import { UUIDService } from 'src/app/core/service';
-import { EventEmitter } from 'protractor';
+// import { UUIDService } from 'src/app/core/service';
+// import { EventEmitter } from 'protractor';
 
 @Component({
 	selector: 'app-card-layout',
 	templateUrl: './card-layout.component.html',
 	styleUrls: ['./card-layout.component.scss']
 })
-export class CardLayoutComponent extends BaseComponent implements OnInit, OnChanges, OnDestroy {
-
-	
+export class CardLayoutComponent extends BaseComponent implements OnInit, OnDestroy {
 
 	@Input() selBoard: Board;
 	@Input() lists: List[];
@@ -41,9 +39,10 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	newListName:FormControl;
 
 	constructor(
-		private boardService: BoardService,
 		protected toastService: ToastrService,
+		private boardService: BoardService,
 		private listService: ListService,
+		private cardService: CardService,
 		private route: ActivatedRoute,
 		private location: Location,
 		public adminRepo: AdminRepo,
@@ -64,9 +63,10 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	ngOnInit(): void {
 		this.loadBoard();
 		this.loadLists();
+		this.loadCards();
 		
 		this.onFormGroupInit();
-		this.onPropertyInit();
+		// this.onPropertyInit();
 
 		this.loadBgColor();
 		this.loadIcon();
@@ -83,13 +83,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	onDataInit(): void{
-
-	}
-	onPropertyInit(): void{
-
-	}
-
 	
 	onFormGroupInit(): void{
 		this.editBoardForm = new FormGroup({
@@ -99,18 +92,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 				Validators.maxLength(100)
 			])),
 		});
-
-		console.log("####" + this.selList);
-		
-		// this.editListTitle = new FormControl(this.selList);
-	}
-
-	ngOnChanges(changes: SimpleChanges) {
-		setTimeout(() => {
-				if (!changes['selBoard'].isFirstChange()) {
-						this.ngOnInit();
-				}
-		}, 10);
 	}
 
 
@@ -120,8 +101,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		this.boardService.loadBoardById(boardId).subscribe(
 			selBoard => this.selBoard = selBoard[0]);
 
-		// console.log('$$$$$' + JSON.stringify(this.selBoard));
-		
 		if (this.selBoard.accessYN === "10") {
 			this.selBoard.accessYN = "private";
 		} else if (this.selBoard.accessYN === "20") {
@@ -134,6 +113,12 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnChan
 		
 		this.listService.loadListsByBoardId(boardId).subscribe();
 		this.lists = this.hdRepo.getLists();
+	}
+
+	loadCards(): void {
+		const listId = '';
+		this.cardService.loadCardsByListId(listId).subscribe();
+		
 	}
 	
 	loadBgColor(): void {

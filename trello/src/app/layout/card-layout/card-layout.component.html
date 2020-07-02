@@ -70,28 +70,12 @@
 <ul dragula="card-collection" class="card-contents">
 	<li *ngFor="let list of (hdRepo.getLists() | orderBy:'listPosNo')" class="list-area">
 		<div class="list-wrap">
-			<div class="list-header">
-				<h3>
-					<input type="text" value="{{list.listTitle}}" (keyup.enter)="onBlurListTitle()" (blur)="onBlurListTitle()"/>
-					<!-- <input type="text" value="{{list.listTitle}}" [formControl]="editListTitle" (keyup.enter)="onBlurListTitle()" (blur)="onBlurListTitle()"/> -->
-				</h3>
-				<button type="button"><i class="fas fa-ellipsis-h"></i></button>
-			</div>
-			<ul class="list-contents">
-				<li>
-					<!-- <app-card></app-card> -->
-				</li>
-			</ul>
-			<div class="list-footer cf">
-				<app-card></app-card>
-				<!-- <button type="button" class="add-card"><i class="fas fa-plus"></i><span>add another card</span></button>
-				<button type="button" class="card-temp"><i class="fab fa-trello"></i></button> -->
-			</div>
+			<app-list [selList]="list"></app-list>
 		</div>
 	</li>
 
 	<li class="list-area">
-		<app-list [selBoard]="selBoard" (selList)="ngOnInit()"></app-list>
+		<app-new-list [selBoard]="selBoard" (selList)="ngOnInit()"></app-new-list>
 	</li>
 
 </ul>

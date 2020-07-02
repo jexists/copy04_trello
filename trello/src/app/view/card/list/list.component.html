@@ -1,0 +1,16 @@
+<div class="list-header">
+  <h3>
+    <input type="text" value="{{selList.listTitle}}" [formControl]="editListTitle" (keyup.enter)="onBlurListTitle()" (blur)="onBlurListTitle()"/>
+  </h3>
+  <button type="button"><i class="fas fa-ellipsis-h"></i></button>
+</div>
+<ul class="list-contents">
+  <li>
+    <!-- <div *ngFor="let card of (hdRepo.getBoard() | orderBy:'cardPosNo')">
+      {{card.cardTitle}}
+    </div> -->
+  </li>
+</ul>
+<div class="list-footer cf">
+  <app-new-card></app-new-card>
+</div>

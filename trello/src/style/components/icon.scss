@@ -39,6 +39,8 @@ $icon-sm: 32px;
   overflow: hidden;
   width: $icon-sm;
   height: $icon-sm;
+  line-height: $icon-sm + 3px;
+  font-weight: bold;
   margin: 0 2px;
   border-radius: 100%;
   background-color: #DFE0E6;

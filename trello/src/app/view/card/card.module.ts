@@ -2,24 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { CardComponent } from './new-card/card.component';
-import { ListComponent } from './new-list/list.component';
+import { OrderModule } from 'ngx-order-pipe';
+
+import { NewCardComponent } from './new-card/new-card.component';
+import { NewListComponent } from './new-list/new-list.component';
+import { ListComponent } from './list/list.component';
 
 
 
 @NgModule({
   declarations: [
-    CardComponent,
+    NewCardComponent,
+    NewListComponent,
     ListComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    OrderModule
   ],
   exports: [
-    ListComponent,
-    CardComponent
+    NewListComponent,
+    NewCardComponent,
+    ListComponent
   ]
 })
 export class CardModule { }

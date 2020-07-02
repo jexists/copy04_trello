@@ -13,11 +13,11 @@ import { BaseComponent } from 'src/app/core/components/index';
 import { UUIDService } from 'src/app/core/service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-new-list',
+  templateUrl: './new-list.component.html',
+  styleUrls: ['./new-list.component.scss']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class NewListComponent implements OnInit, OnDestroy {
 
 	@Output() selList = new EventEmitter;
 
@@ -117,7 +117,6 @@ export class ListComponent implements OnInit, OnDestroy {
 
 		this.listService.createList(this.newList).subscribe(
 			res => {
-				// alert('성공');
 				this.isNewList = false;
 				this.selList.emit();
 				this.newListForm.get('newListName').setValue('');

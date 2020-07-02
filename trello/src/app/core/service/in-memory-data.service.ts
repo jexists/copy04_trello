@@ -21,29 +21,30 @@ export class InMemoryDataService {
     ];
 
     const boards = [
-      { id: "e62a0202-f309-15fd-1519-77f0a6c356a6", boardTitle: 'test1234',boardPosNo: 3, boardBg: '#86373a', starYN: false, accessYN: '10', boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2',
+      { id: "e62a0202-f309-15fd-1519-77f0a6c356a6", boardTitle: '테스트용',boardPosNo: 100000, boardBg: '#86373a', starYN: false, accessYN: '10', boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2',
       userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'},
-      { id: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", boardTitle: '테스트용', boardPosNo: 10, boardBg: '#cc8813', starYN: false, accessYN: '10',
+      { id: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", boardTitle: 'test', boardPosNo: 300000, boardBg: '#cc8813', starYN: false, accessYN: '10',
       boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2' ,
       userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'},
-      { id: "f25f531e-6202-361c-eea8-bf1ed81acf50", boardTitle: '보드 삭제가능',boardPosNo: 3, boardBg: '#fe832e', starYN: false, accessYN: '20', boardCreateDate:'2020-03-02 02:02:22', boardEditDate: '2020-07-23 20:44:23', teamId: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3',
+      { id: "f25f531e-6202-361c-eea8-bf1ed81acf50", boardTitle: '보드 삭제가능',boardPosNo: 200000, boardBg: '#fe832e', starYN: false, accessYN: '20', boardCreateDate:'2020-03-02 02:02:22', boardEditDate: '2020-07-23 20:44:23', teamId: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3',
       userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a' }
     ];
     
     const lists = [
-      { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트1', listPosNo: 3},
-      { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 7},
-      { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo:55},
+      { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트 테스트', listPosNo: 100000},
+      { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 200000},
+      { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo: 300000},
+    ];
+
+    const cards = [
+      { id: "798b9c56-732d-92a2-f046-7a08604902bd", cardTitle: '카드 테스트', cardPosNo: 100000, boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listId: "970cf242-81c4-9ef6-92c3-3a250f106b75" }
     ]
-    return { boards, lists };
+    return { boards, lists, cards };
     
   }
 
 
-// 
-// 
-// 
-// 798b9c56-732d-92a2-f046-7a08604902bd
+
 // a49d45bb-e77e-1bd5-269b-94a3b61b4e63
 // 8133f55d-d02f-ae1c-c6fb-951293f7e206
 // 6e319636-f2a5-cd28-791d-607a433e307e

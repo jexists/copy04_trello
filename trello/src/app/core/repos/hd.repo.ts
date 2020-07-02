@@ -118,5 +118,17 @@ import {
   //
   /////////////////////////////////////////////
 
-
+  clearCards(): void {
+    this.cards.length = 0;
+  }
+  
+  loadCards(cards: Card[], isClear: boolean): void {
+    if (isClear) { this.clearCards(); }
+    this.cards = this.cards.concat(cards);
+    //concat = two array combine
+  }
+  
+  getCards(): Card[] {
+    return this.cards;
+  }
 }
