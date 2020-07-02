@@ -42,6 +42,11 @@ export class ListService {
     }))
   }
 
+  //* List 타이틀 수정하는 코드
+	updateListTitle(list: List, id: string): Observable<any> {
+		const url = `${this.listUrl}/${id}`;
+		return this.http.put<List>(url, list).pipe();
+	}
   
 
 }

@@ -6,37 +6,36 @@ import { ListService, CardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+	selector: 'app-list',
+	templateUrl: './list.component.html',
+	styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit, OnDestroy {
 
-  @Input() selList: List;
+	@Input() selList: List;
 
-  editListTitle: FormControl;
-  
-  constructor(
-    private listService: ListService,
+	editListTitle: FormControl;
+
+	constructor(
+		private listService: ListService,
 		private cardService: CardService,
 		public hdRepo: HdRepo,
-  ) {
+	) {
 		// this.selList = List
 	}
 
-  //////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Lifecycle Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		this.loadList();
-    this.loadCards();
-    
+		this.loadCards();
+
 		this.onFormGroupInit();
 		// this.onPropertyInit();
-		
+
 	}
 
 	ngOnDestroy(): void {
@@ -49,30 +48,21 @@ export class ListComponent implements OnInit, OnDestroy {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-  loadCards(): void {
+	loadCards(): void {
 		const listId = '';
 		this.cardService.loadCardsByListId(listId).subscribe();
 
 	}
-	
-	onFormGroupInit(): void{
+
+	onFormGroupInit(): void {
 		// console.log("####" + this.selList);
 		// console.log("####" + JSON.stringify(this.selList));
 		// console.log("####" + JSON.stringify(this.selList.listTitle));
-
 		this.editListTitle = new FormControl(this.selList.listTitle, Validators.compose([
 			Validators.required,
 			Validators.minLength(1),
 			Validators.maxLength(100)
 		]));
-	}
-
-
-	loadList(): void {
-		// const boardId = this.route.snapshot.paramMap.get('id');
-		
-		// this.listService.loadListsByBoardId(boardId).subscribe();
-		// this.lists = this.hdRepo.getLists();
 	}
 
 
@@ -84,28 +74,44 @@ export class ListComponent implements OnInit, OnDestroy {
 
 
 	onBlurListTitle(): void {
-		// if (this.editListForm.get('editTitle').hasError('isEmpty')) {
-		// 	this.ngOnInit();
-		// 	return;
-		// }
+		if (this.editListTitle.hasError('isEmpty')) {
+			this.ngOnInit();
+			return;
+		}
 
-		// if (this.selList.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
+		if (this.selList.listTitle === this.editListTitle.value) { return; }
 
-		// this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
-	
-		// this.onUpdateListTitle();
+		this.selList.listTitle = this.editListTitle.value;
+
+		this.onUpdateListTitle();
 	}
 
 
-	
-  
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	
+	onUpdateListTitle(): void { 	
+
+		this.listService.updateListTitle(this.selList, this.selList.id).subscribe(
+			res => {
+				// this.showSuccess(null, '제목이 수정되었습니다.');
+				alert('성공')
+			},
+			error => {
+				if (error.status === 403 || error.status === 504) {
+					alert('404 error')
+					return;
+				}
+				alert('error');
+			}
+		);
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Subscription Methods
