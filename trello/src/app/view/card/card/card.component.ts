@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CardService } from 'src/app/core/apis';
 
 import { HdRepo } from 'src/app/core/repos';
-import { List } from 'src/app/core/models';
+import { Card } from 'src/app/core/models';
+import { Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-card',
@@ -11,7 +12,10 @@ import { List } from 'src/app/core/models';
 })
 export class CardComponent implements OnInit {
 
-  @Input() selList: List;
+	@Input() selCard: Card;
+	
+	editCardTitle: FormControl;
+	
   constructor(
 		// protected toastService: ToastrService,
 		private cardService: CardService,
@@ -28,8 +32,6 @@ export class CardComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		this.loadCards();
-
 		this.onFormGroupInit();
 		// this.onPropertyInit();
 
@@ -45,23 +47,13 @@ export class CardComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	loadCards(): void {
-		const listId = this.selList.id;
-		console.log(listId);
-		
-		this.cardService.loadCardsByListId(listId).subscribe();
-
-	}
-
 	onFormGroupInit(): void {
-		// console.log("####" + this.selList);
-		// console.log("####" + JSON.stringify(this.selList.id));
-		// console.log("####" + JSON.stringify(this.selList.listTitle));
-		// this.editListTitle = new FormControl(this.selList.listTitle, Validators.compose([
-		// 	Validators.required,
-		// 	Validators.minLength(1),
-		// 	Validators.maxLength(100)
-		// ]));
+		console.log("####" + JSON.stringify(this.selCard.cardTitle));
+		this.editCardTitle = new FormControl(this.selCard.cardTitle, Validators.compose([
+			Validators.required,
+			Validators.minLength(1),
+			Validators.maxLength(100)
+		]));
 	}
 
 

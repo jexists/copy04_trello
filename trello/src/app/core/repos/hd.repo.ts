@@ -98,6 +98,7 @@ import {
   }
   
   getLists(): List[] {
+    // console.log('?' + JSON.stringify(this.lists));
     return this.lists;
   }
   
@@ -120,22 +121,19 @@ import {
   }
   
   loadCards(cards: Card[], isClear: boolean): void {
-
     if (isClear) { this.clearCards(); }
     this.cards = this.cards.concat(cards);
-    console.log('???' + JSON.stringify(this.cards));
-    //concat = two array combine
   }
   
   getCards(): Card[] {
-    console.log('?' + JSON.stringify(this.cards));
-    
+    // console.log('?' + JSON.stringify(this.cards));
     return this.cards;
   }
 
   getCardsbyListId(): Card[] {
     return _.sortBy(this.cards,['listId']);
   }
+
   addCard(card: Card): void {
     this.cards.push(card);
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
@@ -35,11 +35,11 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		// this.loadCards();
-
+		
 		this.onFormGroupInit();
 		// this.onPropertyInit();
-
+		this.loadCards();
+		
 	}
 
 	ngOnDestroy(): void {
@@ -54,16 +54,10 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 
 	loadCards(): void {
 		const listId = this.selList.id;
-		console.log(listId);
-		
 		this.cardService.loadCardsByListId(listId).subscribe();
-
 	}
 
 	onFormGroupInit(): void {
-		// console.log("####" + this.selList);
-		// console.log("####" + JSON.stringify(this.selList.id));
-		// console.log("####" + JSON.stringify(this.selList.listTitle));
 		this.editListTitle = new FormControl(this.selList.listTitle, Validators.compose([
 			Validators.required,
 			Validators.minLength(1),

@@ -34,7 +34,7 @@ export class InMemoryDataService {
       { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트 테스트', listPosNo: 100000},
       { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 200000},
       { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo: 300000},
-      // { id:'6e319636-f2a5-cd28-791d-607a433e307e', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트 삭제가능', listPosNo: 300000},
+      { id:'6e319636-f2a5-cd28-791d-607a433e307e', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트 삭제가능', listPosNo: 700000},
     ];
 
     const cards = [

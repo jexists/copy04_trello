@@ -27,7 +27,7 @@ export class CardService {
 
   //*List Id로 Card 불러오기
   loadCardsByListId(listId): Observable<any> {
-    const url = `${this.cardUrl}?listId=${listId}`
+    const url = `${this.cardUrl}?listId=${listId}`;
     return this.http.get<Card[]>(url).pipe(map(res => {
       this.hdRepo.loadCards(res, true);
     }))
