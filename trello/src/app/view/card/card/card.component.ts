@@ -1,33 +1,26 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { CardService } from 'src/app/core/apis';
 
-import { ToastrService } from 'ngx-toastr';
-
-import { List } from '../../../core/models/index';
-import { ListService, CardService } from '../../../core/apis/index';
-import { HdRepo, AdminRepo } from 'src/app/core/repos';
-import { BaseComponent } from 'src/app/core/components/index';
+import { HdRepo } from 'src/app/core/repos';
+import { List } from 'src/app/core/models';
 
 @Component({
-	selector: 'app-list',
-	templateUrl: './list.component.html',
-	styleUrls: ['./list.component.scss']
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss']
 })
-export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
+export class CardComponent implements OnInit {
 
-	@Input() selList: List;
-
-	editListTitle: FormControl;
-
-	constructor(
-		protected toastService: ToastrService,
-		private listService: ListService,
+  @Input() selList: List;
+  constructor(
+		// protected toastService: ToastrService,
 		private cardService: CardService,
 		public hdRepo: HdRepo,
 	) {
-		super(toastService);
+		// super(toastService);
 	}
 
+  
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Lifecycle Methods
@@ -35,7 +28,7 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		// this.loadCards();
+		this.loadCards();
 
 		this.onFormGroupInit();
 		// this.onPropertyInit();
@@ -64,11 +57,11 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		// console.log("####" + this.selList);
 		// console.log("####" + JSON.stringify(this.selList.id));
 		// console.log("####" + JSON.stringify(this.selList.listTitle));
-		this.editListTitle = new FormControl(this.selList.listTitle, Validators.compose([
-			Validators.required,
-			Validators.minLength(1),
-			Validators.maxLength(100)
-		]));
+		// this.editListTitle = new FormControl(this.selList.listTitle, Validators.compose([
+		// 	Validators.required,
+		// 	Validators.minLength(1),
+		// 	Validators.maxLength(100)
+		// ]));
 	}
 
 
@@ -80,16 +73,16 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 
 
 	onBlurListTitle(): void {
-		if (this.editListTitle.hasError('isEmpty')) {
-			this.ngOnInit();
-			return;
-		}
+		// if (this.editListTitle.hasError('isEmpty')) {
+		// 	this.ngOnInit();
+		// 	return;
+		// }
 
-		if (this.selList.listTitle === this.editListTitle.value) { return; }
+		// if (this.selList.listTitle === this.editListTitle.value) { return; }
 
-		this.selList.listTitle = this.editListTitle.value;
+		// this.selList.listTitle = this.editListTitle.value;
 
-		this.onUpdateListTitle();
+		// this.onUpdateListTitle();
 	}
 
 
@@ -101,21 +94,21 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	onUpdateListTitle(): void { 	
+	// onUpdateListTitle(): void { 	
 
-		this.listService.updateListTitle(this.selList, this.selList.id).subscribe(
-			res => {
-				this.showSuccess(null, '리스트 제목이 수정되었습니다.');
-			},
-			error => {
-				if (error.status === 403 || error.status === 504) {
-					alert('404 error')
-					return;
-				}
-				alert('error');
-			}
-		);
-	}
+	// 	this.listService.updateListTitle(this.selList, this.selList.id).subscribe(
+	// 		res => {
+	// 			this.showSuccess(null, '리스트 제목이 수정되었습니다.');
+	// 		},
+	// 		error => {
+	// 			if (error.status === 403 || error.status === 504) {
+	// 				alert('404 error')
+	// 				return;
+	// 			}
+	// 			alert('error');
+	// 		}
+	// 	);
+	// }
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -130,4 +123,5 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//   Component Private Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
+
 }

@@ -34,20 +34,20 @@ export class InMemoryDataService {
       { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트 테스트', listPosNo: 100000},
       { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 200000},
       { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo: 300000},
+      // { id:'6e319636-f2a5-cd28-791d-607a433e307e', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트 삭제가능', listPosNo: 300000},
     ];
 
     const cards = [
-      { id: "798b9c56-732d-92a2-f046-7a08604902bd", cardTitle: '카드 테스트', cardPosNo: 100000, boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listId: "970cf242-81c4-9ef6-92c3-3a250f106b75" }
+      { id: "798b9c56-732d-92a2-f046-7a08604902bd", cardTitle: '카드 테스트', cardPosNo: 100000, boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listId: "970cf242-81c4-9ef6-92c3-3a250f106b75" },
+      { id: "a49d45bb-e77e-1bd5-269b-94a3b61b4e63", cardTitle: 'test', cardPosNo: 100000, boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listId: "9c8287db-d478-b5cf-535b-b997f544ee52" },
+      { id: "8133f55d-d02f-ae1c-c6fb-951293f7e206", cardTitle: '카드 ??', cardPosNo: 100000, boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listId: "6a281328-f9ad-dd21-7038-2ab3594f9080" },
     ]
     return { boards, lists, cards };
     
   }
 
 
-
-// a49d45bb-e77e-1bd5-269b-94a3b61b4e63
-// 8133f55d-d02f-ae1c-c6fb-951293f7e206
-// 6e319636-f2a5-cd28-791d-607a433e307e
+// 
 // 75054b3c-c284-95e6-4832-775043b3255c
 // 1b883fc6-6c58-3e7b-a292-b2d9b6a46abc
 // ce7b6c9f-1e9e-a2f3-79ea-570f10b8a6c1

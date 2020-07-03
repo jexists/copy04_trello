@@ -7,6 +7,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { NewCardComponent } from './new-card/new-card.component';
 import { NewListComponent } from './new-list/new-list.component';
 import { ListComponent } from './list/list.component';
+import { CardComponent } from './card/card.component';
 
 
 
@@ -14,7 +15,8 @@ import { ListComponent } from './list/list.component';
   declarations: [
     NewCardComponent,
     NewListComponent,
-    ListComponent
+    ListComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,

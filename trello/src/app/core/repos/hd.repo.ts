@@ -23,6 +23,8 @@ import {
   //Repo 삭제
   clearAll(): void {
     this.clearBoards();
+    this.clearLists();
+    this.clearCards();
   }
 
   //////////////////////////////////////////////
@@ -63,10 +65,6 @@ import {
 
   addBoard(board: Board): void {
     this.boards.push(board);
-    // console.log(board);
-    // console.log(this.boards);
-    
-    //push = add item to the end
   }
 
   editBoard(board: Board): void {
@@ -75,7 +73,6 @@ import {
   }
 
   removeBoard(board: Board): void {
-    // this.boards.pop(board)
     const index = _.findIndex(this.boards, { id: board.id });
         if (index < 0) { return; }
     this.boards.splice(index, 1);
@@ -123,15 +120,22 @@ import {
   }
   
   loadCards(cards: Card[], isClear: boolean): void {
+
     if (isClear) { this.clearCards(); }
     this.cards = this.cards.concat(cards);
+    console.log('???' + JSON.stringify(this.cards));
     //concat = two array combine
   }
   
   getCards(): Card[] {
+    console.log('?' + JSON.stringify(this.cards));
+    
     return this.cards;
   }
 
+  getCardsbyListId(): Card[] {
+    return _.sortBy(this.cards,['listId']);
+  }
   addCard(card: Card): void {
     this.cards.push(card);
   }

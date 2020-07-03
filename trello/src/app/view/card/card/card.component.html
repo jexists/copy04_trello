@@ -1,0 +1,8 @@
+<div *ngFor="let card of (hdRepo.getCardsbyListId() | orderBy:'cardPosNo')" class="list-card">
+  <a href="#">
+    <div class="card-title">
+      <p class="card-title-text">{{card.cardTitle}}</p>
+      <button type="button" class="card-title-icon"><i class="fas fa-pencil-alt"></i></button>
+    </div>
+  </a>
+</div>
