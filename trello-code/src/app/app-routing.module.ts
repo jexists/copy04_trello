@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { BoardLayoutComponent } from './layout/board-layout/board-layout.component';
 import { CardLayoutComponent } from './layout/card-layout/card-layout.component';
 
