@@ -33,4 +33,10 @@ export class CardService {
     }))
   }
   
+  //* Card 생성하기
+  createCard(target: Card): Observable<void> {
+    return this.http.post<Card>(this.cardUrl, target).pipe(map(res => {
+      this.hdRepo.addCard(target);
+    }))
+  }
 }

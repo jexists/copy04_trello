@@ -38,7 +38,6 @@ export class ListService {
   createList(target: List): Observable<void> {
     return this.http.post<List>(this.listUrl, target).pipe(map(res => {
       this.hdRepo.addList(target);
-      // console.log(JSON.stringify(target));
     }))
   }
 

@@ -131,4 +131,8 @@ import {
   getCards(): Card[] {
     return this.cards;
   }
+
+  addCard(card: Card): void {
+    this.cards.push(card);
+  }
 }

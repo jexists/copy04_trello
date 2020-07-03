@@ -10,8 +10,6 @@ import { Board, List } from '../../core/models/index';
 import { BoardService, ListService, CardService } from '../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { BaseComponent } from 'src/app/core/components/index';
-// import { UUIDService } from 'src/app/core/service';
-// import { EventEmitter } from 'protractor';
 
 @Component({
 	selector: 'app-card-layout',
@@ -198,7 +196,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		
 		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
             res => {
-				this.showSuccess(null, '제목이 수정되었습니다.');
+				this.showSuccess(null, '보드 제목이 수정되었습니다.');
             },
             error => {
 				if (error.status === 403 || error.status === 504) {

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Card } from '../../../core/models/index';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+
+import { Card, List } from '../../../core/models/index';
+import { UUIDService } from 'src/app/core/service';
+import { CardService } from 'src/app/core/apis';
 
 @Component({
   selector: 'app-new-card',
@@ -9,14 +11,17 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
   styleUrls: ['./new-card.component.scss']
 })
 export class NewCardComponent implements OnInit {
-  
+
+  @Output() selCard = new EventEmitter;
+	@Input() selList: List;
 	card: Card[];
 	newCard: Card;
 
 	newCardForm: FormGroup;
-  isNewCard: boolean = false;
+	isNewCard: boolean = false;
+	
   constructor(
-
+		private cardService: CardService,
   ) { }
 
   //////////////////////////////////////////////////////////////////////////////////
@@ -66,9 +71,9 @@ export class NewCardComponent implements OnInit {
 	}
 
 	onValid(): boolean {
-	// 	if (this.newListForm.get('newListName').valid) {
-	// 		return true;
-	// 	}
+		if (this.newCardForm.get('newCardName').valid) {
+			return true;
+		}
 		return false;
 	}
 
@@ -86,24 +91,25 @@ export class NewCardComponent implements OnInit {
 	}
 
 	onCreateCard(card: Card): void {
+		
+		this.newCard.cardTitle = this.newCardForm.value.newCardName;
+		this.newCard.id = UUIDService.generateUUID();
+		this.newCard.boardId = this.selList.boardId;
+		this.newCard.listId = this.selList.id;
+		this.newCard.cardPosNo = 5;
 		console.log(this.newCard);
 
-		// this.newCard.cardTitle = this.newCardForm.value.newCardName;
-		// this.newCard.id = UUIDService.generateUUID();
-		// this.newCard.boardId = this.selBoard.id;
-		// this.newCard.listPosNo = 5;
-
-	// 	this.listService.createList(this.newList).subscribe(
-	// 		res => {
-	// 			// alert('성공');
-	// 			this.isNewList = false;
-	// 			this.selList.emit();
-	// 			this.newListForm.get('newListName').setValue('');
-	// 		},
-	// 		error => {
-	// 			alert('에러')
-	// 		}
-	// 	)
+		this.cardService.createCard(this.newCard).subscribe(
+			res => {
+				// alert('성공');
+				this.isNewCard = false;
+				this.selCard.emit();
+				this.newCardForm.get('newCardName').setValue('');
+			},
+			error => {
+				alert('에러')
+			}
+		)
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

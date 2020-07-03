@@ -6,11 +6,17 @@
 </div>
 <ul class="list-contents">
   <li>
-    <!-- <div *ngFor="let card of (hdRepo.getBoard() | orderBy:'cardPosNo')">
-      {{card.cardTitle}}
-    </div> -->
+    <div *ngFor="let card of (hdRepo.getCards() | orderBy:'cardPosNo')" class="list-card">
+      <a href="#">
+        <div class="card-title">
+          <p class="card-title-text">{{card.cardTitle}}</p>
+          <button type="button" class="card-title-icon"><i class="fas fa-pencil-alt"></i></button>
+        </div>
+
+      </a>
+    </div>
   </li>
 </ul>
 <div class="list-footer cf">
-  <app-new-card></app-new-card>
+  <app-new-card [selList]="selList" (selCard)="ngOnInit()"></app-new-card>
 </div>

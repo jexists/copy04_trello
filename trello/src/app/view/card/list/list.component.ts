@@ -1,27 +1,31 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { List } from '../../../core/models/index';
 import { ListService, CardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
+import { BaseComponent } from 'src/app/core/components/index';
 
 @Component({
 	selector: 'app-list',
 	templateUrl: './list.component.html',
 	styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 
 	@Input() selList: List;
 
 	editListTitle: FormControl;
 
 	constructor(
+		protected toastService: ToastrService,
 		private listService: ListService,
 		private cardService: CardService,
 		public hdRepo: HdRepo,
 	) {
-		// this.selList = List
+		super(toastService);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +53,7 @@ export class ListComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	loadCards(): void {
-		const listId = '';
+		const listId = this.selList.id;
 		this.cardService.loadCardsByListId(listId).subscribe();
 
 	}
@@ -99,8 +103,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
 		this.listService.updateListTitle(this.selList, this.selList.id).subscribe(
 			res => {
-				// this.showSuccess(null, '제목이 수정되었습니다.');
-				alert('성공')
+				this.showSuccess(null, '리스트 제목이 수정되었습니다.');
 			},
 			error => {
 				if (error.status === 403 || error.status === 504) {
