@@ -168,21 +168,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		this.selAccess = access;
 		this.selBoard.accessYN = this.selAccess.code;
 	}
-
-	onBlurListTitle(): void {
-		// if (this.editListForm.get('editTitle').hasError('isEmpty')) {
-		// 	this.ngOnInit();
-		// 	return;
-		// }
-
-		// if (this.selList.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
-
-		// this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
-	
-		// this.onUpdateListTitle();
-	}
-
-
 	
   
 	//////////////////////////////////////////////////////////////////////////////////
