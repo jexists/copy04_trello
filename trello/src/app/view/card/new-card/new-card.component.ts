@@ -97,7 +97,7 @@ export class NewCardComponent implements OnInit {
 		this.newCard.boardId = this.selList.boardId;
 		this.newCard.listId = this.selList.id;
 		this.newCard.cardPosNo = 5;
-		// console.log(this.newCard);
+		console.log(this.selList.id);
 
 		this.cardService.createCard(this.newCard).subscribe(
 			res => {

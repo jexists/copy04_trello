@@ -6,8 +6,10 @@
 </div>
 <ul class="list-contents">
   <li>
-  <li *ngFor="let card of (hdRepo.getCardsbyListId() | orderBy:'cardPosNo')">
-    <app-card [selCard]="card"></app-card>
+  <li *ngFor="let card of (hdRepo.getCardsbyListId() | orderBy:'cardPosNo')" id="{{card.id}}">
+    <!-- <div *ngIf="card.ListId !== selList.id" > -->
+      <app-card [selCard]="card" [selList]="selList" class="{{card.listId}}"></app-card>
+    <!-- </div> -->
   </li>
 </ul>
 <div class="list-footer cf">

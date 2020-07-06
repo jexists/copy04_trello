@@ -68,7 +68,7 @@
 	</div>
 </div>
 <ul dragula="card-collection" class="card-contents">
-	<li *ngFor="let list of (hdRepo.getLists() | orderBy:'listPosNo')" class="list-area">
+	<li *ngFor="let list of (hdRepo.getLists() | orderBy:'listPosNo')" class="list-area {{list.id}}">
 		<div class="list-wrap">
 			<app-list [selList]="list"></app-list>
 		</div>

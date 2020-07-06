@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CardService } from 'src/app/core/apis';
 
 import { HdRepo } from 'src/app/core/repos';
-import { Card } from 'src/app/core/models';
+import { Card, List } from 'src/app/core/models';
 import { Validators, FormControl } from '@angular/forms';
 
 @Component({
@@ -13,8 +13,9 @@ import { Validators, FormControl } from '@angular/forms';
 export class CardComponent implements OnInit {
 
 	@Input() selCard: Card;
+	@Input() selList: List;
 	
-	editCardTitle: FormControl;
+	// editCardTitle: FormControl;
 	
   constructor(
 		// protected toastService: ToastrService,
@@ -48,12 +49,12 @@ export class CardComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onFormGroupInit(): void {
-		console.log("####" + JSON.stringify(this.selCard.cardTitle));
-		this.editCardTitle = new FormControl(this.selCard.cardTitle, Validators.compose([
-			Validators.required,
-			Validators.minLength(1),
-			Validators.maxLength(100)
-		]));
+		// console.log("####" + JSON.stringify(this.selCard.cardTitle));
+		// this.editCardTitle = new FormControl(this.selCard.cardTitle, Validators.compose([
+		// 	Validators.required,
+		// 	Validators.minLength(1),
+		// 	Validators.maxLength(100)
+		// ]));
 	}
 
 
