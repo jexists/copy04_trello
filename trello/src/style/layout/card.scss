@@ -58,7 +58,10 @@
       .star {
         padding: 0;
         i {
-        font-size: 14px;
+          font-size: 14px;
+            &.active{
+              color: #f2d600;
+            }
         }
       }
     }

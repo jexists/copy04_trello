@@ -34,7 +34,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 
 	listForm: FormGroup;
 
-	newListName:FormControl;
+	newListName: FormControl;
 
 	constructor(
 		protected toastService: ToastrService,
@@ -49,7 +49,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		private dragula: DragulaService
 	) {
 		super(toastService);
-	 }
+	}
 
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -62,13 +62,13 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		this.loadBoard();
 		this.loadLists();
 		this.loadCards();
-		
+
 		this.onFormGroupInit();
 		// this.onPropertyInit();
 
 		this.loadBgColor();
 		this.loadIcon();
-		
+
 	}
 
 	ngOnDestroy(): void {
@@ -81,8 +81,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-	
-	onFormGroupInit(): void{
+
+	onFormGroupInit(): void {
 		this.editBoardForm = new FormGroup({
 			editTitle: new FormControl(this.selBoard.boardTitle, Validators.compose([
 				Validators.required,
@@ -95,7 +95,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 
 	loadBoard(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
-		
+
 		this.boardService.loadBoardById(boardId).subscribe(
 			selBoard => this.selBoard = selBoard[0]);
 
@@ -108,7 +108,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 
 	loadLists(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
-		
+
 		this.listService.loadListsByBoardId(boardId).subscribe();
 		this.lists = this.hdRepo.getLists();
 	}
@@ -116,29 +116,29 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	loadCards(): void {
 		const listId = '';
 		this.cardService.loadCardsByListId(listId).subscribe();
-		
+
 	}
-	
+
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');
 		wrapColor.style.background = this.selBoard.boardBg;
-		
+
 		const headColor = <HTMLElement>document.querySelector('#headBox');
 		headColor.style.background = 'rgba(0, 0, 0, 0.3)';
 	}
 
 	loadIcon(): void {
-		setTimeout(function (){
+		setTimeout(function () {
 			let accessPublic = <HTMLElement>document.querySelector('i.public');
 			let accessPrivate = <HTMLElement>document.querySelector('i.private');
 
-			if(accessPublic){
+			if (accessPublic) {
 				accessPublic.classList.add('fas', 'fa-globe-americas');
 			}
-			if(accessPrivate){
+			if (accessPrivate) {
 				accessPrivate.classList.add('fas', 'fa-lock');
 			}
-		},300)
+		}, 300)
 	}
 
 
@@ -148,7 +148,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	//	 Component View Events Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
-	
+
 	onBlurBoardTitle(): void {
 		if (this.editBoardForm.get('editTitle').hasError('isEmpty')) {
 			this.ngOnInit();
@@ -158,18 +158,26 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
 
 		this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
-	
+
 		this.onUpdateTitle();
 	}
 
+	onSelStar($event): void {
+		console.log($event.target);
+		$event.target.classList.toggle('active');
+
+		this.selBoard.starYN = !this.selBoard.starYN;
+
+		this.onUpdateBoardStar();
+	}
 	onSelAccess($event, access: any): void {
 		$event.preventDefault();
 
 		this.selAccess = access;
 		this.selBoard.accessYN = this.selAccess.code;
 	}
-	
-  
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods
@@ -178,19 +186,33 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 
 	onUpdateTitle(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
-		
+
 		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
-            res => {
+			res => {
 				this.showSuccess(null, '보드 제목이 수정되었습니다.');
-            },
-            error => {
+			},
+			error => {
 				if (error.status === 403 || error.status === 504) {
-                    alert('404 error')
-                    return;
-                }
+					alert('404 error')
+					return;
+				}
 				alert('error');
-            }
-        );
+			}
+		);
+	}
+	onUpdateBoardStar(): void {
+		// this.boardService.updateBoardStar(this.selBoard, boardId).subscribe(
+		// 	res => {
+		// 		this.showSuccess(null, '보드 제목이 수정되었습니다.');
+		// 	},
+		// 	error => {
+		// 		if (error.status === 403 || error.status === 504) {
+		// 			alert('404 error')
+		// 			return;
+		// 		}
+		// 		alert('error');
+		// 	}
+		// );
 	}
 
 	onArchive($event): void {
@@ -210,7 +232,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		);
 	}
 
-	
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Subscription Methods

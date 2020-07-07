@@ -9,7 +9,7 @@
 				</h2>
 			</li>
 			<li>
-				<button type="button" class="star"><i class="far fa-star"></i></button>
+				<button type="button" class="star" (click)="onSelStar($event)"><i class="far fa-star {{selBoard.starYN===true?'active':''}}"></i></button>
 			</li>
 			<li>
 				<button type="button"><span>personal</span></button>
