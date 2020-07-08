@@ -163,9 +163,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	}
 
 	onSelStar($event): void {
-		console.log($event.target);
 		$event.target.classList.toggle('active');
-
 		this.selBoard.starYN = !this.selBoard.starYN;
 
 		this.onUpdateBoardStar();
@@ -187,7 +185,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	onUpdateTitle(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
 
-		this.boardService.updateBoardTitle(this.selBoard, boardId).subscribe(
+		this.boardService.updateBoard(this.selBoard, boardId).subscribe(
 			res => {
 				this.showSuccess(null, '보드 제목이 수정되었습니다.');
 			},
@@ -201,18 +199,20 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		);
 	}
 	onUpdateBoardStar(): void {
-		// this.boardService.updateBoardStar(this.selBoard, boardId).subscribe(
-		// 	res => {
-		// 		this.showSuccess(null, '보드 제목이 수정되었습니다.');
-		// 	},
-		// 	error => {
-		// 		if (error.status === 403 || error.status === 504) {
-		// 			alert('404 error')
-		// 			return;
-		// 		}
-		// 		alert('error');
-		// 	}
-		// );
+		const boardId = this.route.snapshot.paramMap.get('id');
+
+		this.boardService.updateBoard(this.selBoard, boardId).subscribe(
+			res => {
+				this.showSuccess(null, '보드 즐겨찾기 수정되었습니다.');
+			},
+			error => {
+				if (error.status === 403 || error.status === 504) {
+					alert('404 error')
+					return;
+				}
+				alert('error');
+			}
+		);
 	}
 
 	onArchive($event): void {
@@ -246,4 +246,5 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	//   Component Private Methods
 	//
 	//////////////////////////////////////////////////////////////////////////////////
+
 }

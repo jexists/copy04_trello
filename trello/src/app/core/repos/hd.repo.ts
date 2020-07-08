@@ -38,15 +38,20 @@ import {
     this.boards.length = 0;
   }
 
-  
+  //Board 불러오기
   loadBoards(boards: Board[], isClear: boolean): void {
     if (isClear) { this.clearBoards(); }
     this.boards = this.boards.concat(boards);
     //concat = two array combine
   }
 
+  //BoardID로 Board 불러오기
   findBoardByID(cond: any): Board {
     // if (isClear) { this.clearBoards(); }
+    return _.find(this.boards, cond);
+  }
+
+  findBoardsStar(cond: any): Board {
     return _.find(this.boards, cond);
   }
 
@@ -131,6 +136,8 @@ import {
   }
 
   getCardsbyListId(): Card[] {
+    // console.log((_.sortBy(this.cards,['listId'])));
+    
     return _.sortBy(this.cards,['listId']);
   }
 

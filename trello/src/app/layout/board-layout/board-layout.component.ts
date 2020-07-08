@@ -40,16 +40,17 @@ export class BoardLayoutComponent implements OnInit {
 
 
 	ngOnInit(): void {
-		// this.loadBoards();
-		// this.loadBoardsByTeamId();
 		this.loadBoardByUserId();
 		this.loadBgColor();
 
+		this.onDataInit();
 	}
 
 	ngOnDestroy(): void {
 
 	}
+
+	
 
 	loadBoards(): void {
 		this.boardService.loadBoards().subscribe(boards => this.boards = boards);
@@ -63,6 +64,18 @@ export class BoardLayoutComponent implements OnInit {
 		this.boardService.loadBoardByUserId('a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a').subscribe();
 	}
 
+	onDataInit(): void {
+		// isStar
+		console.log(this.boards);
+		
+		if (this.hdRepo.findBoardsStar({'starYN':true})) {
+			this.isStar = true;
+			
+		} else {
+			this.isStar = false;
+		}
+		console.log(this.isStar);
+	}
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');
 		const headColor = <HTMLElement>document.querySelector('#headBox');
@@ -82,7 +95,16 @@ export class BoardLayoutComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	onSelStar(): void {
+		// console.log($event.target);
+		// console.log('##' + this.selBoard.starYN);
+		
+		// $event.target.classList.toggle('active');
 
+		// this.selBoard.starYN = !this.board.starYN;
+
+		// this.onUpdateBoardStar();
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods

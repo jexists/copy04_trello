@@ -4,11 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Board } from '../models/index';
+import { Board, Team } from '../models/index';
 import { HdRepo } from '../repos/hd.repo';
-import { InMemoryDataService } from '../service/in-memory-data.service';
 
-import { Team } from '../models/index';
 
 @Injectable({
 	providedIn: 'root'
@@ -66,7 +64,7 @@ export class BoardService {
 	}
 
 	//* Board 타이틀 수정하는 코드
-	updateBoardTitle(board: Board, id: string): Observable<any> {
+	updateBoard(board: Board, id: string): Observable<any> {
 		const url = `${this.boardUrl}/${id}`;
 		return this.http.put<Board>(url, board).pipe();
 	}
