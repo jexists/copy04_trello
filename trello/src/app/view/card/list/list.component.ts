@@ -7,6 +7,7 @@ import { List } from '../../../core/models/index';
 import { ListService, CardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { BaseComponent } from 'src/app/core/components/index';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-list',
@@ -24,6 +25,7 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		private listService: ListService,
 		private cardService: CardService,
 		public hdRepo: HdRepo,
+		private datePipe: DatePipe, 
 	) {
 		super(toastService);
 	}
@@ -96,6 +98,8 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onUpdateListTitle(): void { 	
+
+		this.selList.listEditDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
 
 		this.listService.updateListTitle(this.selList, this.selList.id).subscribe(
 			res => {

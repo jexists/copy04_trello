@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Card, List } from '../../../core/models/index';
 import { UUIDService } from 'src/app/core/service';
 import { CardService } from 'src/app/core/apis';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-card',
@@ -22,6 +23,7 @@ export class NewCardComponent implements OnInit {
 	
   constructor(
 		private cardService: CardService,
+		private datePipe: DatePipe,
   ) { }
 
   //////////////////////////////////////////////////////////////////////////////////
@@ -92,11 +94,16 @@ export class NewCardComponent implements OnInit {
 
 	onCreateCard(card: Card): void {
 		
-		this.newCard.cardTitle = this.newCardForm.value.newCardName;
 		this.newCard.id = UUIDService.generateUUID();
+		this.newCard.cardTitle = this.newCardForm.value.newCardName;
+		// this.newCard.cardPosNo
+
+		this.newCard.cardCreateDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
+		this.newCard.cardEditDate = this.newCard.cardCreateDate ;
+
 		this.newCard.boardId = this.selList.boardId;
 		this.newCard.listId = this.selList.id;
-		this.newCard.cardPosNo = 5;
+		
 		console.log(this.selList.id);
 
 		this.cardService.createCard(this.newCard).subscribe(

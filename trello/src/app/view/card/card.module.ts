@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OrderModule } from 'ngx-order-pipe';
@@ -28,6 +28,9 @@ import { CardComponent } from './card/card.component';
     NewListComponent,
     NewCardComponent,
     ListComponent
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class CardModule { }

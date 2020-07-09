@@ -27,6 +27,7 @@ import { BoardModule } from './view/board/board.module';
 import { CardModule } from './view/card/card.module';
 import { SharedModule } from './shared/shared.module';
 import { ComponentModule } from './core/components/components.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import { ComponentModule } from './core/components/components.module';
       InMemoryDataService, { dataEncapsulation: false, delay: 0 }
     ),
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -65,16 +65,13 @@ export class BoardLayoutComponent implements OnInit {
 	}
 
 	onDataInit(): void {
-		// isStar
-		console.log(this.boards);
-		
-		if (this.hdRepo.findBoardsStar({'starYN':true})) {
-			this.isStar = true;
-			
-		} else {
-			this.isStar = false;
-		}
-		console.log(this.isStar);
+		// if (this.hdRepo.findBoardsStar({'starYN':true})) {
+		// 	this.isStar = true;	
+		// } else {
+		// 	this.isStar = false;
+		// }
+		this.hdRepo.findBoardsStar({'starYN':true}) ?
+			this.isStar = true : this.isStar = false;
 	}
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');

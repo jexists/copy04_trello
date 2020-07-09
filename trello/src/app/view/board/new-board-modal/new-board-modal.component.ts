@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -34,6 +35,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		public adminRepo: AdminRepo,
 		private router: Router,
 		private location: Location,
+		private datePipe: DatePipe
 		// private modalService: BsModalService,
 	) { 
 		this.location = location;
@@ -136,20 +138,30 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.onCreateBoard(this.selBoard);
 	}
 
-	onCreateBoard(board: Board): void {
+	onCreateBoard(board: Board ): void {
+
+		this.selBoard.id = UUIDService.generateUUID();
+		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
+
+		// this.selBoard.boardPosNo = 
 		
 		if (!this.selBoard.boardBg) {
 			this.selBoard.boardBg = "url(https://images.unsplash.com/photo-1590952912024-520842ff2bf8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjcwNjZ9) no-repeat 50% 50% / cover";
 		}
 
+		this.selBoard.starYN = false;
+
 		if (!this.selBoard.accessYN) {
 			this.selBoard.accessYN = "10";
 		}
 
-		this.selBoard.boardTitle = this.newBoardForm.value.newTitle;
-		this.selBoard.id = UUIDService.generateUUID();
-		this.selBoard.starYN = false;
 		this.selBoard.userId = 'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a';
+
+		this.selBoard.boardCreateDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
+
+		this.selBoard.boardEditDate = this.selBoard.boardCreateDate ;
+
+		this.selBoard.teamId = null;
 		
 		this.boardService.createBoard(this.selBoard).subscribe(
 			res => {

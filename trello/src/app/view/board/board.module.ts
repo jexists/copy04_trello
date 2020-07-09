@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -26,6 +26,9 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
   ],
   exports: [
     BoardComponent
+  ],
+  providers: [
+    DatePipe
   ]
 
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { DragulaService } from 'ng2-dragula';
@@ -46,7 +46,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		public adminRepo: AdminRepo,
 		public hdRepo: HdRepo,
 		private elementRef: ElementRef,
-		private dragula: DragulaService
+		private dragula: DragulaService,
+		private datePipe: DatePipe
 	) {
 		super(toastService);
 	}
@@ -185,6 +186,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	onUpdateTitle(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
 
+		this.selBoard.boardEditDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
+		
 		this.boardService.updateBoard(this.selBoard, boardId).subscribe(
 			res => {
 				this.showSuccess(null, '보드 제목이 수정되었습니다.');
@@ -200,6 +203,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	}
 	onUpdateBoardStar(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
+
+		this.selBoard.boardEditDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
 
 		this.boardService.updateBoard(this.selBoard, boardId).subscribe(
 			res => {

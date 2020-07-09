@@ -12,10 +12,10 @@
 				<button type="button" class="star" (click)="onSelStar($event)"><i class="far fa-star {{selBoard.starYN===true?'active':''}}"></i></button>
 			</li>
 			<li>
-				<button type="button"><span>personal</span></button>
+				<button type="button" style="cursor: not-allowed;"><span>personal</span></button>
 			</li>
 			<li>
-				<button type="button"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
+				<button type="button" style="cursor: not-allowed;"><i [ngClass]="selBoard.accessYN"></i><span>{{selBoard.accessYN}}</span></button>
 			</li>
 			<!-- <li>
         <div class="btn-group access-btn" dropdown>
@@ -45,13 +45,13 @@
 				</ul>
 			</li>
 			<li>
-				<button type="button"><span>invite</span></button>
+				<button type="button" style="cursor: not-allowed;"><span>invite</span></button>
 			</li>
 		</ul>
 	</form>
 	<ul class="card-info card-menu">
-		<li><button type="button"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
-		<li><button type="button"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
+		<li><button type="button" style="cursor: not-allowed;"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
+		<li><button type="button" style="cursor: not-allowed;"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
 		<li><button type="button" (click)="onArchive($event)"><span>delete</span></button></li>
 	</ul>
 	<div class="menu-popup">

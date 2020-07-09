@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { DragulaService } from 'ng2-dragula';
@@ -36,6 +36,7 @@ export class NewListComponent implements OnInit, OnDestroy {
 		public adminRepo: AdminRepo,
 		public hdRepo: HdRepo,
 		// private elementRef: ElementRef,
+		private datePipe: DatePipe,
 	) {
 		// super(toastService);
 	 }
@@ -108,12 +109,15 @@ export class NewListComponent implements OnInit, OnDestroy {
 	}
 
 	onCreateList(list: List): void {
-		console.log(this.newList);
 
-		this.newList.listTitle = this.newListForm.value.newListName;
 		this.newList.id = UUIDService.generateUUID();
-		this.newList.boardId = this.selBoard.id;
+		this.newList.listTitle = this.newListForm.value.newListName;
 		// this.newList.listPosNo = 5;
+
+		this.newList.listCreateDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
+		this.newList.listEditDate = this.newList.listCreateDate ;
+
+		this.newList.boardId = this.selBoard.id;
 
 		this.listService.createList(this.newList).subscribe(
 			res => {
