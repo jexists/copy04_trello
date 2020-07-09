@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Board } from '../../core/models/index';
 // import { BOARDS } from '../../core/mockup/mock-board';
@@ -10,6 +10,7 @@ import { Board } from '../../core/models/index';
 })
 export class BoardComponent implements OnInit {
 
+	@Input() selBoard: Board; 
   constructor(
 
   ) { }
@@ -33,7 +34,15 @@ export class BoardComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-  
+  //////////////////////////////////////////////////////////////////////////////////
+	//
+	//	 Component View Events Methods
+	//
+	//////////////////////////////////////////////////////////////////////////////////
+
+	onSelStar(): void {
+		
+	}
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods

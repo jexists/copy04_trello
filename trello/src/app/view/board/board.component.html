@@ -1,13 +1,8 @@
-<!-- <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.boardUUID}}" [selBoard]="selBoard">
-  <div class="text-overflow">
-    <p class="board-title">{{board.boardTitle}}</p>
-  </div>
-  <div class="star">
-    <i class="far fa-star"></i>
-  </div>
-</a>
-</div>
-<div class="new-board">
-<a href="#" class="block" (click)="onModalOpen($event)">
-  create new board
-</a> -->
+  <a [ngStyle]="{'background': selBoard.boardBg}" class="board-link" routerLink="/card/{{selBoard.id}}">
+    <div class="text-overflow">
+      <p class="board-title">{{selBoard.boardTitle}}</p>
+    </div>
+    <div class="star" (click)="onSelStar()">
+      <i class="far fa-star {{selBoard.starYN===true?'active':''}}"></i>
+    </div>
+  </a>
