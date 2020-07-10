@@ -47,7 +47,8 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		public hdRepo: HdRepo,
 		private elementRef: ElementRef,
 		private dragula: DragulaService,
-		private datePipe: DatePipe
+		private datePipe: DatePipe,
+		private dragulaService: DragulaService
 	) {
 		super(toastService);
 	}

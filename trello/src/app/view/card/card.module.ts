@@ -8,6 +8,8 @@ import { NewCardComponent } from './new-card/new-card.component';
 import { NewListComponent } from './new-list/new-list.component';
 import { ListComponent } from './list/list.component';
 import { CardComponent } from './card/card.component';
+import { ModalListComponent } from './modal-list/modal-list.component';
+import { ModalCardComponent } from './modal-card/modal-card.component';
 
 
 
@@ -16,7 +18,9 @@ import { CardComponent } from './card/card.component';
     NewCardComponent,
     NewListComponent,
     ListComponent,
-    CardComponent
+    CardComponent,
+    ModalListComponent,
+    ModalCardComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { CardComponent } from './card/card.component';
   exports: [
     NewListComponent,
     NewCardComponent,
-    ListComponent
+    ListComponent,
+    // ModalCardComponent,
+    // ModalListComponent
   ],
   providers: [
     DatePipe

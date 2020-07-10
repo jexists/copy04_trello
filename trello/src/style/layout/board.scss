@@ -120,6 +120,8 @@ app-board-layout{
 .modal-content,
 app-new-board-modal {
   background-color: transparent;
+  max-width: 410px;
+  margin: auto;
   border: none;
   .newboard-modal{
     width: 410px;

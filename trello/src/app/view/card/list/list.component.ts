@@ -1,13 +1,19 @@
-import { Component, OnInit, Input, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
+import { startWith, tap } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
 
-import { List } from '../../../core/models/index';
+import { List, Card } from '../../../core/models/index';
 import { ListService, CardService } from '../../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { BaseComponent } from 'src/app/core/components/index';
-import { DatePipe } from '@angular/common';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalListComponent } from '../modal-list/modal-list.component';
+import { ModalCardComponent } from '../modal-card/modal-card.component';
+
 
 @Component({
 	selector: 'app-list',
@@ -18,7 +24,13 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 
 	@Input() selList: List;
 
+	isList: boolean = false;
+
+	cards: Card;
+	
 	editListTitle: FormControl;
+
+	modalRef: BsModalRef;
 
 	constructor(
 		protected toastService: ToastrService,
@@ -26,6 +38,7 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		private cardService: CardService,
 		public hdRepo: HdRepo,
 		private datePipe: DatePipe, 
+		private modalService: BsModalService
 	) {
 		super(toastService);
 	}
@@ -43,6 +56,10 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		this.loadCards();
 		
 	}
+
+	// ngAfterViewInit() {
+		
+	// }
 
 	ngOnDestroy(): void {
 
@@ -88,7 +105,28 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		this.onUpdateListTitle();
 	}
 
+	onListModalOpen($event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
 
+		this.isList = !this.isList;
+	}
+
+	onCardModalOpen($event): void {
+		$event.preventDefault();
+		$event.stopPropagation();
+
+		this.modalRef = this.modalService.show(ModalCardComponent,
+			{ 'class': 'modal-xl',
+				'initialState': { } }
+		);
+
+		const subscriber = this.modalService.onHide.subscribe(
+			res => {
+				subscriber.unsubscribe();
+			}
+		);
+	}
 
 
 	//////////////////////////////////////////////////////////////////////////////////

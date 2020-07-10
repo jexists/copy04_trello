@@ -45,12 +45,6 @@ import {
     //concat = two array combine
   }
 
-  //BoardID로 Board 불러오기
-  findBoardByID(cond: any): Board {
-    // if (isClear) { this.clearBoards(); }
-    return _.find(this.boards, cond);
-  }
-
   findBoardsStar(cond: any): Board {
     return _.find(this.boards, cond);
   }
@@ -62,10 +56,6 @@ import {
   
   getBoards(): Board[] {
     return this.boards;
-  }
-
-  getBoardById(): Board {
-    return _.sortBy(this.boards,['id']);
   }
 
   addBoard(board: Board): void {
@@ -137,8 +127,9 @@ import {
 
   getCardsbyListId(): Card[] {
     // console.log((_.sortBy(this.cards,['listId'])));
-    
     return _.sortBy(this.cards,['listId']);
+    // console.log(this.cards.filter((cards) => cards.listId === listId));
+    // return this.cards.filter((cards) => cards.listId === listId);
   }
 
   addCard(card: Card): void {

@@ -14,6 +14,7 @@ export class CardComponent implements OnInit {
 
 	@Input() selCard: Card;
 	@Input() selList: List;
+	page: any;
 	
 	// editCardTitle: FormControl;
 	
