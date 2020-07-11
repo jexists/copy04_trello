@@ -25,11 +25,13 @@ export class CardService {
   //
   //////////////////////////////////////
 
-  //*List Id로 Card 불러오기
-  loadCardsByListId(listId): Observable<any> {
-    const url = `${this.cardUrl}?listId=${listId}`;
+  //* Card 불러오기
+  loadCardsByBoardId(boardId): Observable<void> {
+    const url = `${this.cardUrl}?boardId=${boardId}`;
     return this.http.get<Card[]>(url).pipe(map(res => {
+      // console.log(JSON.stringify(res));
       this.hdRepo.loadCards(res, true);
+      
     }))
   }
   

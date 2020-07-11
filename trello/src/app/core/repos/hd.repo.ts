@@ -20,6 +20,8 @@ import {
 
   private cards: Card[] = [];
   
+  //private cardMap: Map<String, Card[]> = HashMap<String, Card[]>();
+
   //Repo 삭제
   clearAll(): void {
     this.clearBoards();
@@ -42,17 +44,19 @@ import {
   loadBoards(boards: Board[], isClear: boolean): void {
     if (isClear) { this.clearBoards(); }
     this.boards = this.boards.concat(boards);
-    //concat = two array combine
   }
 
-  findBoardsStar(cond: any): Board {
+  findBoard(cond: any): Board {
     return _.find(this.boards, cond);
+  }
+
+  getBoardByStar(): Board[] {
+    return _.filter(this.boards, {'starYN':true});
   }
 
   getBoard():Board{
     return this.boards[0];
   }
-
   
   getBoards(): Board[] {
     return this.boards;
@@ -72,7 +76,6 @@ import {
         if (index < 0) { return; }
     this.boards.splice(index, 1);
   }
-
 
 
 
@@ -125,11 +128,8 @@ import {
     return this.cards;
   }
 
-  getCardsbyListId(): Card[] {
-    // console.log((_.sortBy(this.cards,['listId'])));
-    return _.sortBy(this.cards,['listId']);
-    // console.log(this.cards.filter((cards) => cards.listId === listId));
-    // return this.cards.filter((cards) => cards.listId === listId);
+  getCardsbyListId(listId: string): Card[] {
+    return _.filter(this.cards, {'listId': listId});
   }
 
   addCard(card: Card): void {

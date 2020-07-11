@@ -10,6 +10,7 @@ import { BoardService } from '../../core/apis/index';
 
 import { NewBoardModalComponent } from '../../view/board/new-board-modal/new-board-modal.component';
 import { HdRepo } from 'src/app/core/repos';
+import { forkJoin } from 'rxjs';
 
 @Component({
 	selector: 'app-board-layout',
@@ -18,7 +19,6 @@ import { HdRepo } from 'src/app/core/repos';
 })
 export class BoardLayoutComponent implements OnInit {
 
-	boards: Board[];
 	selBoard: Board;
 	modalRef: BsModalRef;
 
@@ -38,41 +38,33 @@ export class BoardLayoutComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
-
+	// 데이터 초기화 :  유저 아이디로 
 	ngOnInit(): void {
-		this.loadBoardByUserId();
 		this.loadBgColor();
 
 		this.onDataInit();
 	}
 
+	// 데이터 자원반환
 	ngOnDestroy(): void {
-
-	}
-
-	
-
-	loadBoards(): void {
-		this.boardService.loadBoards().subscribe(boards => this.boards = boards);
-	}
-
-	loadBoardsByTeamId(): void {
-		this.boardService.loadBoardByTeamId('325ee323-5fa7-fffb-c123-3b9b130060c2').subscribe();
-	}
-
-	loadBoardByUserId(): void {
-		this.boardService.loadBoardByUserId('a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a').subscribe();
+		this.hdRepo.clearAll();
 	}
 
 	onDataInit(): void {
-		// if (this.hdRepo.findBoardsStar({'starYN':true})) {
-		// 	this.isStar = true;	
-		// } else {
-		// 	this.isStar = false;
-		// }
-		this.hdRepo.findBoardsStar({'starYN':true}) ?
-			this.isStar = true : this.isStar = false;
+		forkJoin([
+			this.boardService.loadBoardByUserId('a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a')
+		])
+		.subscribe(
+			res => {
+				
+			},
+			error => {
+				alert(error);
+			}
+		)
+		
 	}
+
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');
 		const headColor = <HTMLElement>document.querySelector('#headBox');
@@ -93,15 +85,9 @@ export class BoardLayoutComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onSelStar(): void {
-		// console.log($event.target);
-		// console.log('##' + this.selBoard.starYN);
-		
-		// $event.target.classList.toggle('active');
 
-		// this.selBoard.starYN = !this.board.starYN;
-
-		// this.onUpdateBoardStar();
 	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component CRUD Methods

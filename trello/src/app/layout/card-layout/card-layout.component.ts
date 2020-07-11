@@ -10,6 +10,7 @@ import { Board, List } from '../../core/models/index';
 import { BoardService, ListService, CardService } from '../../core/apis/index';
 import { HdRepo, AdminRepo } from 'src/app/core/repos';
 import { BaseComponent } from 'src/app/core/components/index';
+import { forkJoin } from 'rxjs';
 
 @Component({
 	selector: 'app-card-layout',
@@ -60,21 +61,16 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	// 데이터 초기화 : 선택한 보드 아이디로 보드 & 리스트 불러오기
 	ngOnInit(): void {
-		this.loadBoard();
-		this.loadLists();
-		this.loadCards();
-
-		this.onFormGroupInit();
-		// this.onPropertyInit();
-
-		this.loadBgColor();
-		this.loadIcon();
+		this.onDataInit();
 
 	}
 
+	// 데이터 자원반환
 	ngOnDestroy(): void {
-
+		this.hdRepo.clearLists();
+		this.hdRepo.clearCards();
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +79,32 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	onDataInit(): void {
+		// this.ngProgress.start();
+		const boardId = this.route.snapshot.paramMap.get('id');
+		// this.selBoard = this.hdRepo.findBoard({'id':boardId});
+		
+		forkJoin([
+			this.boardService.loadBoardById(boardId),
+			this.listService.loadListsByBoardId(boardId),
+			this.cardService.loadCardsByBoardId(boardId)
+		])
+		.subscribe(
+			res => {
+				this.selBoard = this.hdRepo.findBoard({'id':boardId});
+				this.onFormGroupInit();
+				
+				this.loadAccess();
+				this.loadBgColor();
+				this.loadIcon();
+			},
+			error => {
+				alert(error);
+			}
+		)
+	}
 
+	
 	onFormGroupInit(): void {
 		this.editBoardForm = new FormGroup({
 			editTitle: new FormControl(this.selBoard.boardTitle, Validators.compose([
@@ -95,7 +116,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	}
 
 
-	loadBoard(): void {
+	loadBoardById(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
 
 		this.boardService.loadBoardById(boardId).subscribe(
@@ -108,23 +129,27 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		}
 	}
 
-	loadLists(): void {
-		const boardId = this.route.snapshot.paramMap.get('id');
-
-		this.listService.loadListsByBoardId(boardId).subscribe();
-		this.lists = this.hdRepo.getLists();
+	loadAccess(): void {
+		if (this.selBoard.accessYN === "10") {
+			this.selBoard.accessYN = "private";
+		} else if (this.selBoard.accessYN === "20") {
+			this.selBoard.accessYN = "public";
+		}
 	}
 
-	loadCards(): void {
-		const listId = '';
-		this.cardService.loadCardsByListId(listId).subscribe();
-
+	loadListsByBoardId(): void {
+		const boardId = this.route.snapshot.paramMap.get('id');
+		this.listService.loadListsByBoardId(boardId).subscribe();
+	}
+	
+	loadCardsByBoardId(): void {
+		const boardId = this.route.snapshot.paramMap.get('id');
+		this.cardService.loadCardsByBoardId(boardId).subscribe();
 	}
 
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');
 		wrapColor.style.background = this.selBoard.boardBg;
-
 		const headColor = <HTMLElement>document.querySelector('#headBox');
 		headColor.style.background = 'rgba(0, 0, 0, 0.3)';
 	}
@@ -158,7 +183,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		}
 
 		if (this.selBoard.boardTitle === this.editBoardForm.get('editTitle').value) { return; }
-
 		this.selBoard.boardTitle = this.editBoardForm.get('editTitle').value;
 
 		this.onUpdateTitle();
@@ -186,7 +210,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 
 	onUpdateTitle(): void {
 		const boardId = this.route.snapshot.paramMap.get('id');
-
 		this.selBoard.boardEditDate = this.datePipe.transform(new Date(), "yyyy-MM-dd'T'HH:mm:ss");
 		
 		this.boardService.updateBoard(this.selBoard, boardId).subscribe(

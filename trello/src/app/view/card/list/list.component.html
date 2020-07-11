@@ -11,11 +11,8 @@
 </div>
 <ul class="list-contents">
   <li>
-  <li *ngFor="let card of (hdRepo.getCardsbyListId() | orderBy:'cardPosNo')" id="{{card.id}}">
-  <!-- <li *ngFor="let card of (hdRepo.getCardsbyListId())" id="{{card.id}}"> -->
-    <!-- <div *ngIf="(card.listId === selList.id)" > -->
+  <li *ngFor="let card of (hdRepo.getCardsbyListId(selList.id) | orderBy:'cardPosNo')" id="{{card.id}}">
       <app-card [selCard]="card" [selList]="selList" class="{{card.listId}}" (click)="onCardModalOpen($event)"></app-card>
-      <!-- </div> -->
   </li>
 </ul>
 <div class="list-footer cf">

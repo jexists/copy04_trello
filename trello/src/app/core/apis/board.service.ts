@@ -27,15 +27,10 @@ export class BoardService {
 	//
 	//////////////////////////////////////
 
-	//* 처음에 모든 보드 불러오는 코드 (주석풀어도 가능하고 안해도 가능)
+	//* 처음에 모든 보드 불러오는 코드
 	loadBoards(): Observable<any> {
 		return this.http.get<Board[]>(this.boardUrl).pipe(map(res => {
 			const targets = [];
-			// res.forEach(json => {
-			// 	const target = new Board(json);
-			// 	targets.push(target);
-			// 	console.log(JSON.stringify(json));
-			// });
 			this.hdRepo.loadBoards(targets, true);
 		}));
 	}
@@ -49,7 +44,7 @@ export class BoardService {
 	}
 	
 	//* 처음에 UserId로 보드 불러오는 코드
-	loadBoardByUserId(userId): Observable<any> {
+	loadBoardByUserId(userId): Observable<void> {
 		const url = `${this.boardUrl}?userId=${userId}`;
 		return this.http.get<Board[]>(url).pipe(map(res => {
 			this.hdRepo.loadBoards(res, true);
@@ -76,9 +71,11 @@ export class BoardService {
 	}
 
 	//* Id로 선택된 Board 불러오는 코드
-	loadBoardById(id: string): Observable<Board> {
+	loadBoardById(id: string): Observable<void> {
 		const url = `${this.boardUrl}?id=${id}`;
-		return this.http.get<Board>(url).pipe();
+		return this.http.get<Board[]>(url).pipe(map(res => {
+			this.hdRepo.loadBoards(res, true);
+		}));
 	}
 
 	//* 에러 확인하는 방법

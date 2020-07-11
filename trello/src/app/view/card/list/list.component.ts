@@ -13,6 +13,7 @@ import { BaseComponent } from 'src/app/core/components/index';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalListComponent } from '../modal-list/modal-list.component';
 import { ModalCardComponent } from '../modal-card/modal-card.component';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		protected toastService: ToastrService,
 		private listService: ListService,
 		private cardService: CardService,
+		private route: ActivatedRoute,
 		public hdRepo: HdRepo,
 		private datePipe: DatePipe, 
 		private modalService: BsModalService
@@ -50,16 +52,8 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	ngOnInit(): void {
-		
 		this.onFormGroupInit();
-		// this.onPropertyInit();
-		this.loadCards();
-		
 	}
-
-	// ngAfterViewInit() {
-		
-	// }
 
 	ngOnDestroy(): void {
 
@@ -72,8 +66,9 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	loadCards(): void {
-		const listId = this.selList.id;
-		this.cardService.loadCardsByListId(listId).subscribe();
+		// const listId = this.selList.id;
+		const boardId = this.route.snapshot.paramMap.get('id');
+		this.cardService.loadCardsByBoardId(boardId).subscribe();
 	}
 
 	onFormGroupInit(): void {

@@ -35,7 +35,6 @@ export class CardComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.onFormGroupInit();
-		// this.onPropertyInit();
 
 	}
 
@@ -50,12 +49,7 @@ export class CardComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onFormGroupInit(): void {
-		// console.log("####" + JSON.stringify(this.selCard.cardTitle));
-		// this.editCardTitle = new FormControl(this.selCard.cardTitle, Validators.compose([
-		// 	Validators.required,
-		// 	Validators.minLength(1),
-		// 	Validators.maxLength(100)
-		// ]));
+
 	}
 
 
@@ -67,16 +61,6 @@ export class CardComponent implements OnInit {
 
 
 	onBlurListTitle(): void {
-		// if (this.editListTitle.hasError('isEmpty')) {
-		// 	this.ngOnInit();
-		// 	return;
-		// }
-
-		// if (this.selList.listTitle === this.editListTitle.value) { return; }
-
-		// this.selList.listTitle = this.editListTitle.value;
-
-		// this.onUpdateListTitle();
 	}
 
 

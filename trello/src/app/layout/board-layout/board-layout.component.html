@@ -1,10 +1,10 @@
 
 <app-sidebar-board></app-sidebar-board>
 <div class="board-layout">
-  <div *ngIf="isStar" class="board-box">
+  <div *ngIf="hdRepo.getBoardByStar().length > 0" class="board-box">
     <h3><span><i class="far fa-star"></i></span> <p>starred boards</p></h3>
     <div class="board">
-    <div *ngFor="let board of (hdRepo.getBoards() | orderBy: 'boardPosNo')">
+    <div *ngFor="let board of (hdRepo.getBoardByStar() | orderBy: 'boardPosNo')">
       <div *ngIf="board.starYN === true" class="board-area">
       <a [ngStyle]="{'background': board.boardBg}" class="board-link" routerLink="/card/{{board.id}}">
         <div class="text-overflow">

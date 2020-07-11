@@ -26,11 +26,10 @@ export class ListService {
   //////////////////////////////////////
   
   //* Board Id로 List 불러오기
-  loadListsByBoardId(boardId): Observable<any> {
+  loadListsByBoardId(boardId): Observable<void> {
     const url = `${this.listUrl}?boardId=${boardId}`;
     return this.http.get<List[]>(url).pipe(map(res => {
       this.hdRepo.loadLists(res, true);
-      // console.log('##'+JSON.stringify(res));
     }));
   }
 
