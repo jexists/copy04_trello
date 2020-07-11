@@ -1,0 +1,317 @@
+.card-head {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 48px;
+  height: auto;
+  padding: 5px 5px 5px 10px;
+  box-sizing: border-box;
+  .card-info {
+    float: left;
+    color: #fff;
+    li {
+      float: left;
+      width: auto;
+      height: 30px;
+      margin-top: 5px;
+      margin-left: 14px;
+      &:nth-child(1) {
+        width: auto;
+
+        input {
+          width: auto;
+          height: 32px;
+          padding: 0 12px;
+          background-color: transparent;
+          border: none;
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+      button {
+        display: block;
+        width: auto;
+        height: 100%;
+        padding: 0 15px 0 0;
+        background-color: rgba(265, 265, 265, 0.2);
+        text-align: center;
+        border-radius: 5px;
+        text-transform: capitalize;
+        font-size: 14px;
+        i {
+          display: block;
+          float: left;
+          width: 32px;
+          height: 32px;
+          line-height: 30px;
+          font-size: 6px;
+        }
+        span {
+          float: left;
+          margin-left: 15px;
+          line-height: 32px;
+        }
+        i+span {
+          margin-left: 0;
+        }
+      }
+      .star {
+        padding: 0;
+        i {
+          font-size: 14px;
+            &.active{
+              color: #f2d600;
+            }
+        }
+      }
+    }
+  }
+  .card-menu {
+    // float: right;
+    margin-left: auto; 
+    li {
+      float: right;
+      margin-left: 5px;
+    }
+  }
+}
+.card-contents {
+  display: flex;
+  // background-color: #3a9bd3;
+  overflow-x: auto;
+  margin-left: 4px;
+  width: auto;
+  height: calc(100% - 88px);
+  .list-area {
+    flex: none;
+    float: left;
+    width: 272px;
+    height: 95%;
+    margin: 0 4px;
+    border-radius: 5px;
+    // background-color: #fff;
+  }  
+}
+
+.list-wrap {
+  height: auto;
+  border-radius: 5px;
+  background-color: #ebecf0;
+  padding: 4px;
+  box-sizing: border-box;
+  .list-header {
+    width: 100%;
+    height: 40px;
+    h3 {
+      width: 85%;
+      font-size: 14px;
+      color: #172b4d;
+      float: left;
+      margin-top: 8px;
+      input {
+        display: block;
+        width: 100%;
+        height: 24px;
+        padding: 4px;
+        border: none;
+        font-weight: 600;
+        background-color: transparent;
+      }
+    }
+    .list-btn {
+      float: right;
+      margin-right: 8px;
+      display: block;
+      width: 10%;
+      height: 24px;
+      margin-top: 7px;
+      line-height: 28px;
+    }
+  }
+  .list-footer{
+    color: #5e6c84;
+    padding-top: 8px;
+    .add-card {
+      float: left;
+      width: 86%;
+      text-align: left;
+      i {
+        margin: 0 5px;
+      }
+      span {
+        text-transform: capitalize;
+        color: #5e6c84;
+        font-size: 14px;
+      }
+    }
+    .card-temp {
+      float: right;
+      margin: 0 2%;
+      display: block;
+      width: 10%;
+      height: 24px;
+    }
+  }
+}
+.new-list {
+  width: 100%;
+  height: 38px;
+  .add-list {
+    width: 100%;
+    height: 100%;
+    padding: 9px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: left;
+    &:hover {
+      background-color: rgba(255,255,255, 0.4);
+    }
+    i {
+      color: #fff;
+      margin-left: 8px;
+      margin-right: 5px;
+    }
+    span {
+      text-transform: capitalize;
+      color: #fff;
+      font-size: 14px;
+    }
+  }
+}
+.list-create{
+  width: 100%;
+  height: 74px;
+  padding: 4px;
+  background-color: #ebecf0;
+  border-radius: 5px;
+  .list-name {
+    width: 100%;
+    height: 36px;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    border: none;
+    border-radius: 5px;
+    &:focus {
+      background-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .newlist-footer{
+    width: 100%;
+    padding-top: 4px;
+    .newlist-add-btn{
+      float: left;
+      width: 76px;
+      border-radius: 5px;
+      color: #fff;
+      text-transform: capitalize;
+      padding: 2px;
+      font-size: 14px;
+      background-color: #444444;
+      &.active{
+        background-color: #0aac44;
+      }
+    }
+    .newlist-close-btn{
+      display: block;
+      float: left;
+      margin-left: 5px;
+      padding: 3px 6px;
+    }
+  }
+}
+
+.card-create{
+  width: 100%;
+  height: 74px;
+  padding: 4px;
+  background-color: #ebecf0;
+  border-radius: 5px;
+  .card-name {
+    width: 100%;
+    height: 60px;
+    padding: 6px 8px;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    border: none;
+    border-radius: 5px;
+    &:focus {
+      background-color: #fff;
+      box-shadow: none;
+    }
+  }
+  .newcard-footer{
+    width: 100%;
+    padding-top: 4px;
+    .newcard-add-btn{
+      float: left;
+      width: 76px;
+      border-radius: 5px;
+      color: #fff;
+      text-transform: capitalize;
+      padding: 2px;
+      font-size: 14px;
+      background-color: #444444;
+      &.active{
+        background-color: #0aac44;
+      }
+    }
+    .newcard-close-btn{
+      display: block;
+      float: left;
+      margin-left: 5px;
+      padding: 3px 6px;
+    }
+    .newcard-option-btn{
+      display: block;
+      float: right;
+    }
+  }
+}
+
+.list-card{
+  width: 100%;
+  height: 32px;
+  padding: 4px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  a {
+    display: block;
+    border-radius: 5px;
+    padding: 0 0 0 8px;
+    box-sizing: border-box;
+    background-color: #fff;
+    line-height: 34px;
+    box-shadow: 0 1px 2px #777;
+    color: #172b4d;
+    font-size: 14px;
+    &:hover {
+      background-color: #ebecf0;
+      .card-title .card-title-icon {
+        display: block;
+        &:hover {
+          background-color: #ddd;
+          color: #172b4d;
+        }
+      }
+    }
+    .card-title{
+      overflow: hidden;
+      .card-title-text{
+        float: left;
+        width: 218px;
+      }
+      .card-title-icon{
+        display: none;
+        float: right;
+        width: 25px;
+        height: 25px;
+        margin-top: 4px;
+        line-height: 25px;
+        margin-right: 4px;
+        border-radius: 5px;
+        text-indent: -1px;
+        color: #777;
+      }
+    }
+  }
+}

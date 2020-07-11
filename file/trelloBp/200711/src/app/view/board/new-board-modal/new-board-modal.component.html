@@ -1,0 +1,52 @@
+<div class="newboard-modal">
+  <form [formGroup]="newBoardForm" (ngSubmit)="onSubmit(newBoardForm.value, $event)" novalidate id="newBoard">
+    <div class="board-info cf">
+      <div class="board-select">
+        <div class="board-header">
+          <div class="new-title">
+            <input type="text" #newTitle formControlName="newTitle" maxlength="100" placeholder="Add board title" required />
+          </div>
+          <div class="close-btn">
+            <button type="button" (click)="onClose()"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="btn-group access-btn" dropdown>
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+            aria-controls="dropdown-animated">
+            {{!selAccess?'Private':selAccess.value}} <span class="caret"></span>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-animated">
+            <li *ngFor="let access of adminRepo.getAccessCode()" role="menuitem">
+              <a class="dropdown-item" href="#" (click)="onSelAccess($event, access)">
+                <div>
+                  <span><i class="{{access.class}}"></i></span>
+                  {{access.value}}
+                  <span><i class="fas fa-check"></i></span>
+                </div>
+                <p>{{access.description1}}</p>
+                <p>{{access.description2}}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul class="board-color" (click)="onSelectBg($event.target)" (mouseover)="onHover($event.target)" (mouseleave)="onLeave($event.target)">
+        <li><button type="button"><span class="click"><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><span><i class="fas fa-check"></i></span></button></li>
+        <li><button type="button"><i class="fas fa-ellipsis-h"></i></button></li>
+      </ul>
+    </div>
+    
+    <div class="action-item">
+      <button type="submit" class="{{onValid()?'active':''}}" [disabled]="!onValid()">create board</button>
+      <a href="#"><i class="fab fa-trello"></i> start with a Template</a>
+    </div>
+  </form>
+  
+</div>

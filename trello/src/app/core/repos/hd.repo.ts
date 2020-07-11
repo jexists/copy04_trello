@@ -20,7 +20,7 @@ import {
 
   private cards: Card[] = [];
   
-  //private cardMap: Map<String, Card[]> = HashMap<String, Card[]>();
+  private cardMap: Map<String, Card[]> = new Map<String, Card[]>();
 
   //Repo 삭제
   clearAll(): void {
@@ -115,12 +115,24 @@ import {
   /////////////////////////////////////////////
 
   clearCards(): void {
-    this.cards.length = 0;
+    //this.cards.length = 0;
+    this.cardMap.clear();
   }
   
   loadCards(cards: Card[], isClear: boolean): void {
     if (isClear) { this.clearCards(); }
-    this.cards = this.cards.concat(cards);
+    //this.cards = this.cards.concat(cards);
+    cards.forEach((card) => {
+      if (this.cardMap.has(card.listId)){
+        let target: Card[] = this.cardMap.get(card.listId);
+        target.push(card);
+      }else{
+        let target: Card[] = [];
+        target.push(card);
+        this.cardMap.set(card.listId, target);
+      }
+    });
+
   }
   
   getCards(): Card[] {
@@ -129,10 +141,26 @@ import {
   }
 
   getCardsbyListId(listId: string): Card[] {
-    return _.filter(this.cards, {'listId': listId});
+    //return _.filter(this.cards, {'listId': listId});
+    return this.cardMap.get(listId);
   }
 
   addCard(card: Card): void {
-    this.cards.push(card);
+    // this.cards.push(card);
+    if (this.cardMap.has(card.listId)){
+      let target: Card[] = this.cardMap.get(card.listId);
+      target.push(card);
+    }else{
+      let target: Card[] = [];
+      target.push(card);
+      this.cardMap.set(card.listId, target);
+    }
+  }
+
+  deleteCard(card: Card): void {
+      let target: Card[] = this.cardMap.get(card.listId);
+      const index = _.findIndex(target, { id: card.id });
+      if (index < 0) { return; }
+      target.splice(index, 1);
   }
 }

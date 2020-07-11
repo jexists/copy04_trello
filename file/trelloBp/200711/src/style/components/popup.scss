@@ -1,0 +1,19 @@
+
+
+.menu-popup {
+  display: none;
+  position: absolute;
+  z-index: 500;
+  top: 40px;
+  right: 0;
+  transform: translateX(-100%);
+  width: 340px;
+  max-width: 340px;
+  height: 100%;
+  background-color: #f4f5f7;
+  transition: all 1000ms ease;
+  &.act {
+    display: block;
+    transform: translateX(0);
+  }
+}

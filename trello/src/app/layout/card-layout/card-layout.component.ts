@@ -80,9 +80,7 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	//////////////////////////////////////////////////////////////////////////////////
 
 	onDataInit(): void {
-		// this.ngProgress.start();
 		const boardId = this.route.snapshot.paramMap.get('id');
-		// this.selBoard = this.hdRepo.findBoard({'id':boardId});
 		
 		forkJoin([
 			this.boardService.loadBoardById(boardId),
@@ -115,20 +113,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		});
 	}
 
-
-	loadBoardById(): void {
-		const boardId = this.route.snapshot.paramMap.get('id');
-
-		this.boardService.loadBoardById(boardId).subscribe(
-			selBoard => this.selBoard = selBoard[0]);
-
-		if (this.selBoard.accessYN === "10") {
-			this.selBoard.accessYN = "private";
-		} else if (this.selBoard.accessYN === "20") {
-			this.selBoard.accessYN = "public";
-		}
-	}
-
 	loadAccess(): void {
 		if (this.selBoard.accessYN === "10") {
 			this.selBoard.accessYN = "private";
@@ -137,15 +121,6 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 		}
 	}
 
-	loadListsByBoardId(): void {
-		const boardId = this.route.snapshot.paramMap.get('id');
-		this.listService.loadListsByBoardId(boardId).subscribe();
-	}
-	
-	loadCardsByBoardId(): void {
-		const boardId = this.route.snapshot.paramMap.get('id');
-		this.cardService.loadCardsByBoardId(boardId).subscribe();
-	}
 
 	loadBgColor(): void {
 		const wrapColor = <HTMLElement>document.querySelector('#wrap');

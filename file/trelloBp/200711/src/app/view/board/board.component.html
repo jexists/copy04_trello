@@ -1,0 +1,8 @@
+  <a [ngStyle]="{'background': selBoard.boardBg}" class="board-link" routerLink="/card/{{selBoard.id}}">
+    <div class="text-overflow">
+      <p class="board-title">{{selBoard.boardTitle}}</p>
+    </div>
+    <div class="star" (click)="onSelStar()">
+      <i class="far fa-star {{selBoard.starYN===true?'active':''}}"></i>
+    </div>
+  </a>

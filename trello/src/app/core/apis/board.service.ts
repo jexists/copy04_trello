@@ -72,9 +72,9 @@ export class BoardService {
 
 	//* Id로 선택된 Board 불러오는 코드
 	loadBoardById(id: string): Observable<void> {
-		const url = `${this.boardUrl}?id=${id}`;
-		return this.http.get<Board[]>(url).pipe(map(res => {
-			this.hdRepo.loadBoards(res, true);
+		const url = `${this.boardUrl}/${id}`;
+		return this.http.get<Board>(url).pipe(map(res => {
+			this.hdRepo.addBoard(res);
 		}));
 	}
 

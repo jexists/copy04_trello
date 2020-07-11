@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~ngx-toastr/toastr';
+
+@import "./vendor/fontawesome/css/all.min.css";
+
+@import "./style/vendor/ngx-modal";
+@import "./style/vendor/dragula.scss";
+
+
+@import "./style/base/reset";
+@import "./style/base/common";
+
+@import "./style/components/icon";
+@import "./style/components/modal";
+@import "./style/components/popup";
+
+@import "./style/layout/header";
+@import "./style/layout/sidebar";
+@import "./style/layout/board";
+@import "./style/layout/card";
+@import "./style/layout/card-modal";
+@import "./style/layout/list-modal";
+
