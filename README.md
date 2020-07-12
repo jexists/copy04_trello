@@ -1,12 +1,8 @@
-copy04_trello
+# copy04_trello
 
 Trello Clone by Angular
 
-해야할것
-
-- [ ]  생성&삭제 로그 클라이언트 뷰로 보여지기
-
----
+## 기능:
 
 - [x]  **BOARD 기본**
 
@@ -14,8 +10,6 @@ Trello Clone by Angular
 - [x]  보드 제목 수정
 - [x]  보드 삭제 
 - [x]  보드 생성
-
-
 
 - [x]  **BOARD 생성**
 
@@ -26,8 +20,6 @@ Trello Clone by Angular
 - [x]  ID 자동 생성
 - [x]  모달배경 & access 클릭안햇을경우 기본값 지정
 - [x]  만든후 에 새로운 보드로  자동 이동 
-
-
 
 - [ ]  **BOARD 생성 후 & BOARD 클릭 후**
 - [x]  보드 이름 수정하기
@@ -44,5 +36,5 @@ Trello Clone by Angular
 
 
 
-- [x]  GitHub 올리기
+## 설치
 
