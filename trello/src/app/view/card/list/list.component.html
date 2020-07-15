@@ -3,9 +3,9 @@
     <input type="text" value="{{selList.listTitle}}" [formControl]="editListTitle" (keyup.enter)="onBlurListTitle()" (blur)="onBlurListTitle()"/>
   </h3>
   <div class="relative">
-    <button class="list-btn" type="button" (click)="onListModalOpen($event)"><i class="fas fa-ellipsis-h"></i></button>
+    <button class="list-btn" type="button" (click)="onListModalOpen()"><i class="fas fa-ellipsis-h"></i></button>
     <div *ngIf="isList" class="list-modal">
-      <app-modal-list></app-modal-list>
+      <app-modal-list [isList]="isList" (isListClose)="onListModalOpen()"></app-modal-list>
     </div>
   </div>
 </div>

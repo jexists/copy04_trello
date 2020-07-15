@@ -100,9 +100,7 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		this.onUpdateListTitle();
 	}
 
-	onListModalOpen($event): void {
-		$event.preventDefault();
-		$event.stopPropagation();
+	onListModalOpen(): void {
 
 		this.isList = !this.isList;
 	}
