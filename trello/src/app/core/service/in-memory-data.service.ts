@@ -16,31 +16,128 @@ export class InMemoryDataService {
 
   createDb() {
     const teams = [
-      { id: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3', teamName:'개발팀'},
-      { id: '325ee323-5fa7-fffb-c123-3b9b130060c2', teamName: '광고운영팀'}
+      { id: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3', 
+        teamName:'개발팀'},
+      { id: '325ee323-5fa7-fffb-c123-3b9b130060c2', 
+        teamName: '광고운영팀'}
     ];
 
     const boards = [
-      { id: "e62a0202-f309-15fd-1519-77f0a6c356a6", boardTitle: '테스트용',boardPosNo: 100000, boardBg: '#86373a', starYN: true, accessYN: '10', boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2',
-      userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'},
-      { id: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", boardTitle: 'test', boardPosNo: 300000, boardBg: '#cc8813', starYN: false, accessYN: '10',
-      boardCreateDate:'2020-03-02 22:22:22', boardEditDate: '2020-04-23 20:44:23', teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2' ,
-      userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'},
-      { id: "f25f531e-6202-361c-eea8-bf1ed81acf50", boardTitle: '보드 삭제가능',boardPosNo: 200000, boardBg: '#fe832e', starYN: false, accessYN: '20', boardCreateDate:'2020-03-02 02:02:22', boardEditDate: '2020-07-23 20:44:23', teamId: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3',
-      userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a' }
+      { id: "e62a0202-f309-15fd-1519-77f0a6c356a6", 
+        boardTitle: '프론트엔드',
+        boardPosNo: 100000, 
+        boardBg: '#86373a', 
+        starYN: true, 
+        accessYN: '10', 
+        boardCreateDate:'2020-03-02 22:22:22', 
+        boardEditDate: '2020-04-23 20:44:23', 
+        teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2',
+        userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'
+      },
+      { id: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        boardTitle: '디발자', 
+        boardPosNo: 300000, 
+        boardBg: '#cc8813', 
+        starYN: false, 
+        accessYN: '10',
+        boardCreateDate:'2020-03-02 22:22:22', 
+        boardEditDate: '2020-04-23 20:44:23', 
+        teamId: '325ee323-5fa7-fffb-c123-3b9b130060c2' ,
+        userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a'
+      },
+      { id: "f25f531e-6202-361c-eea8-bf1ed81acf50", 
+        boardTitle: '퍼블리셔',
+        boardPosNo: 200000, 
+        boardBg: '#fe832e', 
+        starYN: false, 
+        accessYN: '20', 
+        boardCreateDate:'2020-03-02 02:02:22', 
+        boardEditDate: '2020-07-23 20:44:23', 
+        teamId: '3a3fddcb-21a0-825d-b573-8a13fe6c24f3',
+        userId:'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a' 
+      }
     ];
     
     const lists = [
-      { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listTitle: '리스트 테스트', listPosNo: 100000},
-      { id:'9c8287db-d478-b5cf-535b-b997f544ee52', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트2', listPosNo: 200000},
-      { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트3', listPosNo: 300000},
-      { id:'6e319636-f2a5-cd28-791d-607a433e307e', boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listTitle: '리스트 삭제가능', listPosNo: 700000},
+      { id:'970cf242-81c4-9ef6-92c3-3a250f106b75', 
+        boardId: "f25f531e-6202-361c-eea8-bf1ed81acf50", 
+        listTitle: 'HTML', 
+        listPosNo: 100000
+      },
+      { id:'1b883fc6-6c58-3e7b-a292-b2d9b6a46abc', 
+        boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", 
+        listTitle: 'Angular', 
+        listPosNo: 100000
+      },
+      { id:'6a579d5d-95b2-b120-489a-46b37e8fd21b', 
+        boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", 
+        listTitle: 'etc', 
+        listPosNo: 100000
+      },
+      { id:'75054b3c-c284-95e6-4832-775043b3255c', 
+        boardId: "f25f531e-6202-361c-eea8-bf1ed81acf50", 
+        listTitle: 'CSS/SCSS', 
+        listPosNo: 100000
+      },
+      { id:'ce7b6c9f-1e9e-a2f3-79ea-570f10b8a6c1', 
+        boardId: "f25f531e-6202-361c-eea8-bf1ed81acf50", 
+        listTitle: 'JavaScript', 
+        listPosNo: 100000
+      },
+      { id:'9c8287db-d478-b5cf-535b-b997f544ee52', 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listTitle: '그래픽디자인', 
+        listPosNo: 200000
+      },
+      { id:'6a281328-f9ad-dd21-7038-2ab3594f9080', 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listTitle: '산업디자인', 
+        listPosNo: 300000
+      },
+      { id:'6e319636-f2a5-cd28-791d-607a433e307e', 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listTitle: '영상디자인', 
+        listPosNo: 700000
+      },
     ];
 
     const cards = [
-      { id: "798b9c56-732d-92a2-f046-7a08604902bd", cardTitle: '카드 테스트', cardPosNo: 100000, boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", listId: "970cf242-81c4-9ef6-92c3-3a250f106b75" },
-      { id: "a49d45bb-e77e-1bd5-269b-94a3b61b4e63", cardTitle: 'test', cardPosNo: 100000, boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listId: "9c8287db-d478-b5cf-535b-b997f544ee52" },
-      { id: "8133f55d-d02f-ae1c-c6fb-951293f7e206", cardTitle: '카드 ??', cardPosNo: 100000, boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", listId: "6a281328-f9ad-dd21-7038-2ab3594f9080" },
+      { id: "798b9c56-732d-92a2-f046-7a08604902bd", 
+        cardTitle: 'AJAX', 
+        cardPosNo: 100000, 
+        boardId: "e62a0202-f309-15fd-1519-77f0a6c356a6", 
+        listId: "6a579d5d-95b2-b120-489a-46b37e8fd21b" 
+      },
+      { id: "a49d45bb-e77e-1bd5-269b-94a3b61b4e63", 
+        cardTitle: 'Illustrator', 
+        cardPosNo: 100000, 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listId: "9c8287db-d478-b5cf-535b-b997f544ee52" 
+      },
+      { id: "7146b8e0-a2de-89f8-aabf-d80b73fea475", 
+        cardTitle: 'Photoshop', 
+        cardPosNo: 100000, 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listId: "9c8287db-d478-b5cf-535b-b997f544ee52" 
+      },
+      { id: "41ef3049-e16d-3645-8cea-9df16a6c61ad", 
+        cardTitle: 'Indesign', 
+        cardPosNo: 100000, 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listId: "9c8287db-d478-b5cf-535b-b997f544ee52" 
+      },
+      { id: "8133f55d-d02f-ae1c-c6fb-951293f7e206", 
+        cardTitle: 'Auto CAD', 
+        cardPosNo: 100000, 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listId: "6a281328-f9ad-dd21-7038-2ab3594f9080" 
+      },
+      { id: "7b7e5e6d-830c-cfb1-38bb-736c56cd416f", 
+        cardTitle: '3D MAX', 
+        cardPosNo: 100000, 
+        boardId: "c051c08a-888b-706f-ba0f-00f91ef0eaa2", 
+        listId: "6a281328-f9ad-dd21-7038-2ab3594f9080" 
+      },
     ]
     return { boards, lists, cards };
     
@@ -48,13 +145,7 @@ export class InMemoryDataService {
 
 
 // 
-// 75054b3c-c284-95e6-4832-775043b3255c
-// 1b883fc6-6c58-3e7b-a292-b2d9b6a46abc
-// ce7b6c9f-1e9e-a2f3-79ea-570f10b8a6c1
-// 7b7e5e6d-830c-cfb1-38bb-736c56cd416f
-// 7146b8e0-a2de-89f8-aabf-d80b73fea475
-// 41ef3049-e16d-3645-8cea-9df16a6c61ad
-// 6a579d5d-95b2-b120-489a-46b37e8fd21b
+// 
 // 4d1b6c34-753b-8166-8b7c-509592615d9f
 // 84f7551a-d48b-86e7-aba7-9f6b7df3c7a2
 // c63583f9-1829-8c2a-f301-4ef26bb92a8e
