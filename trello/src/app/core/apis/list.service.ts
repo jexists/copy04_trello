@@ -46,6 +46,11 @@ export class ListService {
 		return this.http.put<List>(url, list).pipe();
 	}
   
+  //* List 지우는 코드
+	deleteList(list: List, id: string): Observable<void> {
+		const url = `${this.listUrl}/${id}/delete`;
+		return this.http.delete<void>(url).pipe();
+	}
 
 }
 

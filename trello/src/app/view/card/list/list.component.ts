@@ -146,6 +146,8 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		);
 	}
 
+
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//
 	//   Component Subscription Methods
