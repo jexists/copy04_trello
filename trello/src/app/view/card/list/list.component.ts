@@ -105,13 +105,13 @@ export class ListComponent extends BaseComponent implements OnInit, OnDestroy {
 		this.isList = !this.isList;
 	}
 
-	onCardModalOpen($event): void {
+	onCardModalOpen(card: Card, $event): void {
 		$event.preventDefault();
 		$event.stopPropagation();
 
 		this.modalRef = this.modalService.show(ModalCardComponent,
 			{ 'class': 'modal-xl',
-				'initialState': { } }
+				'initialState': { 'selCard': card} }
 		);
 
 		const subscriber = this.modalService.onHide.subscribe(

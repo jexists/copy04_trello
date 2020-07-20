@@ -14,8 +14,9 @@ import { HdRepo } from 'src/app/core/repos';
 export class ModalCardComponent implements OnInit {
 
 
-  @Input() selCard: Card;
+  selCard: Card;
 
+	
 	constructor(
 		public modalRef: BsModalRef,
 		private hdRepo: HdRepo,
@@ -33,6 +34,8 @@ export class ModalCardComponent implements OnInit {
 	ngOnInit(): void {
 		this.onFormGroupInit();
 		this.onPropertyInit();
+		console.log(this.selCard);
+		
 	}
 
 	ngOnDestroy(): void {

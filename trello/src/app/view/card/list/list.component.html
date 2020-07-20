@@ -12,7 +12,7 @@
 <ul class="list-contents">
   <li>
   <li *ngFor="let card of (hdRepo.getCardsbyListId(selList.id) | orderBy:'cardPosNo')" id="{{card.id}}">
-      <app-card [selCard]="card" [selList]="selList" class="{{card.listId}}" (click)="onCardModalOpen($event)"></app-card>
+      <app-card [selCard]="card" [selList]="selList" class="{{card.listId}}" (click)="onCardModalOpen(card, $event)"></app-card>
   </li>
 </ul>
 <div class="list-footer cf">

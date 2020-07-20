@@ -6,7 +6,7 @@
         <span><i class="fas fa-keyboard"></i></span>
       </div>
       <h3 class="header-title">
-        <input type="text" value="카드이름입력예정"/>
+        <input type="text" value="{{selCard.cardTitle}}"/>
       </h3>
       <button type="button" class="closeBtn" (click)="onClose()">
         <i class="fas fa-times"></i>
@@ -14,7 +14,7 @@
     </div>
     <div class="header-list">
       <span>in list</span>
-      <button type="button">리스트이름예정</button>
+      <button type="button">{{selCard.listId}}</button>
     </div>
   </div>
 
