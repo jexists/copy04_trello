@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
-import { Card } from 'src/app/core/models';
+import { Card, List } from 'src/app/core/models';
 import { HdRepo } from 'src/app/core/repos';
 
 @Component({
@@ -13,7 +13,7 @@ import { HdRepo } from 'src/app/core/repos';
 })
 export class ModalCardComponent implements OnInit {
 
-
+	selList: List;
   selCard: Card;
 
 	
@@ -34,7 +34,10 @@ export class ModalCardComponent implements OnInit {
 	ngOnInit(): void {
 		this.onFormGroupInit();
 		this.onPropertyInit();
-		console.log(this.selCard);
+		// console.log(this.selCard);
+		this.selList = this.hdRepo.findListByListId({'id':this.selCard.listId});
+		
+		console.log(this.selList);
 		
 	}
 

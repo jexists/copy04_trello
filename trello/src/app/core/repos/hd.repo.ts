@@ -106,6 +106,9 @@ import {
     // console.log(this.lists);
   }
   
+  findListByListId(cond: any): List {
+    return _.find(this.lists, cond);
+  }
 
 
   //////////////////////////////////////////////
