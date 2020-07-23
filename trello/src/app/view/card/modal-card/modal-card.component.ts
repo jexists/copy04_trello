@@ -14,7 +14,9 @@ import { HdRepo } from 'src/app/core/repos';
 export class ModalCardComponent implements OnInit {
 
 	selList: List;
-  selCard: Card;
+	selCard: Card;
+	
+	etcMaxRows: number = 5;
 
 	
 	constructor(

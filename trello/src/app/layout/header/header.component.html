@@ -43,7 +43,7 @@
       </button>
     </li>
     <li class="icon-lg-box relative header-search">
-      <input type="text" (focus)="onTextFocus()" style="cursor: not-allowed;">
+      <input type="text" [formControl]="searchField" (blur)="onClearSearchText($event)" style="cursor: not-allowed;">
       <div class="search-icon">
         <button type="button" style="cursor: not-allowed;">
           <i class="fas fa-search"></i>

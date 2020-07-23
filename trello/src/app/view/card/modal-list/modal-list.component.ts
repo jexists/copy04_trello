@@ -73,7 +73,6 @@ export class ModalListComponent extends BaseComponent implements OnInit {
     this.listService.deleteList(this.selList, this.selList.id).subscribe(
       res => {
         this.showSuccess('', '삭제되었습니다.');
-        console.log('삭제');
         this.onCloseListModal();
       },
       error => {

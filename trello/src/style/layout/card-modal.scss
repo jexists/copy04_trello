@@ -98,12 +98,18 @@
         width: calc(100% - 36px);
         height: 68px;
         margin-top: 10px;
+        border: none;
         margin-left: 36px;
         text-align: left;
         padding: 8px 12px;
         border-radius: 5px;
         box-sizing: border-box;
         background-color: rgba(9,30,66,0.04);
+        &:focus {
+          background-color: #fff;
+          border: 2px solid #164aa3;
+          // border-radius: 5px;
+        }
       }
 
       .activityBtn{

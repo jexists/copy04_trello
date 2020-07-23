@@ -47,6 +47,7 @@
       z-index: 1;
       top: 0;
       right: 0;
+      
     }
     button {
       display: block;
@@ -62,6 +63,9 @@
    .header-search {
      input {
        color: #333;
+       &:focus + .search-icon{
+        display: none;
+      }
      }
    }
   }

@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OrderModule } from 'ngx-order-pipe';
+// import { AutosizeModule } from 'ngx-autosize';
 
 import { NewCardComponent } from './new-card/new-card.component';
 import { NewListComponent } from './new-list/new-list.component';
@@ -26,7 +27,8 @@ import { ModalCardComponent } from './modal-card/modal-card.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    OrderModule
+    OrderModule,
+    // AutosizeModule
   ],
   exports: [
     NewListComponent,
