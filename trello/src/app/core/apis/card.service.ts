@@ -41,4 +41,11 @@ export class CardService {
       this.hdRepo.addCard(target);
     }))
   }
+
+
+  //* Card 지우는 코드
+	deleteCard(card: Card, id: string): Observable<void> {
+		const url = `${this.cardUrl}/${id}/delete`;
+		return this.http.delete<void>(url).pipe();
+	}
 }

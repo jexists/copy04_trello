@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { Card, List } from 'src/app/core/models';
 import { HdRepo } from 'src/app/core/repos';
+import { CardService } from 'src/app/core/apis';
 
 @Component({
   selector: 'app-modal-card',
@@ -23,6 +24,7 @@ export class ModalCardComponent implements OnInit {
 		public modalRef: BsModalRef,
 		private hdRepo: HdRepo,
 		private datePipe: DatePipe,
+		private cardService: CardService,
 		private modalService: BsModalService,
 	) { 
 	}
@@ -79,6 +81,20 @@ export class ModalCardComponent implements OnInit {
 	//
 	//////////////////////////////////////////////////////////////////////////////////
 
+	onArchive($event): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+
+    this.cardService.deleteCard(this.selCard, this.selCard.id).subscribe(
+      res => {
+        // this.showSuccess('', '삭제되었습니다.');
+        this.onClose();
+      },
+      error => {
+        // this.showError(null, 'Board 삭제 시 오류가 발생하였습니다.')
+      }
+    );
+  }
 
 
 	//////////////////////////////////////////////////////////////////////////////////
