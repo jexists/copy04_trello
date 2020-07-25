@@ -18,6 +18,8 @@ export class NewCardComponent implements OnInit {
 	card: Card[];
 	newCard: Card;
 
+	
+
 	newCardForm: FormGroup;
 	isNewCard: boolean = false;
 	

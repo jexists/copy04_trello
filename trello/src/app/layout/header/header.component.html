@@ -41,6 +41,13 @@
         <span class="header-icon"><i class="fab fa-trello"></i></span> 
         <span class="header-text">board</span>
       </button>
+      <!-- 수정중 -->
+      <div class="board-popup" style="display: none;">
+        <div>
+          <input type="text" placeholder="Find boards by name..."/>
+          <button type="button">x</button> 
+        </div>
+      </div>
     </li>
     <li class="icon-lg-box relative header-search">
       <input type="text" [formControl]="searchField" (blur)="onClearSearchText($event)" style="cursor: not-allowed;">

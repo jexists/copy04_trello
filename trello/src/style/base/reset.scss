@@ -77,8 +77,9 @@ button{
   font-size: inherit;
   color: inherit;
   line-height: inherit;
+  border-radius: 5px;
  &:hover {
-   background-color: #fa0;}
+   background-color: rgba(9,30,66,.08);}
  &:focus {
    outline:2px solid #f06;}
 }

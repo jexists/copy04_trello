@@ -1,4 +1,4 @@
-<div class="card-head">
+<div class="card-head relative">
 	<form [formGroup]="editBoardForm">
 		<ul class="card-info">
 			<li>
@@ -54,17 +54,27 @@
 		<li><button type="button" style="cursor: not-allowed;"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
 		<li><button type="button" (click)="onArchive($event)"><span>delete</span></button></li>
 	</ul>
+	<!-- 메뉴팝업 -->
 	<div class="menu-popup">
 		<div>
 			<p>menu</p>
 			<button type="button"><i class="fas fa-times"></i></button>
 		</div>
 		<div>
+			about this board
+		</div>
+		<div>
 			change background
 		</div>
 		<button type="button">
-			delete
+			delete board...
 		</button>
+		<div>
+			activity
+		</div>
+		<ul>
+			<li></li>
+		</ul>
 	</div>
 </div>
 <ul dragula="card-collection" class="card-contents">
