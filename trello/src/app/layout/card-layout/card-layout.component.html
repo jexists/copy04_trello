@@ -50,7 +50,7 @@
 		</ul>
 	</form>
 	<ul class="card-info card-menu">
-		<li><button type="button" style="cursor: not-allowed;"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
+		<li><button type="button" style="cursor: not-allowed;" class="showMenu" (click)="onShowMenu($event)"><i class="fas fa-ellipsis-h"></i><span>show menu</span></button></li>
 		<li><button type="button" style="cursor: not-allowed;"><i class="fas fa-concierge-bell"></i><span>butler</span></button></li>
 		<li><button type="button" (click)="onArchive($event)"><span>delete</span></button></li>
 	</ul>

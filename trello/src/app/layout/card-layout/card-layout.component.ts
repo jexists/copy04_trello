@@ -169,11 +169,23 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 
 		this.onUpdateBoardStar();
 	}
+
 	onSelAccess($event, access: any): void {
 		$event.preventDefault();
 
 		this.selAccess = access;
 		this.selBoard.accessYN = this.selAccess.code;
+	}
+
+	onShowMenu($event): void {
+		$event.stopPropagation();
+		console.log($event.target);
+		
+		let menu = document.querySelector('.menu-popup');
+		
+		menu.classList.toggle('active');
+		console.log(menu);
+		
 	}
 
 
