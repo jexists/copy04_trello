@@ -11,6 +11,7 @@ import { ListComponent } from './list/list.component';
 import { CardComponent } from './card/card.component';
 import { ModalListComponent } from './modal-list/modal-list.component';
 import { ModalCardComponent } from './modal-card/modal-card.component';
+import { BoardPopupComponent } from './board-popup/board-popup.component';
 
 
 
@@ -21,7 +22,8 @@ import { ModalCardComponent } from './modal-card/modal-card.component';
     ListComponent,
     CardComponent,
     ModalListComponent,
-    ModalCardComponent
+    ModalCardComponent,
+    BoardPopupComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { ModalCardComponent } from './modal-card/modal-card.component';
     NewListComponent,
     NewCardComponent,
     ListComponent,
+    BoardPopupComponent
     // ModalCardComponent,
     // ModalListComponent
   ],
