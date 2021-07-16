@@ -152,7 +152,7 @@ export class NewBoardModalComponent implements OnInit, OnDestroy {
 		this.selBoard.starYN = false;
 
 		if (!this.selBoard.accessYN) {
-			this.selBoard.accessYN = "10";
+			this.selBoard.accessYN = true;
 		}
 
 		this.selBoard.userId = 'a7cdf232-e2f2-d6d8-4593-3e2cb68c9a4a';

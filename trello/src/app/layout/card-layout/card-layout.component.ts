@@ -114,11 +114,11 @@ export class CardLayoutComponent extends BaseComponent implements OnInit, OnDest
 	}
 
 	loadAccess(): void {
-		if (this.selBoard.accessYN === "10") {
-			this.selBoard.accessYN = "private";
-		} else if (this.selBoard.accessYN === "20") {
-			this.selBoard.accessYN = "public";
-		}
+		// if (this.selBoard.accessYN === "10") {
+		// 	this.selBoard.accessYN = "private";
+		// } else if (this.selBoard.accessYN === "20") {
+		// 	this.selBoard.accessYN = "public";
+		// }
 	}
 
 

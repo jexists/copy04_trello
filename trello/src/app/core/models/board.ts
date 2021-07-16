@@ -1,12 +1,12 @@
 
 export class Board {
-  
-  id: string;
-  boardTitle: string;
-  boardPosNo: number;
-  boardBg: string;
-  starYN: boolean;
-  accessYN: string;
+  boardUUID?: number;
+  id?: string;
+  boardTitle?: string;
+  boardPosNo?: number;
+  boardBg?: string;
+  starYN?: boolean;
+  accessYN?: boolean;
 
   boardCreateDate: string;
   boardEditDate: string;
